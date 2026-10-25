@@ -44,8 +44,9 @@ phone input/paste/DEL with disk retention and no implicit Check. Build succeeds;
 lint zero errors/one target SDK 36 warning. Honeycomb and phone-keyboard screenshot
 QA inspected locally. Full detail: VERIFICATION. Physical phone not automated.
 Artifact: artifacts/CLEAN-Words-F1-debug.apk, 0.2.0-f1/versionCode 2. Install as update;
-never uninstall/clear player data. Hash in VERIFICATION. Emulator cleanup and Git
-checkpoint will be recorded after final packaging.
+never uninstall/clear player data. Hash in VERIFICATION. Implementation commit
+44994c2 pushed to origin/main; test emulator shut down at handoff. Physical phone
+untouched. Only the pre-existing untracked Gradle JVM file remains outside Git.
 
 Use tools/test-emulator.ps1 with explicit emulator serial, not unfiltered connected
 Android tests: a physical phone may be connected. User's untracked
