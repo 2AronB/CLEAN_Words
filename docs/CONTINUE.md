@@ -13,8 +13,8 @@ fixes in S1 need no repeated permission. No public app release, global settings
 changes or automatic implementation of the future backlog.
 
 Pushes as needed to https://github.com/2AronB/CLEAN_Words are authorized until
-release. Local repository initialized on main; final commit/push status will be
-recorded below. Source starter snapshots are in starter-reference. Recommend and
+release. Implementation commit 83ea2a2 is pushed to origin/main; local source
+checkpoint and remote matched after push. Source snapshots are in starter-reference. Recommend and
 propagate justified reusable starter improvements to
 C:\Users\Kayli\Desktop\CLEAN Development\development subject to filesystem
 permissions. Three improvements were returned to PROJECT-AGENTS-TEMPLATE.md;
@@ -59,8 +59,9 @@ Installable artifact: artifacts/CLEAN-Words-S1-debug.apk (debug signing, ~12 MB)
 
 Headless emulator uses existing Medium_Phone_API_37.0 AVD in read-only,
 no-window/no-snapshot-save mode, serial emulator-5554. Wi-Fi/data disabled for
-tests. Do not touch physical phones or saved emulator state. Shut down this
-instance at handoff. Private test files only; no production data reset.
+tests. Test instance shut down at handoff with `adb -s emulator-5554 emu kill`;
+no physical phone or saved emulator image altered. Test files were isolated;
+no production data reset. ADB server may remain available for normal development.
 
 ## Next actions
 
