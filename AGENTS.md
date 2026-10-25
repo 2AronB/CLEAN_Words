@@ -44,7 +44,8 @@ Source library: C:\Users\Kayli\Desktop\CLEAN Development\development .
 Recommend reusable starter improvements when evidence supports them; the owner
 has requested propagating improvements to that library. Record changes and
 preserve project-specific requirements locally. External writes remain subject
-to workspace permissions. No starter improvement has been identified yet.
+to workspace permissions. Three reusable template improvements were propagated
+on 2026-10-25; see docs/STARTER-IMPROVEMENTS.md. Original snapshots retained.
 
 Before every handoff update CONTINUE with current scope, checks, unresolved
 decisions and the exact next action. Before coding, it must explicitly say no

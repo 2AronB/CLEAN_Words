@@ -24,7 +24,7 @@ offline credits. Provenance describes rights and reproducibility, not quality.
 | Game | Proposed game-specific information |
 |---|---|
 | Wordish | Normalized word ID/text; accepted-guess eligibility separate from answer eligibility; word length; familiarity evidence/source; inflection/variant/spelling flags; sensitive-content policy; reviewed answer tier. Puzzle records retain selected answers and guess-policy version. |
-| Spelling Meh | Vocabulary entries with inclusion/exclusion reason and dialect; seven distinct letters, mandatory center, complete accepted-answer set under that policy, pangram IDs, per-word score inputs, maximum score, completion target and scoring-policy version. Keep broad bonus vocabulary distinct if such a feature is later approved. |
+| Spelling Meh | Vocabulary entries with inclusion/exclusion reason and dialect; seven distinct letters, mandatory center, complete accepted-answer set under that policy, pangram IDs, per-word score inputs, maximum goal score, completion target and scoring-policy version. Preserve the implemented distinction between familiar goal words and broad accepted bonus vocabulary; bonus does not advance the goal target. |
 | Connektions | Stable category ID, label, relation type, four or more candidate member IDs, explicit sense/phrase expansion, explanation, cultural/reference prerequisites, wordplay flag, known overlaps and reviewed difficulty observations. Board records freeze four groups of four distinct displayed tiles and their explanations. |
 | Strand-ish | Theme ID, clue text, theme explanation, theme-answer IDs, spanning answer, dimensions, letter grid and exact ordered cell path for every answer. Preserve accepted incidental-word policy separately. Record clue/word familiarity and validation/review status. |
 | Minuscule Crossword | Answer entry with normalized fill, display form, intended sense, original clue IDs/text, clue style and prerequisites. Board record stores dimensions, blocks, canonical cell letters, numbered Across/Down runs, clue-to-run mapping and check/reveal policy. A definition alone is not assumed to be a good clue. |
@@ -116,28 +116,101 @@ possible. Testing a generator only with its own validator can reproduce the same
 bug twice. Keep a set of manually verified invalid records that each validator
 must reject. Semantic uniqueness remains partly a human judgment.
 
-## Difficulty: proposed features and calibration
+## Difficulty: provisional recipes and calibration
 
+Everything in this section is a **proposal, not yet authorized implementation**.
 The owner's daily target is medium-plus, about 3.5/5: challenging but usually
-winnable with effort. This is qualitative feedback, not a validated numeric
-prediction. Any initial score is a **proxy**, with feature values and uncertainty
-recorded; do not label arbitrary weighted sums as measured difficulty.
+winnable with effort. The formulas below are explicit, testable **content-ranking
+proxies**, not measured human difficulty, validated predictions or win
+probabilities. Initial weights and normalization anchors are hypotheses.
 
-| Game | Candidate predictors; not approved scoring formulas |
+### Common scale and missing data
+
+Normalize every feature to 0..1 with higher values provisionally meaning harder.
+Define `N(x; low, high) = clamp((x - low) / (high - low), 0, 1)` with `high > low`.
+For each game, `q = sum(weight * feature)` with nonnegative weights summing to 1;
+the displayed *internal proxy* is `Dproxy = 1 + 4*q`. Do not put this number on a
+player-facing difficulty selector before calibration. Save the feature values,
+recipe version, normalization constants, source versions and missing-data flags.
+
+Proposed word unfamiliarity `U(word)` is `1 - percentile(log(1 + frequency))`
+against a frozen, documented reference vocabulary; define ties consistently.
+No suitable frequency corpus has been selected, licensed or bundled. ENABLE
+membership is not frequency or familiarity evidence. Until a corpus is accepted,
+reviewers may assign U using a recorded rubric: 0 everyday, .25 familiar, .5
+less common, .75 specialist, 1 obscure. Mark this as manual proxy evidence; do not
+mix it silently with corpus percentiles. An unrated/missing word is **unknown**,
+not U=0. Missing required features yield an incomplete score and exclude that
+record from automatic tier selection; do not hide gaps by renormalizing weights.
+
+### Per-game recipes
+
+| Game | Provisional composite and precisely defined features |
 |---|---|
-| Wordish | Answer familiarity, repeated letters, spelling patterns, candidate-family size and simulated guess-search effort; multi-board answer interactions. More boards is a variant, not automatically a harder calibrated level. |
-| Bee | Familiarity distribution, proportion of score in familiar words, pangram accessibility, word-length mix and completion target. Lowering the target changes the task; hints are assistance, not intrinsic word-set difficulty. |
-| Connections | Direct versus wordplay relationship, required background knowledge, plausible decoy overlaps, category specificity and ambiguity-review findings. Ambiguity is a defect candidate, not a reliable way to make a puzzle hard. |
-| Strands | Theme-clue explicitness, answer familiarity, word/path length, turns and misleading incidental words. Validate how much these features actually affect play. |
-| Mini | Clue directness, answer familiarity, ambiguous senses, cross-letter support and theme knowledge. Grid size alone is insufficient. |
+| Wordish | `q = .40*U + .35*G + .15*F + .10*R`. U is answer unfamiliarity. G is `N(g;2,6)`, where g is guesses used by a frozen deterministic solver/starting-word policy against the exact eligible-answer/guess versions; unsolved within six maps to 1 and is flagged. F is `N(n;1,20)`, where n counts eligible answers including the target differing from it in at most one position. R is `N(5 - distinctLetters(answer);0,3)`. Solver policy, neighborhood computation and familiarity ratings are not implemented; the five-letter vocabulary alone cannot supply g or U. |
+| Spelling Meh | `q = .35*Ug + .35*E + .15*L + .15*P`. Ug is goal-score-weighted mean U over goal words. E is `N(e;5,50)`, where e is minimum summed modeled word effort needed to reach the saved goal target; per-word effort is `1 + 4*U + N(length;4,12)`, found by a deterministic score-threshold subset calculation. L is fraction of maximum goal points belonging to goal words of length at least eight. P is minimum U among goal pangrams (at least one required); higher means even the most familiar pangram is unfamiliar. Required familiarity ratings and subset-cost calculation are unavailable; current word lengths, score rules, goal set and pangrams are computable from bundled content. |
+| Connektions | `q = .35*K + .30*W + .20*D + .15*Ut`. K is mean prerequisite-knowledge rating per category: 0 everyday, .5 common hobby/culture, 1 specialist. W is mean wordplay-step rating: 0 literal relation, .5 one transformation, 1 two or more. D is `N(d;0,12)`, where d counts tile/category memberships outside the intended group recorded as plausible *partial* decoys in reviewed relationship data. Ut is mean displayed-tile U in its intended sense. K/W/known memberships/U require editorial annotations not present in the starter schema. Alternate valid full partitions or unexplained associations fail the fairness gate regardless of proxy score; never reward a broken board as hard. |
+| Strand-ish | `q = .40*A + .25*Ut + .20*T + .15*J`. A is theme-clue abstraction: 0 explicit theme, .5 indirect but familiar association, 1 multi-step/wordplay clue, with written reviewer rationale. Ut is mean U of theme answers plus the spanning answer, excluding incidental bonus vocabulary. T is the fraction of internal path steps whose direction differs from the preceding step, pooled across intended paths (0 if no internal turns are possible). J is diagonal-step fraction across intended answer paths. Exact paths allow T/J calculation; A/U annotations are missing. Geometry is only a hypothesis about search effort; test whether its weights help instead of assuming more turns means more difficulty. |
+| Minuscule Crossword | `q = .45*C + .30*Ua + .15*K + .10*S`. C is mean clue-indirection rubric: 0 direct definition, .5 familiar oblique clue, 1 multi-step/wordplay. Ua is mean answer U in the clued sense. K is mean prerequisite-knowledge rubric using the Connections scale. S is mean fraction of an entry's crossing letters whose *other* crossing clue has C >= .5, representing weak direct-clue support; use 0 for entries without crossings and flag the exceptional grid. Current cells/clue mappings support S only after C is annotated. Sense-aware familiarity, clue C and prerequisite K are unavailable without review. Multiple defensible answers with inadequate crosses are fairness defects, not bonus difficulty. |
 
-Calibrate with a small diverse reviewed sample per game: collect the wife's
-easy/just-right/frustrating judgment, completion, assistance and optional active
-solve duration without analytics or network collection. Discuss local test
-recording before adding it to the app. Include failures and abandoned puzzles;
-avoid fitting only completed favorites. Tune and hold out a different sample for
-confirmation. Keep a daily medium-plus pool separate from exploratory tiers until
-feedback supports the labels. No guaranteed win rate has been agreed.
+For example, a complete recipe with weighted q=.625 produces Dproxy=3.5 by
+arithmetic. That does **not** demonstrate that the wife will perceive 3.5/5.
+The example demonstrates the scale only; it is not a scored puzzle or a claimed
+measurement. Very different feature combinations can produce the same number.
+
+### Intrinsic challenge, task goal, assistance and variants
+
+Intrinsic proxies rank fixed puzzle content under a fixed rules/task profile.
+Store the profile alongside the proxy. Changing guess allowance, Bee target,
+board count or grid dimensions changes the task/variant and needs separate
+calibration; it cannot silently reuse a standard-mode label. Hints/checks/reveals
+are assistance events and belong separately in the result. Do not make an Easy
+label merely mean that hints were used, or rewrite the original label afterward.
+
+Bee already implements familiar goal words, broader ENABLE bonus words and a
+target of `ceil(.70 * maximumGoalScore)` under `bee-goal70-bonus-v1`. Only goal
+points reach that target; accepted bonus points are optional and do not raise or
+meet it. The proposed Bee recipe evaluates **reaching that goal**, not exhausting
+all ENABLE words. Changing the 70% target is a task-policy change; recompute E
+under a new version and preserve old history. Pursuing all goal words or bonus
+words after completion has a different challenge and must not revoke completion.
+
+Six-board Wordish needs its own shared-budget solver/features; do not add a
+constant to single-board difficulty or average six single-board values and call
+the outcome calibrated. The hardest unresolved board and shared information can
+matter more than the average. Similar caution applies to alternate grid sizes.
+
+### Calibrating toward the wife's 3.5/5 target
+
+1. First produce complete feature/provenance records and manually reject unfair
+   puzzles. Propose a pilot of 20 diverse reviewed puzzles per game, not just the
+   ten starter examples. Before feedback, reserve five per game as a held-out
+   confirmation set. These sample counts are a small exploratory plan, not a
+   claim of statistical validation or an authorized corpus-generation task.
+2. On the other fifteen per game, ask the wife for a 1..5 perceived challenge
+   rating plus easy/just-right/frustrating and a short reason. Record completion,
+   abandonment and assistance; optional active duration is secondary. Include
+   failures rather than only favorite completed puzzles. Use manual notes first;
+   adding local telemetry or app instrumentation requires a scoped proposal.
+3. Compare proxy ordering with her ratings game by game. Review mislabeled words,
+   clues and defects before tuning weights. Keep normalized features and sums
+   testable; drop features that show no useful relation instead of adding false
+   precision. Record every recipe change and avoid fitting many weights to a
+   handful of observations.
+4. Fit a simple monotonic mapping from q to her observed rating bands on the
+   fifteen development examples, merging bands where evidence is sparse. Select
+   candidates for the medium-plus pool where the mapped qualitative band spans
+   about 3 to 4 and she judged them challenging-but-fair/achievable with effort.
+   A raw Dproxy of 3.5 alone does not qualify a puzzle.
+5. Check the five held-out examples without retuning to those results. Report
+   disagreements and the small sample explicitly. If she finds them frustrating
+   or the ordering is inconsistent, do not claim calibration; revise the recipe
+   and recruit a fresh held-out set. Confidence is personal to this user and
+   profile, not a population-wide score.
+
+No numeric win-rate target or predicted probability is agreed or inferred.
+Until this process provides useful evidence, keep only honestly labeled standard
+starter play and editorial notes; do not invent selectable difficulty tiers.
 
 ## Variant packages and parallel agent contracts
 

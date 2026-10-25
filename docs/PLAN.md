@@ -44,8 +44,9 @@ unpromised. Full proposal and acceptance: PRODUCT's S1 baseline.
 
 ## Dependencies and permissions
 
-No dependencies, permissions or services selected or added. Proposals must
-explain benefits and alternatives before approval. No network service assumed.
+Approved S1 build/Compose/test dependencies are selected and pinned below. No
+runtime permissions or services added. New proposals explain benefits and
+alternatives before approval. No network service assumed.
 R-015 requires all MVP runtime features to function without connectivity. Bundle
 licensed/reviewed content and use local generation where suitable; do not assume
 cloud AI, online dictionary lookups, first-run downloads, login or remote daily

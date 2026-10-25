@@ -22,48 +22,48 @@ or unapproved scope. Preserve unrelated work and never clear user data.
 
 ## S1 packages (authorized; delivery/manual closure tracked below)
 
-- [ ] T-001 Primary: foundation and contract. Entry: S1/product/tooling approval.
+- [x] T-001 Primary: foundation and contract. Entry: S1/product/tooling approval.
   Deliver native Android build, navigation/theme, help conventions, attempt
   identity/mode/rules/content snapshot contract and file ownership. Close: app
   builds, basic home/Back works, contract documented and game packages unblocked.
   R-001/R-003/R-004/R-006/R-015; A-S1-01/A-S1-07.
-- [ ] T-002 Primary: storage, daily rollover, history and calendar. Entry: T-001
+- [x] T-002 Primary: storage, daily rollover, history and calendar. Entry: T-001
   contract. Autosave, versioned records, independent daily/additional attempts,
   started-date calendar and most-recent prior unfinished resume link. Close:
   05:59:59 versus 06:00:00 tests, round-trip/restart checks, no duplicate result
   or overwritten prior puzzle; failed writes/invalid records preserve existing
   data and report recoverable errors. R-008/R-010/R-015/R-016; A-S1-02/03/04.
-- [ ] T-003 Game agent: Wordish. Entry: shared contract, approved S1 rules.
+- [x] T-003 Game agent: Wordish. Entry: shared contract, approved S1 rules.
   Deliver playable single-board game plus at least ten original puzzle records
   and valid-guess policy. Close: rules/invalid-input tests, win/loss and save
   round-trip. Fixture example: APPLE versus ALLEY -> exact, present, absent,
   present, absent. Confirm dictionary rejection consumes no guess. R-006/R-009;
   A-S1-01/03/05. Multi-board and large dictionary are separate future tasks.
-- [ ] T-004 Game agent: Connektions. Entry: shared contract and S1 rules.
+- [x] T-004 Game agent: Connektions. Entry: shared contract and S1 rules.
   Deliver 16-word board, four explanations, four-mistake handling, selection and
   at least ten original sample boards with documented ambiguity review. Close:
   correct groups lock, fewer than four cannot submit, repeated wrong set has no
   second penalty, save retains solved groups/mistakes. Structural checks do not
   prove unique fair interpretation. R-006/R-009; A-S1-01/03/05.
-- [ ] T-005 Game agent: Spelling Meh. Entry: contract/S1 scoring and completion.
+- [x] T-005 Game agent: Spelling Meh. Entry: contract/S1 scoring and completion.
   Deliver seven-letter play, accepted words, scores/target, found list and at
   least ten original sample records with pangrams. Close: invalid/missing-center
   and repeated words cannot score; pangram bonus and rounded target correct;
   score/found words restore and play continues after target. Test an explicit
   valid CHAIN fixture with A/C/E/H/I/N/T, reject HINT (no A) and TRAIN (R).
   R-006/R-009; A-S1-01/03/05. Vocabulary coverage and difficulty remain open.
-- [ ] T-006 Game agent: Strand-ish. Entry: contract/S1 path semantics.
+- [x] T-006 Game agent: Strand-ish. Entry: contract/S1 path semantics.
   Deliver touch and tap-friendly path selection, themed answer detection and at
   least ten original full-cover boards with valid spanning answer paths.
   Close: fixture coverage/adjacency/no repeated cells checks; reject nonadjacent
   jumps, accept intended theme paths, preserve found words. Explicit cancel
   clears current selection only. R-004/R-006/R-009; A-S1-01/03/05/07.
-- [ ] T-007 Game agent: Minuscule Crossword. Entry: contract/S1 grid rules.
+- [x] T-007 Game agent: Minuscule Crossword. Entry: contract/S1 grid rules.
   Deliver clue/cell navigation, editable 5x5 grid and at least ten original
   fills/clue sets. Close: crossing entries share one cell, full incorrect grid
   stays unfinished, correct grid completes once, Check never erases entries,
   save restores edits. R-004/R-006/R-009; A-S1-01/03/05/07.
-- [ ] T-008 Primary/content reviewer: provenance and offline credits. Entry:
+- [x] T-008 Primary/content reviewer: provenance and offline credits. Entry:
   content from game packages. Record sources/licenses/version/modifications,
   original authorship/review and dataset credits if any; reject unclear reuse.
   Close: all bundled material accounted for, required notices readable offline,
@@ -74,6 +74,13 @@ or unapproved scope. Preserve unrelated work and never clear user data.
   and manual checklist. No completion claim from screens alone. R-001–R-010,
   R-012/R-013/R-015/R-016; A-S1-01–07. Human closure: wife/device input, layout,
   interruption/calendar checks; fairness/polish reviewed separately.
+
+## S1 closure status
+
+T-001 through T-008 are implemented and mechanically checked; test outcomes and
+scope limits are in VERIFICATION. T-009 automated build/54-unit/3-Android checks
+pass; human phone/fairness closure remains pending. Ten records per game, not
+three. No feature is considered finished merely because this list exists.
 
 ## Future packages — define/authorize after S1
 
@@ -93,5 +100,9 @@ or unapproved scope. Preserve unrelated work and never clear user data.
   light/dark and comfortable bedtime interaction on target phone. R-004.
 - [ ] Release: rename deliberately similar development names (R-007), verify all
   content notices, device/version coverage, distribution and full MVP acceptance.
+- [ ] Before corpus/history scale: profile synchronous snapshot IO/input latency,
+  define a tested durable IO queue if needed and preserve failure/retry behavior.
+- [ ] Choose source/app license and complete transitive dependency notices before
+  public release; public Git visibility alone does not grant content reuse rights.
 - [ ] Optional later private friends activity only after separate scope/privacy/
   service approval; offline games must remain independent. Not part of MVP.

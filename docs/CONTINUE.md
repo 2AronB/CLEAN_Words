@@ -17,7 +17,8 @@ release. Local repository initialized on main; final commit/push status will be
 recorded below. Source starter snapshots are in starter-reference. Recommend and
 propagate justified reusable starter improvements to
 C:\Users\Kayli\Desktop\CLEAN Development\development subject to filesystem
-permissions; no source-library change made.
+permissions. Three improvements were returned to PROJECT-AGENTS-TEMPLATE.md;
+see STARTER-IMPROVEMENTS. Original snapshots retained; no global settings changed.
 
 ## Implemented scope
 
@@ -42,30 +43,33 @@ other words are bonus. Full dictionaries/provenance pinned in Bee snapshots.
 Spanning layouts and crosswords validated mechanically. Fairness/difficulty is
 unverified until user review; target remains medium-plus, about 3.5/5 daily.
 
-## Verification in progress
+## Verified S1 checkpoint
 
 Installed Android Studio JBR25, Gradle9.3.1, AGP9.1.1, Kotlin/Compose plugin2.2.10,
 Compose BOM2026.02.01, Activity1.12.4, SDK36; minimum API26, target36. Existing
 cache works with normal Gradle permissions; no global settings/tool installs.
-Debug APK built and 54 JVM tests passed. Android integration solves/persists all
-50 content records and checks no Internet/dangerous runtime permission. A first
-UI smoke run encountered a cold-emulator System UI stall, not an app exception;
-harness/emulator state corrected, full verification rerunning. Final results and
-manual gaps must be recorded in VERIFICATION before handoff.
+Debug APK built and 54 JVM tests passed. Three Android integration tests pass:
+all 50 puzzles solved/persisted, all five actual boards opened, Help/recreation/
+Back and Wordish keyboard/disk restore checked. No Internet or dangerous runtime
+permission; dataset notice bundled. Lint passes with zero errors/one target36
+warning. apksigner verification succeeds. Content generation reproduces hashes.
+Initial emulator System UI stall and test-helper wait/selection issues fixed;
+final integrated suite green. Evidence/manual gaps: VERIFICATION.
+Installable artifact: artifacts/CLEAN-Words-S1-debug.apk (debug signing, ~12 MB).
 
 Headless emulator uses existing Medium_Phone_API_37.0 AVD in read-only,
 no-window/no-snapshot-save mode, serial emulator-5554. Wi-Fi/data disabled for
 tests. Do not touch physical phones or saved emulator state. Shut down this
-instance after checks. Private test files only; no production data reset.
+instance at handoff. Private test files only; no production data reset.
 
 ## Next actions
 
-Finish build/lint/device checks; fix actual failures; verify merged permissions
-and installation artifact. Update PRODUCT/PLAN/TODO/VERIFICATION with actual
-acceptance versus manual gaps, commit/push and report installable APK. Do not
-stop just because TODOs exist. Stop S1 at human phone/fairness acceptance once
-available engine/content/persistence/build checks pass. Future slices need scope
-agreement, not repeated S1 permission.
+Available S1 engine/content/persistence/build checks pass. Next: user/wife runs
+MANUAL-ACCEPTANCE on her phone, especially input comfort, calendar rollover,
+large text, fairness and Bee goal/bonus understanding. Fix observed S1 bugs
+autonomously within existing authority. Future slices need scope agreement,
+not repeated S1 permission. T-001–008 mechanically closed; T-009 awaits human
+acceptance. No claim of full MVP completion.
 
 FUTURE-DEVELOPMENT specifies content schemas/versioning, expansion and solver
 checks, difficulty proxies/calibration, six-board variant rules to settle, agent

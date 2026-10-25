@@ -1,0 +1,191 @@
+package dev.clean.words
+
+import android.content.pm.PackageManager
+import android.os.SystemClock
+import android.view.KeyEvent
+import android.view.accessibility.AccessibilityNodeInfo
+import androidx.test.core.app.ActivityScenario
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import dev.clean.words.core.*
+import dev.clean.words.games.bee.*
+import dev.clean.words.games.connections.*
+import dev.clean.words.games.crossword.*
+import dev.clean.words.games.strands.*
+import dev.clean.words.games.wordish.*
+import org.junit.Assert.*
+import org.junit.Test
+import org.junit.runner.RunWith
+import java.io.File
+import java.time.Instant
+import java.util.UUID
+
+@RunWith(AndroidJUnit4::class)
+class OfflineIntegrationTest {
+    private val instrumentation get() = InstrumentationRegistry.getInstrumentation()
+    private val context get() = instrumentation.targetContext
+
+    @Test fun allFiftyPuzzlesCompleteThroughRulesAndPersistOnAndroid() {
+        val store = AtomicLibraryStore(File(context.cacheDir, "s1-test-${UUID.randomUUID()}"))
+        var library = Library()
+        assertEquals(emptyList<String>(), GameRegistry.contentErrors())
+        GameRegistry.games.forEach { game ->
+            assertEquals(10, game.puzzles.size)
+            game.puzzles.forEach { record ->
+                val now = Instant.now().toString()
+                var attempt = Attempt(UUID.randomUUID().toString(), game.id, PuzzleMode.EXTRA, null, record,
+                    startedAt = now, updatedAt = now, result = game.result(record, emptyMap()))
+                fun persist(state: Map<String,String>) {
+                    attempt = AttemptRules.update(attempt, state, game, Instant.now())
+                    library = AttemptRules.upsert(library, attempt)
+                    store.save(library)
+                    val restored = store.load()
+                    assertFalse(restored.blocked)
+                    assertEquals(library, restored.library)
+                }
+                when (game.id) {
+                    "wordish" -> {
+                        var state = emptyMap<String,String>()
+                        WordishRules.answer(record).forEach { state = WordishRules.input(record, state, it); persist(state) }
+                        persist(WordishRules.submit(record, state))
+                    }
+                    "connections" -> {
+                        var state = emptyMap<String,String>()
+                        repeat(4) { group ->
+                            repeat(4) { tile -> state = ConnectionsRules.select(state, group * 4 + tile); persist(state) }
+                            state = ConnectionsRules.submit(record, state); persist(state)
+                        }
+                    }
+                    "bee" -> {
+                        val board = BeePuzzle.from(record)
+                        var state = BeeState()
+                        board.goalWords.forEach { word -> state = BeeRules.submit(board, state, word); persist(state.toMap()) }
+                    }
+                    "strands" -> {
+                        val board = StrandsPuzzle.from(record)
+                        var state = StrandsState()
+                        board.answers.forEach { answer ->
+                            answer.path.forEach { cell -> state = StrandsRules.tap(board, state, cell); persist(state.toMap()) }
+                            state = StrandsRules.submit(board, state); persist(state.toMap())
+                        }
+                    }
+                    "crossword" -> {
+                        val board = CrosswordRules.board(record)!!
+                        var state = emptyMap<String,String>()
+                        board.grid.forEachIndexed { index, letter -> if (letter != '#') {
+                            state = CrosswordRules.enter(board, state, index, letter.toString()); persist(state)
+                        } }
+                    }
+                }
+                assertEquals("${game.id}/${record.id}", PlayStatus.COMPLETED, attempt.result.status)
+                assertNotNull(attempt.completedAt)
+                assertEquals(record, store.load().library!!.attempts.first { it.id == attempt.id }.puzzle)
+            }
+        }
+        assertEquals(50, library.attempts.size)
+        assertTrue(library.attempts.all { it.result.status == PlayStatus.COMPLETED })
+    }
+
+    @Test fun manifestRequiresNoInternetOrOtherRuntimePermissionsAndCreditsAreBundled() {
+        @Suppress("DEPRECATION")
+        val info = context.packageManager.getPackageInfo(context.packageName, PackageManager.GET_PERMISSIONS)
+        assertTrue(info.requestedPermissions.orEmpty().none { it == "android.permission.INTERNET" })
+        assertTrue(info.requestedPermissions.orEmpty().none { permission ->
+            @Suppress("DEPRECATION")
+            (context.packageManager.getPermissionInfo(permission, 0).protectionLevel and 0xf) == 1
+        })
+        assertTrue(context.assets.open("dictionaries/ENABLE-NOTICE.txt").bufferedReader().use { it.readText() }.contains("Public Domain"))
+    }
+
+    @Test fun allFiveBoardsNavigateRenderAndSurviveActivityRecreation() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            // The cold API-37 emulator can show a System UI ANR unrelated to this app.
+            if (has("System UI isn't responding")) click("Wait", exact = true)
+            eventually("home") { has("A little word time.") }
+            GameRegistry.games.forEach { game ->
+                click(game.title)
+                eventually("${game.title} hub") { has("Stay a little longer") }
+                if (has("Play today's puzzle")) click("Play today's puzzle") else click("Continue today's puzzle")
+                val boardMarker = when (game.id) {
+                    "wordish" -> "correct place"; "connections" -> "Mistakes remaining";
+                    "bee" -> "Center letter:"; "strands" -> "theme words"; else -> "Tap a square or clue"
+                }
+                eventually("${game.title} actual board") { has(boardMarker) }
+                eventually("game help") { has("Help") }
+                click("Help")
+                eventually("help dialog") { has("Got it") }
+                click("Got it")
+                scenario.recreate()
+                eventually("restored ${game.title}") { has(game.title) && has("Daily ·") }
+                instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+                eventually("hub") { has("Another puzzle") }
+                instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+                eventually("home") { has("A little word time.") }
+            }
+            // Touch input is real Compose accessibility interaction, then check app-private disk state.
+            click("Wordish")
+            eventually("Wordish hub") { has("Stay a little longer") }
+            click("Another puzzle")
+            eventually("Wordish board") { has("correct place") }
+            click("A", exact = true)
+            eventually("saved typed letter") {
+                AtomicLibraryStore(File(context.filesDir, "play-library")).load().library?.attempts
+                    ?.any { it.gameId == "wordish" && it.mode == PuzzleMode.EXTRA && it.state["draft"] == "A" } == true
+            }
+            scenario.recreate()
+            eventually("restored draft") { has("A", exact = true) }
+        }
+    }
+
+    private fun has(text: String, exact: Boolean = false) = find(text, exact) != null
+    private fun find(text: String, exact: Boolean = false): AccessibilityNodeInfo? {
+        fun visit(node: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
+            if (node == null) return null
+            val value = node.text?.toString().orEmpty()
+            if ((if (exact) value == text else value.contains(text)) && node.isVisibleToUser) return node
+            repeat(node.childCount) { index -> visit(node.getChild(index))?.let { return it } }
+            return null
+        }
+        return visit(instrumentation.uiAutomation.rootInActiveWindow)
+    }
+    private fun scroll(): Boolean {
+        fun visit(node: AccessibilityNodeInfo?): Boolean {
+            if (node == null) return false
+            if (node.isScrollable && node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)) return true
+            repeat(node.childCount) { if (visit(node.getChild(it))) return true }
+            return false
+        }
+        return visit(instrumentation.uiAutomation.rootInActiveWindow)
+    }
+    private fun click(text: String, exact: Boolean = false) {
+        fun clickableMatch(node: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
+            if (node == null) return null
+            val value = node.text?.toString().orEmpty()
+            if ((if (exact) value == text else value.contains(text)) && node.isVisibleToUser) {
+                var target: AccessibilityNodeInfo? = node
+                while (target != null && !target.isClickable) target = target.parent
+                if (target != null) return target
+            }
+            repeat(node.childCount) { clickableMatch(node.getChild(it))?.let { found -> return found } }
+            return null
+        }
+        repeat(10) {
+            val node = clickableMatch(instrumentation.uiAutomation.rootInActiveWindow)
+            if (node != null) {
+                if (node.performAction(AccessibilityNodeInfo.ACTION_CLICK)) {
+                    SystemClock.sleep(250); return
+                }
+            }
+            scroll(); SystemClock.sleep(150)
+        }
+        fun texts(node: AccessibilityNodeInfo?): String {
+            if (node == null) return "null root"
+            return node.text?.toString().orEmpty() + " | " + (0 until node.childCount).joinToString(" | ") { texts(node.getChild(it)) }
+        }
+        error("Clickable text not found: $text; screen=${texts(instrumentation.uiAutomation.rootInActiveWindow)}")
+    }
+    private fun eventually(label: String, condition: () -> Boolean) {
+        repeat(120) { if (condition()) return; SystemClock.sleep(100) }
+        assertTrue("Timed out waiting for $label", condition())
+    }
+}

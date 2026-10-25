@@ -103,8 +103,9 @@ feature needs separate scope agreement and must not gate offline functionality.
 R-001 through R-016 need concrete acceptance examples as discovery resolves the
 first slice. Candidate example for R-008: after completing a daily puzzle,
 requesting another starts a playable additional puzzle. Whether that changes
-daily stats is unresolved. No behavior has been implemented or tested.
-Subjective fun, puzzle fairness and visual quality need real user acceptance.
+daily stats beyond S1 is unresolved. S1 behavior and automated results are
+recorded in VERIFICATION; full MVP acceptance remains incomplete. Subjective fun,
+puzzle fairness and visual quality need real user acceptance.
 For R-014 daily acceptance, ask the wife whether representative puzzles feel
 challenging but usually achievable with effort; no numeric win-rate target has
 been agreed. Bee-style "win"/completion target especially needs definition.
@@ -112,7 +113,8 @@ been agreed. Bee-style "win"/completion target especially needs definition.
 R-013 acceptance: every bundled dataset has a matching attribution entry,
 required credit/license notices and a recorded source/version. Recommended:
 credits readable offline; external links supplement rather than replace required
-notices. No dataset has been included or checked against this criterion yet.
+notices. ENABLE is included with its source notice and offline credits; actual
+checks/remaining manual coverage are in VERIFICATION.
 
 R-014 candidate acceptance: difficulty is chosen before starting an on-demand
 puzzle and is recorded with its result; changing the selection does not silently
@@ -124,8 +126,8 @@ first launch, open each game, start/finish daily and additional puzzles, select
 available variants/difficulty, read help/credits and view saved history. Close
 and reopen offline and confirm persisted progress/results under the agreed
 persistence rules. At the next 6 a.m. boundary, new daily puzzles are available
-without downloading content. Verify runtime behavior on a device as well as
-checking that game logic has no required network service. Not yet executed.
+without downloading content. S1 offline integration and date/state invariants
+pass; full visual overnight/device acceptance and future variants are unverified.
 
 ## Next open questions
 
@@ -220,8 +222,9 @@ authorized. Larger future feature slices still need their own scope approval.
 
 Automated checks cover rules, saved-state round trips, date boundary selection,
 sample structural validity and duplicate completion. Manual Android acceptance
-covers installation, interruption, input, calendar and visual usability. No tests
-or builds have run; no device acceptance is claimed.
+covers installation, interruption, input, calendar and visual usability. JVM
+and Android tests have run as documented in VERIFICATION; no physical-device or
+wife acceptance is claimed.
 
 ### S1 blockers versus later decisions
 
