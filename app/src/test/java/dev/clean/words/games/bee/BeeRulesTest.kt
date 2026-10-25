@@ -5,7 +5,7 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class BeeRulesTest {
-    private val puzzle = BeePuzzle.from(BeeContent.puzzles.first())
+    private val puzzle = BeePuzzle.from(BeeContent.puzzles.first()).copy(scoringVersion = BeePuzzle.LEGACY_SCORING)
 
     @Test fun tenDistinctPuzzlesHaveValidatedGoalsPangramsAndPinnedDictionaries() {
         assertEquals(10, BeeContent.puzzles.size)
@@ -95,5 +95,98 @@ class BeeRulesTest {
         assertTrue(BeeRules.validate(puzzle.copy(center = 'Z')).isNotEmpty())
         assertTrue(BeeRules.validate(puzzle.copy(goalWords = setOf("BADWORD"))).isNotEmpty())
         assertTrue(BeeRules.validate(puzzle.copy(dictionaryVersion = "")).isNotEmpty())
+    }
+
+    @Test fun newRecordsUseNewRevisionAndCountEveryAcceptedWordEqually() {
+        BeeContent.puzzles.forEach { record ->
+            val board = BeePuzzle.from(record)
+            assertEquals(2, record.revision)
+            assertEquals(BeePuzzle.WORD_COUNT_SCORING, board.scoringVersion)
+            val formerlyBonus = board.validWords.first { it !in board.goalWords }
+            val seed = board.goalWords.first()
+            val first = BeeRules.submit(board, BeeState(), formerlyBonus)
+            val second = BeeRules.submit(board, first, seed)
+            assertEquals(1, BeeRules.result(board, first).score)
+            assertEquals(2, BeeRules.result(board, second).score)
+            assertEquals(board.wordTarget, BeeRules.result(board, first).maxScore)
+            assertEquals((board.goalWords.size * 7 + 9) / 10, board.wordTarget)
+            assertFalse(second.message.contains("bonus"))
+        }
+    }
+
+    @Test fun formerlyBonusWordsAloneCanCompleteDailyGoalWithoutHiddenMembership() {
+        val board = puzzle.copy(scoringVersion = BeePuzzle.WORD_COUNT_SCORING)
+        var state = BeeState()
+        board.validWords.filter { it !in board.goalWords }.take(board.wordTarget).forEach {
+            state = BeeRules.submit(board, state, it)
+        }
+        assertEquals(0, BeeRules.goalScore(board, state))
+        assertEquals(PlayStatus.COMPLETED, BeeRules.result(board, state).status)
+        assertEquals(board.wordTarget, BeeRules.result(board, state).score)
+    }
+
+    @Test fun lengthBarsUseCompleteAcceptedDenominatorsAndIgnoreDuplicatesOrInvalidStateWords() {
+        val board = BeePuzzle("ACEHINT", 'A', setOf("CHAIN"), setOf("CHAIN", "CHANT", "ACHE", "ACNE"), "fixture", BeePuzzle.WORD_COUNT_SCORING)
+        val state = BeeState(setOf("CHAIN", "ACHE", "ZZZZ"))
+        assertEquals(listOf(BeeLengthProgress(4,1,2), BeeLengthProgress(5,1,2)), BeeRules.lengthProgress(board, state))
+        val repeated = BeeRules.submit(board, state, "CHAIN")
+        assertEquals(BeeRules.lengthProgress(board, state), BeeRules.lengthProgress(board, repeated))
+        assertEquals(2, BeeRules.result(board, state).score)
+        assertEquals(6, BeeRules.totalScore(board, state))
+    }
+
+    @Test fun legacySnapshotsKeepOriginalScoringAndResultSummary() {
+        val saved = puzzle.snapshot("bee-central-v1")
+        assertEquals(1, saved.revision)
+        val restored = BeePuzzle.from(saved)
+        val state = BeeRules.submit(restored, BeeState(), "LATER")
+        assertTrue(restored.legacy)
+        assertEquals(dev.clean.words.core.GameResult(PlayStatus.IN_PROGRESS,
+            "Goal: 5/${restored.target} points · 0 bonus points", 5, restored.maximumGoalScore), BeeRules.result(restored, state))
+        assertEquals(5, BeeRules.result(restored, state).score)
+        assertEquals(puzzle.maximumGoalScore, BeeRules.result(restored, state).maxScore)
+        assertEquals(saved, restored.snapshot(saved.id))
+    }
+
+    @Test fun countVersionRejectsUnknownRulesAndPreservesSnapshotVersion() {
+        assertTrue(BeeRules.validate(puzzle.copy(scoringVersion = "future" )).contains("Unsupported scoring version"))
+        val new = puzzle.copy(scoringVersion = BeePuzzle.WORD_COUNT_SCORING).snapshot("new")
+        assertEquals(new, BeePuzzle.from(new).snapshot(new.id))
+    }
+
+    @Test fun polygonGeometryHasCenterAndDistinctOuterCellsInsideTheBoard() {
+        (3..8).forEach { sides ->
+            val positions = BeeGeometry.positions(sides)
+            val radius = BeeGeometry.diameter(sides) / 2
+            assertEquals(sides + 1, positions.size)
+            assertEquals(positions.size, positions.distinct().size)
+            assertEquals(BeeCellPosition(.5f, .5f), positions.first())
+            positions.forEach { assertTrue(it.x - radius >= 0 && it.x + radius <= 1 && it.y - radius >= 0 && it.y + radius <= 1) }
+        }
+        assertEquals(4, BeeGeometry.positions(3).size)
+        assertEquals(5, BeeGeometry.positions(4).size)
+        assertEquals(7, BeeGeometry.positions(6).size)
+    }
+
+    @Test fun rapidLetterCallbacksAccumulateBeforeParentAcknowledgement() {
+        val input = BeeInputBuffer(BeeState())
+        val first = input.edit { it.copy(entry = it.entry + 'C') }
+        val second = input.edit { it.copy(entry = it.entry + 'A') }
+        val third = input.edit { it.copy(entry = it.entry + 'T') }
+        assertEquals("CAT", input.current.entry)
+        assertEquals("CAT", input.acceptExternal(BeeState()).entry)
+        assertEquals("CAT", input.acceptExternal(first).entry)
+        assertEquals("CAT", input.acceptExternal(second).entry)
+        assertEquals("CAT", input.acceptExternal(third).entry)
+    }
+
+    @Test fun rapidSubmitThenTypingDoesNotLoseFoundWordsAndRecoveryCanReplaceState() {
+        val input = BeeInputBuffer(BeeState(entry = "LATER"))
+        val accepted = input.edit { BeeRules.submit(puzzle, it) }
+        input.edit { it.copy(entry = "RATE") }
+        assertTrue("LATER" in input.current.found)
+        assertEquals("RATE", input.acceptExternal(accepted).entry)
+        val recovery = BeeState(setOf("CENTRAL"), "C")
+        assertEquals(recovery, input.acceptExternal(recovery))
     }
 }

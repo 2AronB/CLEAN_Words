@@ -162,3 +162,23 @@ uses 70% of explicitly labeled familiar goal points; other words earn bonus.
 This avoids requiring obscure dictionary words to win. Goal/bonus distinction
 is an implementation refinement, not an owner decision about final difficulty.
 The curated sets still need wife fairness review.
+
+## D-019 — Initial phone playtest / feedback slice F1
+
+2026-10-25 — Owner requests stronger pastels, animations and ordered input actions;
+Wordish board/keyboard colors; Bee hex layout and per-length progress; Strands
+lines/alternate-route safety; reliable crossword typing, navigation, deletion and
+keyboard fit. F1 scope/acceptance in FEEDBACK-01. These are authorized refinements,
+not a reason to re-request S1 permission. Existing history protected. New Bee
+policy has new snapshots; legacy results not rejudged. Connections expansion is
+an isolated staging prompt requested by owner, not production corpus ingestion.
+
+## D-020 — F1 input/persistence integration and version compatibility
+
+2026-10-25 — Engineering within requested fixes: immediate local game input
+reducers prevent dropped fast events; ordered background persistence replaces
+per-keystroke UI-thread fsync. Save failures preserve latest memory and stop later
+writes until retry; onStop drains with a bounded wait. New Bee v2 snapshots count
+all words equally; legacy v1 rules/results remain. No new dependency/permission.
+Untracked user gradle/gradle-daemon-jvm.properties was preserved, not adopted into
+the commit. All physical-device testing stays with the owner; emulator targeted.

@@ -84,6 +84,13 @@ three. No feature is considered finished merely because this list exists.
 
 ## Future packages — define/authorize after S1
 
+Initial playtest F1 changes implemented; see FEEDBACK-01 and VERIFICATION for
+results/manual gaps. Connections content may run concurrently using
+agent-prompts/CONNECTIONS-CONTENT.md with staged ownership and validation before
+production integration. Crossword layout/clue-bank proposal: CROSSWORD-EXPANSION.
+Triangle/square Bee modes remain future content variants, despite reusable
+polygon geometry now present. Generic difficulties/corpus scale remain open.
+
 - [ ] Content sourcing and generators, per-game quality and repetition policy.
   R-005/R-009/R-012/R-013. Connections pilot: 20 original categories/five boards,
   explanation/provenance/overlap review; see GAME-OPTIONS. Close only against an

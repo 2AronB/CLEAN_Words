@@ -1,7 +1,7 @@
 # CLEAN Words
 
-An offline Android word-game suite. S1 is an internal playable baseline with ten
-starter puzzles in each of five games; it is not the completed MVP or a release.
+An offline Android word-game suite. F1 adds initial-playtest input/visual fixes to
+the ten-starter-puzzles-per-game baseline; it is not the completed MVP or a release.
 
 ## Run
 
@@ -23,11 +23,12 @@ do not commit personal paths. The wrapper is Gradle 9.3.1, Android Gradle Plugin
 The installed Android Studio JBR 25 successfully builds this checkout. Build-time
 dependencies may need downloading; the installed app works without a connection.
 
-With an isolated emulator running, run `:app:connectedDebugAndroidTest` for Android
-integration checks. These write only fresh test-owned cache files plus test app
-attempts, and should not be run against real player data. Android Gradle's test
-runner may uninstall the test application; use a disposable emulator. Never clear
-player storage to resolve a bug. Actual checks/results: [VERIFICATION](docs/VERIFICATION.md).
+With a disposable emulator running, use `tools/test-emulator.ps1 -Serial emulator-5554`
+for Android checks. It rejects physical-device serials and explicitly targets
+the emulator, even with a phone connected. Tests use isolated cache files and
+test app attempts; do not run against player data. Never clear player storage
+to resolve a bug. Avoid unfiltered connectedAndroidTest with personal devices
+connected. Actual checks/results: [VERIFICATION](docs/VERIFICATION.md).
 
 ## What is included
 
@@ -37,8 +38,9 @@ change at 6 a.m. local phone time; old started puzzles remain in a calendar and
 additional attempts are independent. Starter content repeats after cycling the
 small pool; difficulty has not been calibrated and variants are not implemented.
 
-Bee's familiar goal words determine its 70% target. Other valid words earn bonus
-points rather than making obscure vocabulary necessary to complete a session.
+New Bee puzzles give every valid word equal progress toward a visible word-count
+goal and show per-length found/total bars. Old saved puzzles keep their original
+score policy. A real honeycomb replaces the old rows of letter buttons.
 Crossword Check records assistance. Personal history preserves original puzzle
 snapshots. There is no streak system, export/import or promised device-loss backup.
 

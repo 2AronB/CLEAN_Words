@@ -10,6 +10,7 @@ human device/fairness review. Standard approved build dependencies/downloads,
 bounded agents and routine fixes are authorized. No global/personal settings
 changes. Do not generate image assets or unrelated prototypes.
 S1 is in docs/PRODUCT.md and docs/PLAN.md; agent packages in docs/TODO.md.
+Current authorized feedback slice F1: docs/FEEDBACK-01.md. Preserve prior saves.
 Read docs/CONTRACT.md before editing game modules or shared integration.
 
 Use plain language. Ask at most three focused questions per round. Distinguish
@@ -28,8 +29,8 @@ No dependencies, SDKs, permissions or external services without approval.
 Owner permits useful third-party content reuse/adaptation when its terms permit
 the intended use, including attribution-bearing datasets. Do not re-ask solely
 for attribution. Track provenance/license/version and required notices; provide
-the dataset attribution screen required by PRODUCT. This does not authorize
-approve SDKs/services bundled with a content source.
+the dataset attribution screen required by PRODUCT. This does not approve
+SDKs/services bundled with a content source.
 Protect user data; never reset storage or hide failures to pass checks.
 All MVP runtime functionality must work offline without accounts (PRODUCT
 R-015). Do not introduce mandatory downloads, remote daily puzzles, online

@@ -15,6 +15,24 @@ object WordishRules {
     fun draft(state: Map<String, String>) = state["draft"].orEmpty().filter { it in 'A'..'Z' }.take(5)
     fun isAccepted(word: String) = word in WordishDictionary.words
 
+    fun keyboardFeedback(puzzle: PuzzleRecord, state: Map<String, String>): Map<Char, LetterFeedback> {
+        val evidence = mutableMapOf<Char, LetterFeedback>()
+        fun strength(value: LetterFeedback) = when (value) {
+            LetterFeedback.CORRECT -> 3; LetterFeedback.ELSEWHERE -> 2; LetterFeedback.ABSENT -> 1
+        }
+        guesses(state).forEach { guess ->
+            feedback(answer(puzzle), guess).forEachIndexed { index, mark ->
+                val old = evidence[guess[index]]
+                if (old == null || strength(mark) > strength(old)) evidence[guess[index]] = mark
+            }
+        }
+        return evidence
+    }
+
+    fun clear(puzzle: PuzzleRecord, state: Map<String, String>): Map<String, String> =
+        if (result(puzzle, state).status != PlayStatus.IN_PROGRESS) state
+        else state + mapOf("draft" to "", "message" to "")
+
     fun feedback(answer: String, guess: String): List<LetterFeedback> {
         require(answer.length == 5 && guess.length == 5) { "Feedback needs five-letter strings" }
         val result = MutableList(5) { LetterFeedback.ABSENT }

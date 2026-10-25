@@ -7,6 +7,8 @@ import kotlin.math.abs
 
 data class StrandAnswer(val word: String, val path: List<Int>)
 
+enum class StrandCompletionCheck { SOLVABLE, BLOCKED, LIMIT_REACHED }
+
 data class StrandsPuzzle(
     val rows: Int,
     val columns: Int,
@@ -120,9 +122,89 @@ object StrandsRules {
         if (word == puzzle.spangram && !spans(puzzle, state.selected))
             return state.copy(message = "The spanning answer must connect opposite edges. Try another route.")
         val next = state.copy(found = state.found + StrandAnswer(word, state.selected), selected = emptyList())
+        when (completionCheck(puzzle, next.found)) {
+            StrandCompletionCheck.BLOCKED -> return state.copy(message =
+                "$word is a theme word, but this route blocks the remaining words. Try another route; nothing was lost.")
+            StrandCompletionCheck.LIMIT_REACHED -> return state.copy(message =
+                "This route needs more checking than this board allows. Try another route; your found words are unchanged.")
+            StrandCompletionCheck.SOLVABLE -> Unit
+        }
         return next.copy(message = if (result(puzzle, next).status == PlayStatus.COMPLETED) "Every letter connected. Puzzle complete!"
             else if (word == puzzle.spangram) "Spanning answer found: $word" else "Theme word found: $word")
     }
+
+    /** Verify a covering solution with all accepted routes fixed, not just their spellings.
+     * Authored paths are tried first; bounded search handles genuinely valid alternate routes.
+     * Exhaustion is distinct from an impossible route, and never commits an unchecked move.
+     */
+    fun completionCheck(
+        puzzle: StrandsPuzzle,
+        found: List<StrandAnswer>,
+        maximumSteps: Int = 100_000,
+    ): StrandCompletionCheck {
+        if (validate(puzzle).isNotEmpty()) return StrandCompletionCheck.BLOCKED
+        if (!validFound(puzzle, StrandsState(found = found))) return StrandCompletionCheck.BLOCKED
+        if (puzzle.rows * puzzle.columns != puzzle.letters.length || puzzle.letters.length > 100)
+            return StrandCompletionCheck.BLOCKED
+        val occupied = BooleanArray(puzzle.letters.length)
+        found.forEach { answer -> answer.path.forEach { occupied[it] = true } }
+        val remaining = puzzle.answers.filter { answer -> found.none { it.word == answer.word } }
+        if (remaining.isEmpty()) return if (occupied.all { it }) StrandCompletionCheck.SOLVABLE else StrandCompletionCheck.BLOCKED
+        // The supplied proof of cover is a cheap completion witness for the usual route.
+        if (remaining.all { answer -> answer.path.none { occupied[it] } }) return StrandCompletionCheck.SOLVABLE
+        if (maximumSteps <= 0) return StrandCompletionCheck.LIMIT_REACHED
+        var steps = 0
+        var exhausted = false
+        val neighbors = puzzle.letters.indices.map { cell ->
+            puzzle.letters.indices.filter { adjacent(cell, it, puzzle.columns) }
+        }
+        val failed = mutableSetOf<String>()
+
+        fun solve(words: List<StrandAnswer>): Boolean {
+            if (++steps > maximumSteps) { exhausted = true; return false }
+            if (words.isEmpty()) return occupied.all { it }
+            val key = words.map { it.word }.sorted().joinToString("|") + ":" +
+                occupied.indices.filter { occupied[it] }.joinToString(",")
+            if (key in failed) return false
+            val answer = words.minWithOrNull(compareBy<StrandAnswer> { candidate ->
+                puzzle.letters.indices.count { !occupied[it] && puzzle.letters[it] == candidate.word.first() }
+            }.thenByDescending { it.word.length }) ?: return false
+            val rest = words.filter { it.word != answer.word }
+            val path = ArrayList<Int>(answer.word.length)
+
+            fun visit(cell: Int, at: Int): Boolean {
+                if (++steps > maximumSteps) { exhausted = true; return false }
+                if (occupied[cell] || puzzle.letters[cell] != answer.word[at]) return false
+                occupied[cell] = true; path.add(cell)
+                val solved = if (at == answer.word.lastIndex) {
+                    (answer.word != puzzle.spangram || spans(puzzle, path)) && solve(rest)
+                } else neighbors[cell].any { next -> !exhausted && visit(next, at + 1) }
+                path.removeAt(path.lastIndex); occupied[cell] = false
+                return solved
+            }
+
+            // Try the original route first whenever it remains available.
+            if (answer.path.none { occupied[it] }) {
+                answer.path.forEach { occupied[it] = true }
+                val solved = solve(rest)
+                answer.path.forEach { occupied[it] = false }
+                if (solved) return true
+            }
+            for (start in puzzle.letters.indices) {
+                if (!exhausted && visit(start, 0)) return true
+                if (exhausted) return false
+            }
+            failed += key
+            return false
+        }
+
+        return if (solve(remaining)) StrandCompletionCheck.SOLVABLE
+        else if (exhausted) StrandCompletionCheck.LIMIT_REACHED else StrandCompletionCheck.BLOCKED
+    }
+
+    fun clear(state: StrandsState): StrandsState = state.copy(selected = emptyList(), message = "")
+
+    fun delete(state: StrandsState): StrandsState = state.copy(selected = state.selected.dropLast(1), message = "")
 
     fun undo(state: StrandsState): StrandsState = if (state.found.isEmpty()) state.copy(selected = emptyList(), message = "")
         else state.copy(found = state.found.dropLast(1), selected = emptyList(), message = "Last word returned to the board. Try a different route.")

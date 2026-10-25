@@ -1,4 +1,4 @@
-# Spelling Meh S1 content and score policy
+# Spelling Meh content and score policy
 
 Ten distinct original seven-letter sets/goals prepared 2026-10-25: CENTRAL,
 READING, KITCHEN, PICTURE, JOURNEY, CAPTURE, ANOTHER, SUBJECT, BLANKET, COUNTRY.
@@ -21,19 +21,65 @@ Generation result: target/accepted counts are 22/384 CENTRAL, 20/373 READING,
 16/107 SUBJECT, 24/174 BLANKET and 23/89 COUNTRY. All accepted words contain the
 required center, use only the seven available letters and have length >=4.
 
-Fairness refinement agreed by primary integration: familiar target words supply
-the maximum **goal score**, and completion is ceil(70% of that goal score).
-Other dictionary-matching words are accepted and scored as **bonus**, without
-inflating the goal target or being needed to complete. UI explicitly explains
-this. Four-letter words are worth 1, longer words their length, and pangrams +7.
-No repeated word scores again. History score/maxScore represent goal points and
-available goal points; summary/state preserve bonus progress. Play may continue
-after completion, and completion never reverts. No claim is made that 70% of the
-entire ENABLE set is the target.
+## Feedback revision 2 — all words count
+
+Owner playtesting found the target/bonus split confusing, particularly when many
+ordinary accepted words counted only as bonus. New records now use new IDs
+`bee-<seed>-v2`, revision 2 and scoring version `bee-wordcount-v2`.
+
+Every accepted word counts equally toward the visible daily word-count goal.
+For this starter revision, the goal is ceil(70% of the former familiar seed-word
+count), producing modest goals of 7–17 words. Membership in that seed list has
+no effect on a word's credit: a player can complete using entirely other valid
+words. This threshold is an engineering default to keep a winnable short session;
+it is not calibrated 3.5/5 difficulty or a new owner decision about final scoring.
+
+All accepted found words appear in one list. Points remain four letters = 1,
+longer words = their length, and a pangram +7. There is no separate bonus score
+in v2. Result score/maxScore store words found / word-count goal, and summary
+also records total points. Continued play may exceed the word goal; completed
+status and the original completion timestamp remain stable.
+
+Per-length bars show found/total from the **complete frozen accepted set**, such
+as 1/10 four-letter words, not just the seed list. Found words are distinct and
+invalid state words do not inflate bars or points. Finishing every bar is optional.
+Some accepted dictionary words are obscure; they are not all needed to complete.
+
+The required seven-letter visual layout is now an actual honeycomb: a mandatory
+center hexagon surrounded by six individually selectable outer hexagons. Strong
+pastels, press scaling, found-word transitions and animated progress provide
+feedback without delaying acceptance/saving. Controls are Clear, Enter, Delete
+from left to right. Pure geometry supports center plus polygon corners (triangle
+4 letters, square 5, hexagon 7); only the existing seven-letter mode/content is
+implemented. Other shapes still need distinct rules/content/acceptance.
+
+Tap/typing actions accumulate immediately in a local BeeInputBuffer before
+emitting full state to the parent. A stale parent acknowledgement cannot replace
+newer unacknowledged letters or undo a just-submitted found word. The app keys
+the game by attempt identity; switching attempts starts a separate buffer.
+
+## Existing saved revision-1 puzzles
+
+Snapshots with `bee-goal70-bonus-v1` retain their exact original familiar-goal
+score, bonus calculation, completion threshold and result summary. Their
+revision and original IDs/data remain reconstructible. They are not silently
+converted into word-count games, and archived history is not rejudged. A small
+legacy explanation appears for a resumed older puzzle while the new per-length
+bars and single found list remain usable. Original state messages may retain
+legacy scoring language; new submitted-word notifications say simply points.
+
+Both rule versions remain covered by unit fixtures. New dictionary changes must
+not overwrite a distributed version or mutate accepted words in saved snapshots.
 
 Future work: validate vocabulary familiarity with a licensed frequency/familiarity
 source, define plural/inflection policy, review potentially offensive accepted
 bonus words, produce a broader audited goal bank, measure solve rates/time/hint
 use locally during manual testing, and calibrate 3.5/5 dailies. Difficulty must
 not be inferred from the target percentage alone. Keep all inclusion/scoring
-changes versioned; do not silently recalculate historical results.
+changes versioned; do not silently recalculate historical results. Unit tests
+cover v1 result preservation, v2 count credit, duplicates, bucket denominators,
+target attainability, normalized cell positions and rapid callback/parent
+acknowledgement ordering are covered by pure tests.
+Kotlin/Compose build and
+physical-device honeycomb sizing, animations and fairness need primary/user
+verification; no device acceptance is claimed by content generation alone.

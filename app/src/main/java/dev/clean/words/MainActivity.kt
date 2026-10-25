@@ -21,6 +21,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.Animatable
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -47,6 +55,7 @@ object GameRegistry {
 }
 
 class MainActivity : ComponentActivity() {
+    private var activeSession: AppSession? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val session = ViewModelProvider(this, object : ViewModelProvider.Factory {
@@ -54,22 +63,27 @@ class MainActivity : ComponentActivity() {
             override fun <T : ViewModel> create(modelClass: Class<T>): T =
                 AppSession(File(applicationContext.filesDir, "play-library")) as T
         })[AppSession::class.java]
+        activeSession = session
         setContent {
             CleanTheme { CleanWords(session) { name -> assets.open(name).bufferedReader().use { it.readText() } } }
         }
+    }
+    override fun onStop() {
+        activeSession?.flush()
+        super.onStop()
     }
 }
 
 @Composable
 private fun CleanTheme(content: @Composable () -> Unit) {
     val colors = if (isSystemInDarkTheme()) darkColorScheme(
-        primary = Color(0xFFB7CFB5), secondary = Color(0xFFCEC5AB),
-        background = Color(0xFF141A16), surface = Color(0xFF19211B),
-        primaryContainer = Color(0xFF304E36), tertiaryContainer = Color(0xFF51482E),
+        primary = Color(0xFFC9B9FF), secondary = Color(0xFFFFB8CC), tertiary = Color(0xFFB5E9DE),
+        background = Color(0xFF191824), surface = Color(0xFF211F30),
+        primaryContainer = Color(0xFF514065), secondaryContainer = Color(0xFF633D50), tertiaryContainer = Color(0xFF315E54),
     ) else lightColorScheme(
-        primary = Color(0xFF365C42), secondary = Color(0xFF706747),
-        background = Color(0xFFF8F8F1), surface = Color(0xFFF8F8F1),
-        primaryContainer = Color(0xFFD7E8D4), tertiaryContainer = Color(0xFFF4E5B9),
+        primary = Color(0xFF63468F), secondary = Color(0xFF9D4764), tertiary = Color(0xFF2D6B60),
+        background = Color(0xFFFFF8F4), surface = Color(0xFFFFF8F4),
+        primaryContainer = Color(0xFFDFCEFF), secondaryContainer = Color(0xFFFFCBDC), tertiaryContainer = Color(0xFFB5E9DE),
     )
     MaterialTheme(colorScheme = colors, content = content)
 }
@@ -87,28 +101,34 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
     val today = AttemptRules.puzzleDate(clock, ZoneId.systemDefault())
     val contentErrors = remember { GameRegistry.contentErrors() }
     val game = GameRegistry.get(gameId)
+    val compact = page == "play" && gameId == "crossword"
     val pageScroll = remember(page, gameId, attemptId) { ScrollState(0) }
+    val entrance = remember(page, gameId, attemptId) { Animatable(0f) }
+    LaunchedEffect(entrance) { entrance.animateTo(1f, tween(230)) }
     fun back() {
         page = when (page) { "play", "extras" -> "hub"; "hub" -> "home"; else -> "home" }
     }
     BackHandler(enabled = page != "home") { back() }
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Column(Modifier.safeDrawingPadding().imePadding().fillMaxSize()) {
-            Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 12.dp),
+            Row(Modifier.fillMaxWidth().padding(horizontal = if (compact) 12.dp else 20.dp, vertical = if (compact) 2.dp else 12.dp),
                 verticalAlignment = Alignment.CenterVertically) {
                 if (page != "home") TextButton(onClick = { back() }) { Text("‹ Back") }
                 Column(Modifier.weight(1f)) {
-                    Text("CLEAN WORDS", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary,
+                    if (!compact) Text("CLEAN WORDS", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold)
                     Text(when (page) { "home" -> "A little word time."; "hub", "play", "extras" -> game.title
                         "calendar" -> "Your puzzle calendar"; else -> "Credits & sources" },
-                        style = MaterialTheme.typography.headlineSmall)
+                        style = if (compact) MaterialTheme.typography.titleMedium else MaterialTheme.typography.headlineSmall)
                 }
                 if (page == "play" || page == "hub") TextButton(onClick = { help = true }) { Text("Help") }
             }
             HorizontalDivider()
-            Column(Modifier.weight(1f).verticalScroll(pageScroll).padding(20.dp),
-                verticalArrangement = Arrangement.spacedBy(14.dp)) {
+            Column(Modifier.weight(1f).graphicsLayer {
+                alpha = entrance.value
+                translationY = (1f - entrance.value) * 10.dp.toPx()
+            }.verticalScroll(pageScroll).padding(if (compact) 12.dp else 20.dp),
+                verticalArrangement = Arrangement.spacedBy(if (compact) 6.dp else 14.dp)) {
                 session.notice?.let { message ->
                     Note(message) { TextButton(onClick = session::dismissNotice) { Text("Dismiss") } }
                 }
@@ -125,11 +145,14 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                             Text("Five small challenges. No noise. Daily puzzles change at 6 a.m. on your phone.")
                             GameRegistry.games.forEachIndexed { index, module ->
                                 val saved = AttemptRules.daily(session.library, module, today)
-                                Card(onClick = { gameId = module.id; page = "hub" }, modifier = Modifier.fillMaxWidth()) {
+                                val cardColor = listOf(Color(0xFFC7EAC6), Color(0xFFFFE398), Color(0xFFFFD2A1),
+                                    Color(0xFFBDE7F4), Color(0xFFDBC8FF))[index]
+                                Card(onClick = { gameId = module.id; page = "hub" }, modifier = Modifier.fillMaxWidth().animateContentSize(tween(220)),
+                                    colors = CardDefaults.cardColors(containerColor = cardColor, contentColor = Color(0xFF2D2938))) {
                                     Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically) {
                                         Text(listOf("W", "••", "B", "S", "+")[index],
                                             style = MaterialTheme.typography.headlineMedium,
-                                            color = MaterialTheme.colorScheme.primary, modifier = Modifier.width(48.dp))
+                                            color = Color(0xFF594168), modifier = Modifier.width(48.dp))
                                         Column(Modifier.weight(1f)) {
                                             Text(module.title, style = MaterialTheme.typography.titleLarge)
                                             Text(module.description, style = MaterialTheme.typography.bodyMedium)
@@ -183,19 +206,23 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                                     style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
                                 if (attempt.mode == PuzzleMode.DAILY && attempt.puzzleDate != today.toString())
                                     Text("Finishing this puzzle keeps its original calendar date.", style = MaterialTheme.typography.bodySmall)
-                                if (savedErrors.isEmpty()) game.Play(attempt.puzzle, attempt.state,
+                                if (savedErrors.isEmpty()) key(attempt.id) { game.Play(attempt.puzzle, attempt.state,
                                     enabled = !session.pendingSave && (attempt.result.status == PlayStatus.IN_PROGRESS || game.id == "bee"),
-                                    onChange = { session.change(attempt.id, it, game) })
+                                    onChange = { session.change(attempt.id, it, game) }) }
                                 else Text("This saved puzzle cannot be opened: ${savedErrors.joinToString()}. Its files and progress are preserved.",
                                     color = MaterialTheme.colorScheme.error)
-                                HorizontalDivider(Modifier.padding(top = 12.dp))
-                                Text(attempt.result.summary, style = MaterialTheme.typography.titleMedium)
-                                if (attempt.result.status != PlayStatus.IN_PROGRESS) {
+                                AnimatedVisibility(attempt.result.status != PlayStatus.IN_PROGRESS,
+                                    enter = fadeIn(tween(260)) + expandVertically(tween(300))) {
+                                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    HorizontalDivider(Modifier.padding(top = 8.dp))
+                                    Text(attempt.result.summary, style = MaterialTheme.typography.titleMedium)
                                     Text("${attempt.result.status.label()} · saved in history", color = MaterialTheme.colorScheme.primary)
                                     if (game.id == "bee") Text("You can keep finding words after reaching the goal.")
                                     OutlinedButton(onClick = { page = "hub" }) { Text("Back to daily & more") }
+                                    }
                                 }
-                                Text("Progress saves on every edit. This starter content can repeat.", style = MaterialTheme.typography.bodySmall)
+                                Text(if (session.saving) "Saving locally…" else if (session.pendingSave) "Changes need saving — retry above" else "Saved on this device",
+                                    style = MaterialTheme.typography.bodySmall)
                             }
                         }
                         "calendar" -> CalendarScreen(session.library, gameId, onGame = { gameId = it }, onOpen = {
@@ -315,7 +342,7 @@ private fun CreditsScreen(readAsset: (String) -> String) {
 private fun helpFor(id: String): String = when (id) {
     "wordish" -> "Guess a five-letter word in six tries. ✓ means correct place, ~ means elsewhere, × means absent. Repeated letters are counted only as often as they occur in the answer. Invalid words do not consume a guess."
     "connections" -> "Select four words with a shared connection. Find all four groups. Four distinct incorrect guesses end the puzzle. Repeating the same incorrect group does not cost another mistake."
-    "bee" -> "Make words of four or more letters using the seven letters, always including the center. Letters may repeat. Four letters earns 1 point; longer words earn their length. Using all seven letters adds 7. Familiar goal words count toward the displayed completion target; other dictionary words are bonus. You may continue after completing the goal."
-    "strands" -> "Find themed words along neighboring letters, including diagonals. A cell can be used once and found words cannot overlap. One spanning answer joins opposite edges. Tap letters, then submit. Clear cancels the current path; undo lets you repair a found route that blocks other words."
-    else -> "Fill the mini crossword using Across and Down clues. Crossing answers share the same cell. Select a clue/cell and type letters. Check identifies wrong entries without deleting them and records assistance. A full but incorrect grid remains unfinished."
+    "bee" -> "Make words of four or more letters using the seven letters, always including the center. Letters may repeat. In new puzzles, every valid word advances the visible word-count goal. Bars show found/available words by length. Keep playing after the goal. Older saved puzzles retain their original completion rules. Four letters earns 1 point; longer words their length; using all letters adds 7."
+    "strands" -> "Find themed words along neighboring letters, including diagonals. A cell can be used once and found words cannot overlap. One spanning answer joins opposite edges. Tap letters, then Enter. Clear cancels the current path; Delete steps back. A route that blocks the remaining words is rejected without erasing prior play. Undo remains available for older routes."
+    else -> "Fill Across and Down answers. Crossing answers share a cell. Finishing a word advances to the next clue without checking it. Delete clears and moves backward. Use the built-in keyboard, or choose the phone keyboard. Check is optional and records assistance without deleting letters. A full but incorrect grid stays unfinished."
 }

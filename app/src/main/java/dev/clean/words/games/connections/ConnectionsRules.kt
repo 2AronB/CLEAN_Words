@@ -49,7 +49,13 @@ object ConnectionsRules {
             if (selected.size >= 4) return state + ("message" to "Select at most four tiles. Deselect one to change your group.")
             selected.add(tile)
         }
-        return state + mapOf("selected" to selected.sorted().joinToString(","), "message" to "")
+        return state + mapOf("selected" to selected.joinToString(","), "message" to "")
+    }
+
+    fun delete(state: Map<String, String>): Map<String, String> {
+        if (result(state).status != PlayStatus.IN_PROGRESS) return state
+        val selected = selection(state).toList()
+        return state + mapOf("selected" to selected.dropLast(1).joinToString(","), "message" to "")
     }
 
     fun clear(state: Map<String, String>): Map<String, String> =

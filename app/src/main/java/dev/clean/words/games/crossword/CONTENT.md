@@ -35,3 +35,56 @@ snapshots. Difficulty should use clue indirectness, answer familiarity and
 crossing support, then be calibrated with playtesting; do not infer it from grid
 size alone. Test different patterns/word lengths before assuming the six-entry
 starter structure represents final content coverage.
+
+## Initial-play feedback update
+
+The ten S1 grids intentionally use the same blocked template; that is a starter
+content shortcut, not a restriction of 5x5 crosswords. Existing distributed
+records remain unchanged to preserve saves. More varied 5x5 patterns and other
+sizes need dimension-aware grid/navigation/validation rather than relabeling the
+same template. No new sizes or generated content are claimed in this update.
+
+Input is now a pure cursor/edit reducer plus immediate game-local state. Every
+character in an IME commit or paste is applied, and cursor/clue advancement does
+not compare the word with its answer. A filled word advances to the next clue
+with blanks, including when the word is wrong. Enter advances without checking.
+Only explicit Check marks incorrect letters and records assistance. Completion
+still validates the full grid silently, as an ordinary solved-state rule.
+
+Delete clears a filled selected cell and selects its predecessor; on a blank it
+steps back and clears that previous cell. At clue start it goes to the previous
+clue's last cell. Clear erases the current clue, including shared crossing cells,
+without resetting other progress or assistance history. A built-in keyboard is
+the default to keep the board above the controls; optional phone keyboard
+supports text commits/paste, with a smaller grid and a local append-only input
+buffer. The app must key game composition by saved attempt ID to avoid sharing
+local state between repeated puzzle records. Large-text/keyboard comfort still
+requires actual phone acceptance.
+
+## Proposed generator/content package (not implemented)
+
+1. Generalize width/height and grid runs while retaining the legacy 5x5 decoder.
+   Preserve old content, IDs, clue snapshots and scoring rather than regenerating
+   saved attempts from current pool ordering.
+2. Keep a source-licensed answer bank with multiple sense-matched original or
+   reusable clues per answer: answer ID, normalized/display forms, sense ID,
+   clue ID/text/style/difficulty, provenance/license and review status. Plain
+   dictionary definitions need editing before they become good crossword clues.
+3. Author multiple legal grid templates per size; choose dictionary entries by
+   crossing constraints and reject fills that require unsuitable obscure words.
+   Validate connectivity, minimum run length, unique numbering, all crossings,
+   clue coverage and originality/provenance before accepting a generated record.
+4. Assign a clue variant per entry and freeze that exact grid/clue assignment in
+   the attempt. Reusing a familiar answer with different accurate clues and
+   different crossings can remain thoughtful; repeating an identical clue/answer
+   pair too soon encourages memorization. Track recent pairs independently of
+   answers and templates, with an honest repeat/exhaustion policy.
+5. Start with deterministic build-time generation and solver/corpus reports;
+   runtime generation must later have bounded search and validated offline
+   fallback. No cloud generator or runtime dictionary request is allowed.
+
+Entry for a separate content agent: fixed answer/clue schema, source terms,
+allowed answer policy, chosen sizes and repeat targets. Closure: versioned clue
+bank plus generated sample grids, source manifest, rejection reasons, structural
+checks and actual representative fairness review. A larger raw corpus alone does
+not prove either playable grids or sustained novelty.

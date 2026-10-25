@@ -1,5 +1,12 @@
 # S1 game integration contract v1
 
+F1 refinement: parent wraps Play in key(attempt.id). Games with fast input keep an
+immediate local reducer/buffer before emitting full replacement state, so stale
+parent recomposition cannot drop key events. Never key such buffers only by the
+reused puzzle record across attempts. Shared saving is ordered off-main; no game
+may perform disk IO. New rule policies get new puzzle revisions and retain legacy
+snapshot dispatch. See FEEDBACK-01 for active UI/control/compatibility requirements.
+
 Implementation authorized 2026-10-25 with TEN distinct original puzzles per game.
 All packages use Kotlin dev.clean.words. Shared code lives in core/ and ui/;
 game agents own only games/<game>/ and corresponding test package. Primary owns

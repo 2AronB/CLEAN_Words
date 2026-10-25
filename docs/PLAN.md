@@ -2,6 +2,11 @@
 
 Status: S1 authorized and implemented 2026-10-25, with ten samples per game.
 Verification and device acceptance are tracked in CONTINUE and VERIFICATION.
+Current feedback F1 is authorized and specified in FEEDBACK-01. Input now uses
+immediate game buffers and an ordered background save lane, drained on background
+transition with bounded wait. New Bee policies are versioned; old snapshots stay.
+Connections content can proceed in isolated staging via agent-prompts; crossword
+layout/clue-bank expansion is proposed in CROSSWORD-EXPANSION, not yet built.
 
 ## Approach
 

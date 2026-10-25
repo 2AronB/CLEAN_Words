@@ -12,6 +12,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import dev.clean.words.ui.GameActions
+import kotlinx.coroutines.delay
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,25 +48,46 @@ object WordishGame : GameModule {
 
     @Composable
     override fun Play(puzzle: PuzzleRecord, state: Map<String, String>, enabled: Boolean, onChange: (Map<String, String>) -> Unit) {
-        val guesses = WordishRules.guesses(state)
-        val result = result(puzzle, state)
+        // Immediate local reducer prevents rapid key callbacks reading a stale parent map.
+        var live by remember(puzzle.id) { mutableStateOf(state) }
+        var revealingRow by remember(puzzle.id) { mutableIntStateOf(-1) }
+        var revealedColumns by remember(puzzle.id) { mutableIntStateOf(5) }
+        fun dispatch(action: (Map<String, String>) -> Map<String, String>) {
+            val next = action(live); live = next; onChange(next)
+        }
+        val guesses = WordishRules.guesses(live)
+        val result = result(puzzle, live)
         val active = enabled && result.status == PlayStatus.IN_PROGRESS
+        val keyboard = WordishRules.keyboardFeedback(puzzle, live)
+        val darkText = Color(0xFF24332E)
+        fun color(mark: LetterFeedback?) = when (mark) {
+            LetterFeedback.CORRECT -> Color(0xFF99D8A5)
+            LetterFeedback.ELSEWHERE -> Color(0xFFFFDC78)
+            LetterFeedback.ABSENT -> Color(0xFFB6B9C3)
+            null -> Color(0xFFE9E2FA)
+        }
+        LaunchedEffect(revealingRow, guesses.size) {
+            if (revealingRow >= 0) {
+                for (column in 1..5) { delay(85); revealedColumns = column }
+                delay(180); revealingRow = -1
+            }
+        }
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text(description)
             Text("✓ correct place   ~ elsewhere   × absent", style = MaterialTheme.typography.bodySmall)
             for (row in 0 until WordishRules.attempts) {
-                val word = guesses.getOrNull(row) ?: if (row == guesses.size) WordishRules.draft(state) else ""
+                val word = guesses.getOrNull(row) ?: if (row == guesses.size) WordishRules.draft(live) else ""
                 val feedback = guesses.getOrNull(row)?.let { WordishRules.feedback(WordishRules.answer(puzzle), it) }
                 Row(horizontalArrangement = Arrangement.spacedBy(5.dp), modifier = Modifier.fillMaxWidth()) {
                     for (i in 0..4) {
-                        val mark = feedback?.get(i)
-                        val background = when (mark) {
-                            LetterFeedback.CORRECT -> MaterialTheme.colorScheme.primaryContainer
-                            LetterFeedback.ELSEWHERE -> MaterialTheme.colorScheme.tertiaryContainer
-                            else -> MaterialTheme.colorScheme.surfaceVariant
-                        }
-                        Box(modifier = Modifier.weight(1f).heightIn(min = 52.dp).background(background, MaterialTheme.shapes.small).padding(4.dp), contentAlignment = Alignment.Center) {
-                            Text("${word.getOrNull(i) ?: ' '}${mark?.let { "\n${it.symbol}" } ?: ""}", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
+                        val shown = revealingRow != row || i < revealedColumns
+                        val mark = feedback?.get(i)?.takeIf { shown }
+                        val background by animateColorAsState(color(mark), tween(220), label = "tile-color")
+                        val rotation by animateFloatAsState(if (shown) 0f else 85f, tween(210), label = "tile-reveal")
+                        Box(modifier = Modifier.weight(1f).heightIn(min = 52.dp)
+                            .graphicsLayer { rotationX = rotation; cameraDistance = 12 * density }
+                            .background(background, MaterialTheme.shapes.small).padding(4.dp), contentAlignment = Alignment.Center) {
+                            Text("${word.getOrNull(i) ?: ' '}${mark?.let { "\n${it.symbol}" } ?: ""}", color = darkText, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
@@ -66,19 +96,24 @@ object WordishGame : GameModule {
                 listOf("QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM").forEach { letters ->
                     Row(horizontalArrangement = Arrangement.spacedBy(2.dp), modifier = Modifier.fillMaxWidth()) {
                         letters.forEach { letter ->
-                            OutlinedButton(onClick = { if (active) onChange(WordishRules.input(puzzle, state, letter)) }, enabled = active,
+                            val keyColor by animateColorAsState(color(keyboard[letter]), tween(250), label = "key-evidence")
+                            OutlinedButton(onClick = { if (active) dispatch { WordishRules.input(puzzle, it, letter) } }, enabled = active,
+                                colors = ButtonDefaults.outlinedButtonColors(containerColor = keyColor, contentColor = darkText),
                                 contentPadding = PaddingValues(0.dp), modifier = Modifier.weight(1f).heightIn(min = 48.dp)) {
                                 Text(letter.toString(), fontSize = 14.sp)
                             }
                         }
                     }
                 }
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Button(onClick = { if (active) onChange(WordishRules.submit(puzzle, state)) }, enabled = active) { Text("Enter") }
-                    OutlinedButton(onClick = { if (active) onChange(WordishRules.delete(puzzle, state)) }, enabled = active && WordishRules.draft(state).isNotEmpty()) { Text("Delete") }
-                }
+                GameActions(onClear = { dispatch { WordishRules.clear(puzzle, it) } },
+                    onEnter = {
+                        val next = WordishRules.submit(puzzle, live)
+                        if (WordishRules.guesses(next).size > guesses.size) { revealingRow = guesses.size; revealedColumns = 0 }
+                        live = next; onChange(next)
+                    }, onDelete = { dispatch { WordishRules.delete(puzzle, it) } }, enabled = active,
+                    clearEnabled = WordishRules.draft(live).isNotEmpty(), deleteEnabled = WordishRules.draft(live).isNotEmpty())
             }
-            state["message"]?.takeIf { it.isNotBlank() }?.let { Text(it) }
+            live["message"]?.takeIf { it.isNotBlank() }?.let { Text(it) }
             Text(result.summary, fontWeight = if (result.status == PlayStatus.IN_PROGRESS) FontWeight.Normal else FontWeight.Bold)
         }
     }

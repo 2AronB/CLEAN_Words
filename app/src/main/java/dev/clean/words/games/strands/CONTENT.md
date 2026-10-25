@@ -17,10 +17,29 @@ fixtures. No licensed dictionary or accepted incidental-word hint system exists.
 
 Content validation verifies dimensions, spelling, adjacency, no reused cells,
 one edge-to-edge spanning answer and a complete non-overlapping partition.
-Gameplay accepts any valid route spelling a theme word, not just the authored
-route. Because an alternate route can block another answer, Undo last found word
-returns letters to the board; this is available before completion. Found-word
-path order and current selection are persisted through the shared state map.
+Gameplay accepts alternate routes only when a covering solution still exists
+with all already-found routes fixed. Authored remaining paths give an immediate
+proof for ordinary play; bounded backtracking also finds legitimate alternatives
+that require rerouting other words. This does not force every answer onto its
+authored route. A route that blocks the remainder is not committed and receives
+an explicit explanation without losing selection/found progress. The real
+spanning answer must span the actual chosen path, including alternate paths.
+The search has a 100,000-step budget; exhaustion reports that checking could not
+finish rather than claiming the word is invalid, and does not commit an unchecked
+route. Larger future layouts need profiling/possibly worker execution.
+
+Undo last found word remains available before completion, including for older
+saved attempts whose already-accepted alternate route blocks other answers.
+Puzzle IDs/content revisions and stored found routes remain unchanged. Clear
+clears the current selection; Delete removes its final cell; Enter submits.
+
+Board rendering now connects letter centers with animated pastel lines rather
+than numbering route steps. The spanning answer is gold; ordinary found paths
+cycle distinct pastel colors and the active route is blue. Coordinates share
+the same cell/gap geometry as touch targets, so resize does not detach lines.
+Letters remain high-contrast; selection step order remains in accessibility
+descriptions but is no longer drawn. Found-route reveal is 420ms, selected-route
+extension 130ms and cell-color transition 220ms, without delaying input/save.
 
 Before larger production pools: independent theme/clue review, route ambiguity
 checks/solver assistance, spangram quality and size/difficulty calibration. A

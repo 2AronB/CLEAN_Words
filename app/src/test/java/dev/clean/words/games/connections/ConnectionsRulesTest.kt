@@ -72,4 +72,14 @@ class ConnectionsRulesTest {
         assertTrue(ConnectionsRules.validate(broken).any { it.contains("distinct") })
         assertTrue(ConnectionsRules.validate(broken).any { it.contains("explanation") })
     }
+    @Test fun deleteOnlyRemovesLastSelectedWordWithoutChangingSolvedGroupsOrMistakes() {
+        var state = ConnectionsRules.submit(puzzle, choose(0,1,2,3))
+        state = listOf(7,4,6).fold(state) { current, tile -> ConnectionsRules.select(current, tile) }
+        val deleted = ConnectionsRules.delete(state)
+        assertEquals(setOf(7,4), ConnectionsRules.selection(deleted))
+        assertEquals(setOf(0), ConnectionsRules.solved(deleted))
+        assertEquals(ConnectionsRules.mistakes(state), ConnectionsRules.mistakes(deleted))
+        val legacyOrder = state + ("selected" to "4,6,7")
+        assertEquals(setOf(4,6), ConnectionsRules.selection(ConnectionsRules.delete(legacyOrder)))
+    }
 }

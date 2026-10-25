@@ -25,7 +25,7 @@ for (const [id, seed, center, goalText] of seeds) {
   const invalid = goals.filter(word => !matches(word) || !dictionary.has(word));
   if (letters.length!==7 || invalid.length) throw Error(`${id}: invalid goal words ${invalid.join(', ')}`);
   const valid = [...dictionary].filter(matches).sort();
-  output += `        BeePuzzle("${letters}", '${center}',\n            "${goals.join(',')}".split(',').toSet(),\n            "${valid.join(',')}".split(',').toSet(), dictionaryVersion).snapshot("bee-${id}-v1"),\n`;
+  output += `        BeePuzzle("${letters}", '${center}',\n            "${goals.join(',')}".split(',').toSet(),\n            "${valid.join(',')}".split(',').toSet(), dictionaryVersion, BeePuzzle.WORD_COUNT_SCORING).snapshot("bee-${id}-v2"),\n`;
   console.log(`${id}: ${goals.length} goal words, ${valid.length} accepted words`);
 }
 output += `    )\n}\n`;

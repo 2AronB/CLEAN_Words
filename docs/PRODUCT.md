@@ -14,6 +14,10 @@ she finds the current reset behavior frustrating.
 
 ## Owner requirements
 
+Initial playtest adds R-017–R-023 and changes new Bee presentation/completion;
+see FEEDBACK-01 for the active authorized baseline/acceptance. Old records remain
+historical snapshots. This supersedes conflicting original S1 UI defaults.
+
 - R-001: Support Android. Other platforms are not required.
 - R-002: All games are free; no monthly fee or ads.
 - R-003: No trackers or excess permissions. Specific necessary permissions, if

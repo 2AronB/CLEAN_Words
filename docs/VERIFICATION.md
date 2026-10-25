@@ -1,4 +1,47 @@
-# S1 verification — 2026-10-25
+# Verification — 2026-10-25
+
+## Current F1 feedback checkpoint
+
+Artifact `artifacts/CLEAN-Words-F1-debug.apk`, versionCode 2/version 0.2.0-f1.
+SHA256 `8d09b66e35c5232d43c135e23c134a978ab8befd81d9d3de2101fbe34a616eb7`.
+Source scope: FEEDBACK-01 (R-017–R-023). Full offline MVP still incomplete.
+
+Actual final outcomes:
+
+- 85 JVM tests pass: storage/date 10, ordered IO 3, Wordish 12, Connections 10,
+  Bee 17, Strands 13, crossword 20. Includes legacy Bee snapshots, equal-credit word goal,
+  word-length buckets, polygon geometry, rapid input reducers, keyboard evidence,
+  dead-end/viable alternate Strands routes, clue advancement and Backspace.
+- Debug app/test APKs build; lint zero errors/one existing OldTargetApi warning.
+- Four Android tests pass on the explicit temporary emulator, with networking
+  disabled. Previous three integration checks plus actual crossword phone-input
+  hardware burst, multi-character paste, DEL, disk-state retention and no implicit
+  Check/assistance. Last complete run: 46.038 seconds, `OK (4 tests)`.
+- Used tools/test-emulator.ps1, which rejects physical-device serials and targets
+  emulator-5554 explicitly. A personal phone was connected and was not targeted.
+  The script parses JUnit success rather than trusting adb's process exit alone.
+- Visual QA screenshots inspected locally: pastel honeycomb is actual center+6
+  hexagons; compact crossword and optional IME leave the board visible. These
+  checks cover the emulator viewport, not every phone/font-size configuration.
+
+Commands: process-local JAVA_HOME as below, `gradlew.bat --offline
+:app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`,
+then `tools/test-emulator.ps1 -Serial emulator-5554`. Reports/logs are in ignored
+build/artifacts folders. No dependencies/permissions/services added in F1.
+
+Save behavior now uses immediate buffers and ordered off-main writes; worker
+tests verify ordering, nonblocking submit, stop-on-failure and explicit retry.
+Latest state remains in memory on save error. MainActivity drains queued saves
+on background transition with a bounded 1500 ms wait. Abrupt power loss during a
+pending write still cannot be promised to retain the latest unsaved edit.
+
+Still needs human phone review: visual preference/motion pacing, actual IME
+feel/large text, difficulty/fairness, multi-route Strands experience and Bee goal
+understanding. Existing completed/history records must remain interpretable under
+their old scoring versions. New Connections corpus/varied crossword templates,
+more sizes and clue variants are not implemented; see staging prompt/expansion.
+
+## Historical S1 checkpoint
 
 S1 implemented with ten distinct puzzle records per game, 50 total. This is a
 playable development baseline, not full MVP acceptance. No physical phone/wife

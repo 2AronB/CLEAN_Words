@@ -7,10 +7,18 @@ import java.io.File
 import java.time.Instant
 import java.time.ZoneId
 import androidx.lifecycle.ViewModel
+import android.os.Handler
+import android.os.Looper
+import java.util.concurrent.Executor
 
-/** Saves before returning from accepted UI edits; tiny S1 snapshots avoid pending background writes. */
+/** UI changes are immediate; versioned snapshots write in order off the input thread. */
 class AppSession(directory: File) : ViewModel() {
     private val store = AtomicLibraryStore(directory)
+    private val main = Handler(Looper.getMainLooper())
+    private val writer = OrderedLibraryWriter(store::save, Executor { main.post(it) })
+    private var revision = 0L
+    var saving by mutableStateOf(false)
+        private set
     var library by mutableStateOf(Library())
         private set
     var notice by mutableStateOf<String?>(null)
@@ -38,19 +46,25 @@ class AppSession(directory: File) : ViewModel() {
     fun dismissNotice() { notice = null }
 
     private fun commit(next: Library): Boolean {
-        // Keep the user's latest edit in memory even if disk writing fails.
         library = next
-        return try {
-            store.save(next)
-            pendingSave = false; error = null; true
-        } catch (e: Exception) {
-            pendingSave = true
-            error = "This change is not saved: ${e.message}. Keep the app open and retry. Previous files are preserved."
-            false
-        }
+        enqueue(next)
+        return true
     }
 
-    fun retrySave() { if (pendingSave) commit(library) else reload() }
+    private fun enqueue(next: Library, retry: Boolean = false) {
+        val version = ++revision
+        saving = true
+        writer.submit(version, next, retry, onSaved = { savedVersion ->
+            if (savedVersion == revision) { saving = false; pendingSave = false; error = null }
+        }, onFailed = { failure ->
+            saving = false; pendingSave = true
+            error = "Latest changes are not saved: ${failure.message}. Keep the app open and retry. Previous files are preserved."
+        })
+    }
+
+    fun retrySave() { if (pendingSave) enqueue(library, retry = true) else reload() }
+    fun flush() = writer.drain()
+    override fun onCleared() { writer.close() }
 
     fun open(game: GameModule, mode: PuzzleMode, now: Instant = Instant.now(), zone: ZoneId = ZoneId.systemDefault()): String? {
         if (blocked || pendingSave) return null

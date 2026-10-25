@@ -1,5 +1,14 @@
 # S1 phone acceptance — not yet performed
 
+Initial phone playtest was received and drove F1 (FEEDBACK-01). Re-test the new
+APK on the same phone without uninstalling/clearing data. In F1 new Bee puzzles
+use a unified word-count goal and per-length bars; old snapshots retain rules.
+Crossword now defaults to its own keyboard, with optional phone keyboard.
+Extra focused checks: Wordish keyboard colors stay selectable; reveal timing
+feels pleasant; rapid crossword typing/paste/backspace; auto-clue advance with
+Check untouched; honeycomb targets; Strands alternate route rejection/recovery
+and line visibility. Full subjective visual/keyboard acceptance remains pending.
+
 Use the debug APK on a test device or retain existing app data when updating it.
 Do not uninstall/clear storage as part of this checklist. No device-loss or
 reinstall recovery is promised. The five deliberately similar names are temporary.
@@ -14,8 +23,9 @@ Batch these checks in one sitting; report game, puzzle/date and observed issue.
    Read explanations after solving. Note any equally plausible grouping that
    the game unfairly rejects, or any category requiring unexpected knowledge.
 4. Spelling Meh: find several words, including a repeat and a missing-center
-   word. Goal versus bonus scoring should be clear; target words should feel
-   familiar. Note surprising accepted/rejected vocabulary.
+   word. Every accepted word should count equally toward the visible count goal;
+   per-length bars must update found/total. Note surprising accepted/rejected
+   vocabulary. Old saved puzzles should clearly state original completion rules.
 5. Strand-ish: select paths by tapping neighboring letters; submit, clear and
    undo. Note awkward touch targets or a valid route that appears impossible to
    recover from. Check theme clue fairness and spanning-answer understanding.
