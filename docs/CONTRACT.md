@@ -1,5 +1,32 @@
 # S1 game integration contract v1
 
+## Generated-start extension G1 — 2026-10-25
+
+Wordish/Bee profiles/results remain module-local. Core OfflinePuzzleGeneration
+explicitly adapts GenerationRequest to Ready(full PuzzleRecord), Unavailable or
+Cancelled. No universal dictionary/runtime plugin system. Module API/input pins:
+generators/<game>/INTEGRATION.md. Primary owns core/shared UI; live game rules/UI
+need no generator changes. Other three games retain labeled ten-record starters.
+
+GenerationCoordinator prepares/generates on a separate worker and suppresses
+canceled/superseded callbacks. AppSession owns existing-daily lookup, pinned
+game/profile/source/date seed identity, extra UUIDs and latest 100 semantic-content
+exclusions. Daily generation has no history inputs. Resume always uses snapshots.
+Generated starts use AttemptRules.createSnapshot, bypassing create's legacy
+starter selector (retained for fixtures/explicit starter use).
+
+Staged starts block new starts/edits. OrderedLibraryWriter saves full content
+before opening, rechecks token/date on acknowledgement and compensates canceled
+writes with baseline twice (active/recovery copies). Failure retains baseline
+memory and blocks starts until retry, also purging both copies. Never reset storage.
+Incomplete/failed rollback follows keep-open/retry constraints; no process-death
+or power-loss journal guarantee. Future versions can alter new outputs only;
+never reinterpret old accepted lists, targets, answers, scores or completion.
+
+Wordish remains single-five/six guesses/enable-five-v1. Bee remains frozen
+bee-wordcount-v2, complete accepted/familiar sets and equal word-count credit.
+No new difficulty/variant UI. Generation types do not replace GameModule below.
+
 F1 refinement: parent wraps Play in key(attempt.id). Games with fast input keep an
 immediate local reducer/buffer before emitting full replacement state, so stale
 parent recomposition cannot drop key events. Never key such buffers only by the

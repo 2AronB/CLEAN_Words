@@ -1,5 +1,29 @@
 # Agent work queue
 
+## G1 module/integration closure — authorized 2026-10-25
+
+Owner requested Wordish -> Bee -> Integration. This supersedes the prompt-only
+checkpoint below for those tasks. Both modules/shared runtime are implemented;
+actual checks/counts and partial integration: PRODUCT G1 and VERIFICATION.
+
+- [x] Wordish: original 1,387-answer bank/pipeline, real seeded selector, exclusions,
+  cancellation, legacy policies/snapshots and 1,000-seed report in
+  app/src/main/java/dev/clean/words/generators/wordish/REPORT.md.
+- [x] Bee: licensed source-backed index/original familiarity shortlist, real
+  seven-letter/center generator, independent exhaustive accepted-word tests,
+  frozen v2 equal-credit goals and 1,000-seed report in
+  app/src/main/java/dev/clean/words/generators/bee/REPORT.md.
+- [x] Primary: generated daily/additional starts for both modules on separate
+  worker; pinned seeds/recent signatures; tap coalescing/cancel/retry/errors;
+  durable-before-open saves; old daily resume and recovery-copy cleanup tests.
+- [ ] Full all-five INTEGRATION closure: Connections/Strands/Crossword generator
+  handoffs absent; keep explicit starter flows. Do not claim generated conversion
+  for those games or implement their prompts automatically.
+- [ ] Human vocabulary/fairness/Bee goal-length/phone acceptance. Both banks have
+  zero human/frequency reviews. Difficulty calibration/variants remain separate.
+- [ ] If crash-proof interrupted-start cancellation is required, add a durable
+  launch journal; present rollback follows the existing keep-open/retry policy.
+
 Updated 2026-10-25. S1 authorized in D-017 with TEN puzzles per game. Shared
 foundation, five game modules/content and rule tests implemented. Verification
 and remaining manual acceptance: VERIFICATION. Future entries are not automatic
@@ -83,6 +107,11 @@ pass; human phone/fairness closure remains pending. Ten records per game, not
 three. No feature is considered finished merely because this list exists.
 
 ## Future packages — define/authorize after S1
+
+Generator implementation prompt pack: agent-prompts/generation/README.md. Five
+game tasks have disjoint ownership and shared constraints; INTEGRATION.md owns
+the app's runtime selection/loading/cancellation/save wiring. Prompts prepared
+only; requesting these documents did not authorize executing generator work.
 
 Initial playtest F1 changes implemented; see FEEDBACK-01 and VERIFICATION for
 results/manual gaps. Connections content may run concurrently using

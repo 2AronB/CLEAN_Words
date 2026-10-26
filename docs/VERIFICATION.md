@@ -1,6 +1,113 @@
-# Verification — 2026-10-25
+# G1 generated-play verification — 2026-10-25
 
-## Current F1 feedback checkpoint
+Current scope is **two generated games**, tWordle and Speling Bee, through real
+daily/additional UI. Connektions/Stranded/Crossita still use labeled ten-record
+starter cycles; no generator handoffs exist for them. The all-five generated
+closure in INTEGRATION.md remains partial. Rules and saved v1/v2 content were
+preserved; no new dependency, permission, SDK, runtime network or service.
+
+## Current checks
+
+114 JVM tests pass; offline assembleDebug, assembleDebugAndroidTest and lintDebug
+pass (zero lint errors, one existing OldTargetApi warning for target 36).
+Both preprocessing `--check` commands and git diff --check pass. The exact commands
+use Android Studio's bundled JBR and existing approved caches:
+
+```powershell
+$env:JAVA_HOME = 'C:\Program Files\Android\Android Studio\jbr'
+.\gradlew.bat --offline :app:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:assembleDebugAndroidTest
+node tools/generation/wordish/prepare-bank.mjs --check
+node tools/generation/bee/prepare-index.mjs --check
+.\tools\test-emulator.ps1 -Serial emulator-5554 -ReportPath artifacts/generation-upgrade-device-test.txt
+.\tools\test-emulator.ps1 -Serial emulator-5556 -ReportPath artifacts/generation-first-install-device-test.txt
+.\tools\test-emulator.ps1 -Serial emulator-5556 -ReportPath artifacts/generation-final-device-test.txt
+```
+
+Eight Android tests pass on emulator-5554 after an update install, Wi-Fi/data
+disabled (64.115 seconds). Eight also pass on **first install**, emulator-5556
+with project-local CLEAN_Generation_Fresh AVD, Wi-Fi/data disabled before app
+installation (69.8 seconds). Confirmed no CLEAN Words package existed before
+that install; no player data was cleared. No connected personal phone targeted.
+Fresh AVD uses the installed API 37 image and process-local ANDROID_AVD_HOME;
+no global/personal emulator configuration or new SDK downloads.
+An initial second-instance launch of the existing AVD failed; creating the new
+workspace-local AVD resolved that without changing or clearing existing data.
+
+The Android suite checks all 50 legacy starters solved/saved, five real boards,
+Help/recreation, permissions/credits and rapid crossword input; new tests exercise
+real generated daily/extra UI, frozen snapshot recreation, independent extra
+signatures, eight durable starts in a fresh session, duplicate-tap coalescing,
+generation/index preparation off main, rollover cancellation, visible corrupt-
+index failure/retry, save-failure baseline retention/retry and restart without
+accessing source inputs. Session failure fixtures use isolated app cache folders.
+Final strengthened UI suite: **8/8 pass, 67.246 seconds**, offline emulator-5556,
+including daily/additional starts, generated typing, calendar reopening of the
+same frozen daily and Activity recreation. Report:
+artifacts/generation-final-device-test.txt. Captured/inspected
+artifacts/generation-wordish.png and generation-bee.png: generated labels, full
+Wordish board/keyboard/actions, Bee honeycomb/input/goal remain readable and usable
+at this emulator size. This does not replace physical-phone/text-size acceptance.
+Five current Markdown relative links resolve; whitespace checks pass. Historical
+starter-reference copies were excluded from documentation link checking.
+Final packaging normalized checksum-input line endings to Git-pinned LF and
+regenerated source-report hashes; answer/index content hashes are unchanged.
+Both source pipelines pass --check; packaged answer/index/policy/ENABLE notice
+bytes match their source files. The exact delivered APK also passes the focused
+generated daily/extra/typing/calendar/recreation UI test (1/1, 19.126 seconds),
+after update installation offline; artifacts/generation-final-apk-smoke.txt.
+
+Core checks cover queued-callback cancellation, newer request/date/source identity,
+daily independence from extras, old daily wins, semantic signatures, exhausted and
+tiny banks, unknown policies, failed start/rollback retry and actual last-good
+recovery-copy cleanup after simulated primary corruption. Generation and saving
+have separate workers; full generated content persists before opening.
+
+## Content evaluation and limitations
+
+[Wordish report](../app/src/main/java/dev/clean/words/generators/wordish/REPORT.md):
+1,387 AI editorial answer candidates, zero human/frequency reviewed. Seeds 0–999
+produce 731 distinct answers/17 repeated-letter patterns; zero failures; worst
+scan 1,387; measured p50/p95/max 576/1,395/5,516 µs. Exclusion drain selects all 1,387
+without repetition, then Exhausted. Existing enable-five-v1 guesses unchanged.
+
+[Bee report](../app/src/main/java/dev/clean/words/generators/bee/REPORT.md):
+98,144 indexed ENABLE words, 3,636 AI editorial familiarity candidates; inventory
+1,489 qualifying set/center identities across 283 sets. Seeds 0–999 produce 719
+identities/266 sets, zero failures/unattainable goals; worst inspected 6; measured
+p50/p95/max 672/2,714/83,434 µs, cold preparation 917,690 µs. Trial accepted counts
+min/p50/p95/max 37/173/351/397; familiar 12/21/38/61; goals 9/15/27/43. Every distinct
+output independently matched exhaustive source filtering. Inventory goal range
+9–47. Runtime rejection counts and every preprocessing rejection are reported.
+Both banks are original AI editorial evidence with **zero human/frequency review**,
+provisional difficulty and no calibrated medium-plus claim. Timings are desktop
+measurements, not phone latency guarantees. All sources/notices operate offline.
+
+New daily seed pins game/source/generator/profile and the local 6 a.m. date independently
+of history; extra seeds use UUIDs and exclude semantic signatures from latest 100
+starts. Daily dates can repeat content. No silent starter-as-generated fallback
+or weakened quality thresholds. No new variants or difficulty selectors.
+
+Normal canceled starts and successful retry purge current/recovery copies. A
+process kill/power loss while rollback is pending/failed can leave staged content
+on disk: keep open/retry errors; no durable launch journal or power-loss guarantee.
+No physical-phone/wife fairness, goal-length comfort, screen-reader/larger-text,
+overnight/clock-zone visual acceptance, hardware disk-failure or release acceptance.
+Use the [manual checklist](MANUAL-ACCEPTANCE.md); [PRODUCT](PRODUCT.md) and
+[contract](CONTRACT.md) define current scope. No app public release authorization.
+
+## Current APK
+
+artifacts/CLEAN-Words-generation-debug.apk, version 0.3.0-generation/versionCode 3,
+12,653,692 bytes. SHA-256:
+`1834f5e87f8da21e6930f09e5cc8efd9516dec3e50448df8bde540043a0eade1`.
+apksigner verifies the same debug signer as the prior names APK, SHA-256 cert
+`5d01ad4ef91eff366eab754f3853d8460b26007bce1a80a5416a0b5d7ed20916`.
+Install as update without uninstalling/clearing data. Artifacts remain Git-ignored;
+source/tests/tooling/content/required notices are versioned. Prior checkpoints follow.
+
+# Prior verification — 2026-10-25
+
+## Historical F1 feedback checkpoint
 
 Artifact `artifacts/CLEAN-Words-F1-debug.apk`, versionCode 2/version 0.2.0-f1.
 SHA256 `8d09b66e35c5232d43c135e23c134a978ab8befd81d9d3de2101fbe34a616eb7`.
@@ -51,12 +158,12 @@ acceptance has been performed. Git/source control is not player-data backup.
 
 - `:app:testDebugUnitTest`: 54 tests, zero failures/errors/skips. Storage/date 10;
   Wordish 10; Connektions 9; Bee 9; Strands 8; crossword 8.
-- `:app:assembleDebug`: successful installable debug APK, API26 minimum/target36.
-- `:app:lintDebug`: zero errors, one OldTargetApi warning because target36 is
+- `:app:assembleDebug`: successful installable debug APK, API26 minimum/target 36.
+- `:app:lintDebug`: zero errors, one OldTargetApi warning because target 36 is
   below the newest SDK known to lint. No lint baseline/suppression used to hide
   errors. Target-version upgrade/physical-device coverage belongs before release.
 - `:app:connectedDebugAndroidTest`: all three tests pass on the installed
-  Medium_Phone_API_37.0 emulator (Android17/API37), read-only/headless with Wi-Fi
+  Medium_Phone_API_37.0 emulator (Android17/API 37), read-only/headless with Wi-Fi
   and mobile data disabled before app testing.
 - Android test 1 validates all 50 records, completes each through actual game
   rule actions, saves/reloads intermediate state to real Android app-private
@@ -137,3 +244,10 @@ and background-interruption tests, not an unreviewed performance refactor.
 S1 does not implement variants/six-board Wordish, selectable difficulty, calibrated
 3.5/5 dailies, abundant unique puzzles, streaks or final polish. Documentation of
 those tasks does not close R-005/R-011/R-014 or authorize future slices.
+
+## Display-name update — 2026-10-25
+
+Offline :app:assembleDebug and :app:compileDebugAndroidTestKotlin passed.
+Display titles and UI selectors match D-021; internal IDs/snapshots unchanged.
+Artifact: artifacts/CLEAN-Words-names-debug.apk; SHA256 6067a8e66451ec3ef0670ec43dd8ec0ca70f37c6961585a88cffe1e9b1f5fad6.
+Device/emulator tests and visual review were not rerun for this presentation change.

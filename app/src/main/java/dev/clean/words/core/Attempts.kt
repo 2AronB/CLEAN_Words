@@ -42,8 +42,16 @@ object AttemptRules {
         val index = if (mode == PuzzleMode.DAILY) dailyIndex(game.id, date, game.puzzles.size)
             else library.attempts.count { it.gameId == game.id && it.mode == PuzzleMode.EXTRA } % game.puzzles.size
         val puzzle = game.puzzles[index]
+        return createSnapshot(library, game, mode, puzzle, now, zone)
+    }
+
+    /** Generated starts supply complete frozen content; resume always wins over new content. */
+    fun createSnapshot(library: Library, game: GameModule, mode: PuzzleMode, puzzle: PuzzleRecord,
+        now: Instant, zone: ZoneId, attemptId: String = UUID.randomUUID().toString()): Attempt {
+        val date = puzzleDate(now, zone)
+        if (mode == PuzzleMode.DAILY) daily(library, game, date)?.let { return it }
         require(game.validate(puzzle).isEmpty()) { "Puzzle content failed validation" }
-        return Attempt(UUID.randomUUID().toString(), game.id, mode,
+        return Attempt(attemptId, game.id, mode,
             if (mode == PuzzleMode.DAILY) date.toString() else null, puzzle,
             startedAt = now.toString(), updatedAt = now.toString(), result = game.result(puzzle, emptyMap()))
     }

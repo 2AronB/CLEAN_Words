@@ -25,7 +25,7 @@ class CrosswordInputAndroidTest {
     @Test fun rapidPhoneInputAndPasteKeepCharactersAndBackspaceDoesNotCheck() {
         ActivityScenario.launch(MainActivity::class.java).use {
             eventually { findText("A little word time.") != null }
-            click("Minuscule Crossword")
+            click("Crossita")
             eventually { findText("Stay a little longer") != null }
             click("Another puzzle")
             eventually { findText("Tap a square or clue") != null }

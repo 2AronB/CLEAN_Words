@@ -33,7 +33,7 @@ import kotlin.math.sin
 
 object BeeGame : GameModule {
     override val id = "bee"
-    override val title = "Spelling Meh"
+    override val title = "Speling Bee"
     override val description = "Build words around one essential letter."
     override val puzzles = BeeContent.puzzles
     override fun result(puzzle: PuzzleRecord, state: Map<String, String>): GameResult =

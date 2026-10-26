@@ -1,0 +1,16 @@
+{
+  "version": "original-shortlist-v1",
+  "created": "2026-10-25",
+  "source": "Original AI editorial shortlist authored for CLEAN Words; not extracted from an existing puzzle answer sequence.",
+  "reviewEvidence": "ai-editorial-v1",
+  "humanReviewedCount": 0,
+  "difficulty": "provisional; no frequency or player calibration data",
+  "spellingPolicy": "Uppercase ASCII five-letter ordinary English vocabulary; primarily US spelling, with some familiar UK alternatives. Only entries accepted by frozen enable-five-v1 are eligible.",
+  "inflectionPolicy": "Avoid regular plural/third-person -s and routine -ed variants selected solely to fill the bank. Familiar irregular forms, independent common lexical forms, participial adjectives, comparatives and ordinal numbers are allowed. No suffix-only heuristic establishes eligibility.",
+  "properNamePolicy": "Exclude proper-name-only words, brand names and demonyms. A word that is also a name may be eligible for an ordinary lowercase sense (e.g. ROBIN bird, AMBER resin, MAYOR office).",
+  "sensitiveContentPolicy": "Exclude explicit sexual vocabulary, slurs, targeted insults and graphic violence. Neutral references to illness, grief, law and ordinary conflict may remain. Editorial screening is AI-only and cannot guarantee cultural suitability.",
+  "selectionPolicy": "AI-curated everyday objects, actions, descriptions, natural features and common abstract ideas; dictionary membership confirms guess compatibility only, never familiarity.",
+  "ownershipNotice": "Original selection and metadata prepared for CLEAN Words. Individual English words are factual vocabulary. No third-party answer corpus was copied. Existing ENABLE validation list remains subject to its bundled public-domain notice and app attribution.",
+  "guessPolicy": "enable-five-v1",
+  "guessSourceSha256": "3f16130220645692ed49c7134e24a18504c2ca55b3c012f7290e3e77c63b1a89"
+}

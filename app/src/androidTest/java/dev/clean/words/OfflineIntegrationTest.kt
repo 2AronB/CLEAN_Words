@@ -123,10 +123,10 @@ class OfflineIntegrationTest {
                 eventually("home") { has("A little word time.") }
             }
             // Touch input is real Compose accessibility interaction, then check app-private disk state.
-            click("Wordish")
-            eventually("Wordish hub") { has("Stay a little longer") }
+            click("tWordle")
+            eventually("tWordle hub") { has("Stay a little longer") }
             click("Another puzzle")
-            eventually("Wordish board") { has("correct place") }
+            eventually("tWordle board") { has("correct place") }
             click("A", exact = true)
             eventually("saved typed letter") {
                 AtomicLibraryStore(File(context.filesDir, "play-library")).load().library?.attempts
@@ -134,6 +134,64 @@ class OfflineIntegrationTest {
             }
             scenario.recreate()
             eventually("restored draft") { has("A", exact = true) }
+        }
+    }
+
+    @Test fun bothGeneratedGamesStartThroughUiTypeAndResumeTheirFrozenContent() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            eventually("home") { has("A little word time.") }
+            listOf(WordishGame, BeeGame).forEach { game ->
+                click(game.title)
+                eventually("hub") { has("Stay a little longer") }
+                val dailyLabel = when {
+                    has("Play today's puzzle") -> "Play today's puzzle"
+                    has("Continue today's puzzle") -> "Continue today's puzzle"
+                    else -> "View today's result"
+                }
+                click(dailyLabel)
+                eventually("daily board") { has(if (game.id == "wordish") "correct place" else "Center letter:") }
+                instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+                eventually("daily hub") { has("Another puzzle") }
+                click("Another puzzle")
+                eventually("generated board") { has("Generated locally · provisional content quality") }
+                val disk = AtomicLibraryStore(File(context.filesDir, "play-library"))
+                val attempt = disk.load().library!!.attempts.last { it.gameId == game.id && it.mode == PuzzleMode.EXTRA }
+                assertNotNull(attempt.puzzle.data["generator"])
+                val signature = OfflinePuzzleGeneration { "unused" }.signature(game.id, attempt.puzzle)
+                assertNotNull(signature)
+                if (game.id == "wordish") {
+                    "APPLE".forEach { click(it.toString(), exact = true) }
+                    eventually("five-letter input saved") { disk.load().library!!.attempts.first { it.id == attempt.id }.state["draft"] == "APPLE" }
+                } else {
+                    val word = BeePuzzle.from(attempt.puzzle).goalWords.minBy { it.length }
+                    word.forEach { click(it.toString(), exact = true) }
+                    click("Enter", exact = true)
+                    eventually("generated Bee word accepted and saved") {
+                        word in BeeState.from(disk.load().library!!.attempts.first { it.id == attempt.id }.state).found
+                    }
+                }
+                scenario.recreate()
+                eventually("restored generated content") { has("Generated locally · provisional content quality") }
+                instrumentation.uiAutomation.takeScreenshot()?.let { screenshot ->
+                    java.io.FileOutputStream(File(context.cacheDir, "generation-${game.id}.png")).use {
+                        assertTrue(screenshot.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, it))
+                    }
+                    screenshot.recycle()
+                }
+                assertEquals(attempt.puzzle, disk.load().library!!.attempts.first { it.id == attempt.id }.puzzle)
+                instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+                eventually("hub after generated play") { has("Another puzzle") }
+                instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+                eventually("home after generated play") { has("A little word time.") }
+            }
+            click("Calendar & history")
+            eventually("calendar") { has("Started daily puzzles") }
+            click("tWordle", exact = true)
+            val today = AttemptRules.puzzleDate(Instant.now(), java.time.ZoneId.systemDefault())
+            click("Daily · $today", exact = true)
+            eventually("frozen daily reopened from calendar") { has("correct place") && has("Daily · $today") }
+            scenario.recreate()
+            eventually("calendar-opened daily restored") { has("correct place") && has("Daily · $today") }
         }
     }
 

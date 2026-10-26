@@ -1,5 +1,57 @@
 # CLEAN Words product discovery
 
+## Generated-play G1 — authorized 2026-10-25
+
+Owner requested executing WORDISH.md, BEE.md, then INTEGRATION.md. New tWordle and
+Speling Bee daily/additional starts now use offline generators. This is partial
+five-game generation integration: no other generator handoffs exist, so Connektions,
+Stranded and Crossita retain their disclosed ten-puzzle starter cycles under
+INTEGRATION's explicit partial-delivery allowance. Other module prompts are not
+automatically authorized. Full MVP acceptance remains open.
+
+- tWordle: 1,387 original AI editorial answer candidates, separate from the
+  unchanged 8,636 ENABLE guesses. One board, five letters, six valid guesses;
+  duplicate-letter feedback and strongest keyboard evidence stay unchanged.
+- Speling Bee: a vocabulary mask index derived from the existing public-domain
+  ENABLE source holds 98,144 usable words. An original 3,636-word AI editorial
+  familiarity shortlist supports 1,489 qualifying set/center identities across
+  283 letter sets under standard provisional filters. Sets come from familiar
+  seven-distinct-letter pangrams; each request enumerates every accepted matching
+  word, including repeated letters. The index is not preset finished puzzles.
+  Changing letter order does not create novelty.
+- Bee freezes existing `bee-wordcount-v2` schema: complete accepted/familiar lists,
+  source/profile hashes, pangrams and length totals. Goal is ceil(70% of matching
+  familiar count), inventory range 9–47 words. All accepted words advance the goal
+  equally. Old v1/v2 snapshots/results remain unchanged; no new polygon modes.
+- Both banks have zero human reviews and zero empirical frequency evidence.
+  AI editorial familiarity/quality filters and difficulty are provisional; counts
+  do not establish fairness or medium-plus challenge. Broad ENABLE acceptance
+  includes obscure/potentially sensitive vocabulary; those words are not required
+  to reach the familiar-count goal. Offline credits/notice remain available.
+- Existing daily identity wins before generation. New daily seed pins game,
+  generator/source/profile policy and local 6 a.m. date, with no history inputs.
+  Extra play cannot change today's daily. Dates may repeat content; future policy
+  versions can change new outputs. Full snapshots preserve saved content/rules.
+- Extra play has independent UUID/seed identity and excludes meaningful answer
+  or sorted-letter-set/center signatures from the latest 100 starts for that game,
+  including old starters. Banks are finite; no endless novelty claim.
+- A separate worker prepares/generates content. Loading/cancel/retry and bounded
+  search/source/exhaustion errors are visible. Taps coalesce; Back, navigation,
+  backgrounding and daily rollover cancel pending starts. No silent quality
+  relaxation or starter fallback as generated success; saved history stays usable.
+- Full new snapshots persist on the ordered save lane before opening. Normal
+  cancellation restores baseline to both current and last-good copies. Failed
+  saves block new starts, retain baseline memory and require keep-open/retry;
+  retry purges abandoned staged content from both copies. Process death/power loss
+  during incomplete/failed rollback remains unguaranteed. No durable launch
+  journal, device-loss/reinstall backup or new permissions/dependencies/services.
+
+G1 human acceptance: install versionCode 3 as an update without clearing data;
+review generated vocabulary/sets and Bee goal length, phone input, motion, calendar,
+old-daily continuation, interruption and text size. Six-board play, selectable
+calibrated difficulty and the remaining three generators remain future scope.
+Automated checks and exact remaining gaps: VERIFICATION. S1 background follows.
+
 Status: S1 implementation authorized 2026-10-25. Owner approved the proposed S1
 baseline/tooling and increased starter content to TEN puzzles per game. Full MVP
 acceptance remains pending, including abundant content, variants and difficulty.
@@ -33,7 +85,7 @@ historical snapshots. This supersedes conflicting original S1 UI defaults.
   Scope selection does not authorize implementation.
 - R-007: Development names should be humorous and excessively similar to the
   reference names, as requested by the owner. TODO before final release: review
-  and replace these names. Names are not selected yet.
+  and replace these names. Owner-selected display names (2026-10-25): tWordle, Connektions, Speling Bee, Stranded and Crossita. The lowercase t and spelling of Speling Bee are intentional. Internal game/save IDs stay unchanged.
 - R-008: Provide a daily puzzle and additional puzzles on demand for each
   included game, so completing a daily puzzle does not prevent further play.
   Daily puzzles reset at 6 a.m., selected by the owner as the time she is least
@@ -160,8 +212,8 @@ authorized. Larger future feature slices still need their own scope approval.
 
 - Open a five-game home list; choose a game and its daily or additional puzzle.
   Use consistent help, Back, result and history conventions with game-specific
-  boards/input. Temporary development names: Wordish, Connektions, Spelling Meh,
-  Strand-ish and Minuscule Crossword; R-007 release rename remains mandatory.
+  boards/input. Temporary development names: tWordle, Connektions, Speling Bee,
+  Stranded and Crossita; R-007 release rename remains mandatory.
 - Use local device date with a 6 a.m. boundary: before 6 a.m. belongs to the prior
   calendar date. Reopening the same game/date resumes the same puzzle. Changing
   the phone clock/time zone recalculates the current date but never deletes or
@@ -195,11 +247,11 @@ authorized. Larger future feature slices still need their own scope approval.
 
 | Game | S1 behavior |
 | --- | --- |
-| Wordish | One five-letter answer, six valid guesses, exact/present/absent feedback with duplicate letters counted correctly. Invalid/short guesses consume no turn; win on exact answer, fail and reveal after six incorrect valid guesses. Separate accepted-guess and answer lists. |
+| tWordle | One five-letter answer, six valid guesses, exact/present/absent feedback with duplicate letters counted correctly. Invalid/short guesses consume no turn; win on exact answer, fail and reveal after six incorrect valid guesses. Separate accepted-guess and answer lists. |
 | Connektions | Sixteen words, four groups of four. Select/deselect words and submit exactly four. Correct groups lock with explanation; four distinct incorrect submissions end the attempt and reveal groups. Repeating an incorrect group gives feedback without another penalty. |
-| Spelling Meh | Seven distinct letters, required center, words of four or more letters; letters reusable. Four-letter word scores 1, longer word its length, pangram adds 7. Duplicate/invalid words score nothing. S1 completion at 70% of curated familiar goal points rounded up, with other valid ENABLE words earning separate bonus points; obscure words never inflate the completion target. Each sample has a goal pangram. Goal/bonus distinction is engineering refinement D-018; full MVP completion semantics need feedback. |
-| Strand-ish | Themed board with adjacent horizontal/vertical/diagonal letter paths, no cell reused within a word. Accept bundled theme answers including a spanning answer; found theme paths stay marked and partition the whole board. Complete when all are found. Non-theme words do not consume attempts; no hint system or timer in S1. |
-| Minuscule Crossword | Valid 5x5 blocked/unblocked grid, Across/Down clues, editable crossing letters and clue selection. Complete only when every answer is correct. Optional explicit Check marks incorrect entries without deleting them; corrections remain possible. No timer/penalty in S1. |
+| Speling Bee | Seven distinct letters, required center, words of four or more letters; letters reusable. Four-letter word scores 1, longer word its length, pangram adds 7. Duplicate/invalid words score nothing. S1 completion at 70% of curated familiar goal points rounded up, with other valid ENABLE words earning separate bonus points; obscure words never inflate the completion target. Each sample has a goal pangram. Goal/bonus distinction is engineering refinement D-018; full MVP completion semantics need feedback. |
+| Stranded | Themed board with adjacent horizontal/vertical/diagonal letter paths, no cell reused within a word. Accept bundled theme answers including a spanning answer; found theme paths stay marked and partition the whole board. Complete when all are found. Non-theme words do not consume attempts; no hint system or timer in S1. |
+| Crossita | Valid 5x5 blocked/unblocked grid, Across/Down clues, editable crossing letters and clue selection. Complete only when every answer is correct. Optional explicit Check marks incorrect entries without deleting them; corrections remain possible. No timer/penalty in S1. |
 
 ### Observable S1 acceptance
 
@@ -214,7 +266,7 @@ authorized. Larger future feature slices still need their own scope approval.
   result records by reopening them.
 - A-S1-04 (R-005/R-008): additional play remains available after daily completion;
   cycling the small sample pool is clearly disclosed and progress is separate.
-- A-S1-05 (R-009): duplicate-letter Wordish scoring, invalid words, repeated Bee
+- A-S1-05 (R-009): duplicate-letter tWordle scoring, invalid words, repeated Bee
   words, incorrect/repeated Connections groups, illegal Strands paths and wrong
   crossword crossings obey the stated rules without corrupting progress.
 - A-S1-06 (R-012/R-013/R-015): bundled external datasets, if used, have verified

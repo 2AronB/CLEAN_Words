@@ -182,3 +182,48 @@ writes until retry; onStop drains with a bounded wait. New Bee v2 snapshots coun
 all words equally; legacy v1 rules/results remain. No new dependency/permission.
 Untracked user gradle/gradle-daemon-jvm.properties was preserved, not adopted into
 the commit. All physical-device testing stays with the owner; emulator targeted.
+
+## D-021 — Generated-game prompt pack
+
+2026-10-25 — Owner requested a prompt for changing each game into generated play.
+Prepared five module-specific implementation prompts plus common constraints
+and a single primary integration task. This turn authorizes prompt preparation,
+not generator implementation. Pasting a prompt as a user implementation task
+provides bounded scope. Distinguish on-request generation from a bigger preset
+catalog, and algorithm validity from reviewed word/category/theme/clue quality.
+No app source, dependencies, data sources or settings changed for this request.
+
+## D-022 — Owner-selected display names
+
+2026-10-25 — Owner requests Wordish -> tWordle (lowercase t intentional),
+Spelling Meh -> Speling Bee (spelling intentional), Strand-ish -> Stranded,
+and Minuscule Crossword -> Crossita. Connektions stays unchanged. Presentation
+only: retain internal IDs, puzzle snapshots and saves. No new scope/dependencies.
+
+## D-023 — Wordish, Bee and primary generation integration authorized
+
+2026-10-25 — Owner requests executing WORDISH.md, then BEE.md, finishing
+INTEGRATION.md. Authorizes those bounded implementations and shared worker,
+lifecycle/save/credits/tests integration, superseding prompt-preparation-only
+status for these tasks. Two bounded agents delivered Wordish bank tooling and
+Bee generation; primary integrates. Other three module handoffs are absent;
+keep honest starter cycles per INTEGRATION's partial-delivery rule. No new SDK,
+dependency, permission, network service or global setting. Existing user Gradle
+JVM configuration remains untouched. Git pushes remain authorized until release.
+
+## D-024 — G1 pinned inputs, identity and finite content
+
+Engineering within D-023: preserve rule versions/full snapshots; use SHA-256
+game/pinned-policy/local-6-a.m.-date daily seeds independent of extra history. Extra
+UUID seeds exclude meaningful signatures from the last 100 starts. Wordish has
+1,387 AI editorial answers; Bee provisional filters admit 1,489 set/center
+identities across 283 sets. Zero human/frequency reviews; no calibrated difficulty.
+Existing daily snapshots win. Other three starter cycles stay disclosed. No
+silent fallback or weakened criteria on exhaustion/source/search failure.
+
+Generate on a separate worker and save before UI opening. Canceled writes restore
+baseline twice to purge both active and last-good copies; failure preserves
+baseline memory, blocks starts and requires retry (also purging both copies).
+Process death while rollback is incomplete/failed remains unguaranteed; no durable
+launch journal/power-loss promise. Version 0.3.0-generation/code 3 preserves the
+signature/app ID and data; install as update. Full behavior: PRODUCT G1.

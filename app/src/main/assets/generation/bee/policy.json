@@ -1,0 +1,14 @@
+{
+  "version": "bee-mask-index-v1",
+  "dictionarySource": "https://github.com/dolph/dictionary/blob/master/enable1.txt",
+  "dictionaryNotice": "Bundled dictionaries/ENABLE-NOTICE.txt; public-domain ENABLE by Alan Beale with M. Cooper and contributors",
+  "dictionarySha256": "3f16130220645692ed49c7134e24a18504c2ca55b3c012f7290e3e77c63b1a89",
+  "normalization": "Use ASCII lowercase source lines, uppercase Locale.ROOT, deduplicate, sort; length 4..32; index only words with <=7 distinct letters (other words impossible in seven-letter play)",
+  "acceptance": "Every matching indexed ENABLE word including inflections, uncommon/archaic and potentially sensitive words. No unstated proper-name or frequency filter. No guesses at unsupported frequency.",
+  "familiarity": "Original CLEAN Words AI editorial shortlists; 0 human-reviewed and no empirical frequency claims. Original longer/four/six-letter draft plus original Wordish shortlist copied during preprocessing. Common inflections accepted; obvious proper-name-only/sensitive/doubtful shortlist candidates excluded explicitly.",
+  "familiarityPolicyVersion": "original-ai-editorial-bee-v1",
+  "wordishShortlistSha256": "390a36fde39a5264d51032eb7dea2187dd2934c940f1ad2f9dda2d6a9bf15414",
+  "originalDraftSha256": "bffd5a944b8c2a163eaa279bda8bb1c3ca039058e0ef4000ef3b73c570dee82b",
+  "goal": "Frozen bee-wordcount-v2: goalWords holds matching familiar words including at least one pangram, word target ceil(70% of their count); every accepted word receives equal one-word completion credit",
+  "defaultQuality": ">=12 familiar options; 20..400 accepted options; >=3 familiar lengths; >=1 familiar four-letter word and familiar pangram. Provisional engineering filters, no Easy/Hard or 3.5/5 claim."
+}

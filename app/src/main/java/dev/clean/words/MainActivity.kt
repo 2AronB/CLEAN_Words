@@ -58,10 +58,13 @@ class MainActivity : ComponentActivity() {
     private var activeSession: AppSession? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val appContext = applicationContext
         val session = ViewModelProvider(this, object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T =
-                AppSession(File(applicationContext.filesDir, "play-library")) as T
+                AppSession(File(appContext.filesDir, "play-library")) { name ->
+                    appContext.assets.open(name).bufferedReader().use { it.readText() }
+                } as T
         })[AppSession::class.java]
         activeSession = session
         setContent {
@@ -69,6 +72,7 @@ class MainActivity : ComponentActivity() {
         }
     }
     override fun onStop() {
+        activeSession?.cancelStart()
         activeSession?.flush()
         super.onStop()
     }
@@ -99,6 +103,16 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
         while (true) { kotlinx.coroutines.delay(1000); clock = Instant.now() }
     }
     val today = AttemptRules.puzzleDate(clock, ZoneId.systemDefault())
+    LaunchedEffect(today) { session.checkBoundary(today) }
+    LaunchedEffect(page, gameId) { if (page != "hub") session.cancelStart() }
+    LaunchedEffect(session.openedAttemptId) {
+        session.openedAttemptId?.let { id ->
+            session.library.attempts.firstOrNull { it.id == id }?.let {
+                gameId = it.gameId; attemptId = id; page = "play"
+            }
+            session.consumeOpenedAttempt()
+        }
+    }
     val contentErrors = remember { GameRegistry.contentErrors() }
     val game = GameRegistry.get(gameId)
     val compact = page == "play" && gameId == "crossword"
@@ -106,7 +120,12 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
     val entrance = remember(page, gameId, attemptId) { Animatable(0f) }
     LaunchedEffect(entrance) { entrance.animateTo(1f, tween(230)) }
     fun back() {
+        session.cancelStart()
         page = when (page) { "play", "extras" -> "hub"; "hub" -> "home"; else -> "home" }
+    }
+    fun navigate(destination: String) { session.cancelStart(); page = destination }
+    fun showAttempt(attempt: Attempt) {
+        session.cancelStart(); gameId = attempt.gameId; attemptId = attempt.id; page = "play"
     }
     BackHandler(enabled = page != "home") { back() }
     Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
@@ -135,6 +154,11 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                 if (session.error != null) {
                     Note(session.error!!) { Button(onClick = session::retrySave) { Text("Retry save / load") } }
                 }
+                session.launching?.let { progress ->
+                    Note(progress.phase) {
+                        if (progress.phase != "Cancelling start…") TextButton(onClick = session::cancelStart) { Text("Cancel start") }
+                    }
+                }
                 if (contentErrors.isNotEmpty()) {
                     Text("Content checks failed. Play is disabled; saved data has not been erased.", color = MaterialTheme.colorScheme.error)
                     contentErrors.forEach { Text(it) }
@@ -147,7 +171,7 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                                 val saved = AttemptRules.daily(session.library, module, today)
                                 val cardColor = listOf(Color(0xFFC7EAC6), Color(0xFFFFE398), Color(0xFFFFD2A1),
                                     Color(0xFFBDE7F4), Color(0xFFDBC8FF))[index]
-                                Card(onClick = { gameId = module.id; page = "hub" }, modifier = Modifier.fillMaxWidth().animateContentSize(tween(220)),
+                                Card(onClick = { gameId = module.id; navigate("hub") }, modifier = Modifier.fillMaxWidth().animateContentSize(tween(220)),
                                     colors = CardDefaults.cardColors(containerColor = cardColor, contentColor = Color(0xFF2D2938))) {
                                     Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically) {
                                         Text(listOf("W", "••", "B", "S", "+")[index],
@@ -161,35 +185,43 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                                     }
                                 }
                             }
-                            OutlinedButton(onClick = { page = "calendar" }, modifier = Modifier.fillMaxWidth()) { Text("Calendar & history") }
-                            TextButton(onClick = { page = "credits" }) { Text("Credits & sources") }
-                            Text("S1 development edition · 10 starter puzzles per game · repeats are possible. Difficulty is not yet calibrated.",
+                            OutlinedButton(onClick = { navigate("calendar") }, modifier = Modifier.fillMaxWidth()) { Text("Calendar & history") }
+                            TextButton(onClick = { navigate("credits") }) { Text("Credits & sources") }
+                            Text("Development edition · tWordle and Speling Bee generate locally from finite banks. Other games use 10 starters each. Difficulty is provisional.",
                                 style = MaterialTheme.typography.bodySmall)
                         }
                         "hub" -> {
                             val current = AttemptRules.daily(session.library, game, today)
                             Text("Daily · ${today.format(DateTimeFormatter.ofPattern("MMM d"))}", style = MaterialTheme.typography.headlineMedium)
-                            Text("A standard challenge. Our eventual daily target is medium-plus; these starter puzzles have not been calibrated.")
+                            Text(if (OfflinePuzzleGeneration.isGenerated(gameId))
+                                "Generated offline from a finite word bank. Familiarity and daily challenge still need player review. Saved dailies keep their original puzzle."
+                                else "Starter collection · 10 puzzles. Repeats are possible; daily challenge has not been calibrated.")
+                            session.launchError?.let { message ->
+                                Note(message) { TextButton(onClick = { session.retryGeneration(game) },
+                                    enabled = !session.pendingSave && session.launching == null) { Text("Retry local generation") } }
+                            }
                             Button(onClick = {
-                                session.open(game, PuzzleMode.DAILY)?.let { attemptId = it; page = "play" }
-                            }, enabled = !session.pendingSave, modifier = Modifier.fillMaxWidth()) {
+                                session.open(game, PuzzleMode.DAILY)
+                            }, enabled = !session.pendingSave && session.launching == null, modifier = Modifier.fillMaxWidth()) {
                                 Text(when (current?.result?.status) { null -> "Play today's puzzle"; PlayStatus.IN_PROGRESS -> "Continue today's puzzle"; else -> "View today's result" })
                             }
                             val previous = session.library.attempts.filter { it.gameId == gameId && it.mode == PuzzleMode.DAILY &&
                                 it.puzzleDate != null && it.puzzleDate < today.toString() && it.result.status == PlayStatus.IN_PROGRESS }
                                 .maxByOrNull { it.puzzleDate ?: "" }
                             previous?.let { old ->
-                                OutlinedButton(onClick = { attemptId = old.id; page = "play" }, modifier = Modifier.fillMaxWidth()) {
+                                OutlinedButton(onClick = { showAttempt(old) }, modifier = Modifier.fillMaxWidth()) {
                                     Text("Finish previous puzzle? · ${old.puzzleDate}")
                                 }
                             }
                             Spacer(Modifier.height(6.dp))
                             Text("Stay a little longer", style = MaterialTheme.typography.titleLarge)
-                            Text("Start another independent puzzle. The ten-puzzle starter collection cycles; repeats keep separate progress.")
-                            Button(onClick = { session.open(game, PuzzleMode.EXTRA)?.let { attemptId = it; page = "play" } },
-                                enabled = !session.pendingSave, modifier = Modifier.fillMaxWidth()) { Text("Another puzzle") }
-                            OutlinedButton(onClick = { page = "extras" }, modifier = Modifier.fillMaxWidth()) { Text("Additional-play history") }
-                            TextButton(onClick = { page = "calendar" }) { Text("Open calendar & history") }
+                            Text(if (OfflinePuzzleGeneration.isGenerated(gameId))
+                                "Generate another independent puzzle, excluding content from your latest 100 starts for this game. The bank is finite; exhaustion is reported."
+                                else "Start another independent starter puzzle. The ten-puzzle collection cycles; repeats keep separate progress.")
+                            Button(onClick = { session.open(game, PuzzleMode.EXTRA) },
+                                enabled = !session.pendingSave && session.launching == null, modifier = Modifier.fillMaxWidth()) { Text("Another puzzle") }
+                            OutlinedButton(onClick = { navigate("extras") }, modifier = Modifier.fillMaxWidth()) { Text("Additional-play history") }
+                            TextButton(onClick = { navigate("calendar") }) { Text("Open calendar & history") }
                         }
                         "play" -> {
                             val attempt = session.library.attempts.firstOrNull { it.id == attemptId }
@@ -204,10 +236,12 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                                 }
                                 Text(if (attempt.mode == PuzzleMode.DAILY) "Daily · ${attempt.puzzleDate}" else "Additional puzzle",
                                     style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                                Text(if (attempt.puzzle.data.containsKey("generator")) "Generated locally · provisional content quality"
+                                    else "Starter puzzle · saved original content", style = MaterialTheme.typography.bodySmall)
                                 if (attempt.mode == PuzzleMode.DAILY && attempt.puzzleDate != today.toString())
                                     Text("Finishing this puzzle keeps its original calendar date.", style = MaterialTheme.typography.bodySmall)
                                 if (savedErrors.isEmpty()) key(attempt.id) { game.Play(attempt.puzzle, attempt.state,
-                                    enabled = !session.pendingSave && (attempt.result.status == PlayStatus.IN_PROGRESS || game.id == "bee"),
+                                    enabled = !session.pendingSave && session.launching == null && (attempt.result.status == PlayStatus.IN_PROGRESS || game.id == "bee"),
                                     onChange = { session.change(attempt.id, it, game) }) }
                                 else Text("This saved puzzle cannot be opened: ${savedErrors.joinToString()}. Its files and progress are preserved.",
                                     color = MaterialTheme.colorScheme.error)
@@ -218,21 +252,19 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                                     Text(attempt.result.summary, style = MaterialTheme.typography.titleMedium)
                                     Text("${attempt.result.status.label()} · saved in history", color = MaterialTheme.colorScheme.primary)
                                     if (game.id == "bee") Text("You can keep finding words after reaching the goal.")
-                                    OutlinedButton(onClick = { page = "hub" }) { Text("Back to daily & more") }
+                                    OutlinedButton(onClick = { navigate("hub") }) { Text("Back to daily & more") }
                                     }
                                 }
                                 Text(if (session.saving) "Saving locally…" else if (session.pendingSave) "Changes need saving — retry above" else "Saved on this device",
                                     style = MaterialTheme.typography.bodySmall)
                             }
                         }
-                        "calendar" -> CalendarScreen(session.library, gameId, onGame = { gameId = it }, onOpen = {
-                            gameId = it.gameId; attemptId = it.id; page = "play"
-                        }, today = today)
+                        "calendar" -> CalendarScreen(session.library, gameId, onGame = { gameId = it }, onOpen = ::showAttempt, today = today)
                         "extras" -> {
                             Text("Additional play", style = MaterialTheme.typography.titleLarge)
                             val extra = session.library.attempts.filter { it.gameId == gameId && it.mode == PuzzleMode.EXTRA }.reversed()
                             if (extra.isEmpty()) Text("No additional puzzles started yet. Your daily puzzle has separate progress.")
-                            extra.forEach { a -> AttemptCard(a) { attemptId = a.id; page = "play" } }
+                            extra.forEach { a -> AttemptCard(a) { showAttempt(a) } }
                         }
                         "credits" -> CreditsScreen(readAsset)
                     }
@@ -244,7 +276,9 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
         Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(helpFor(gameId))
             Text("Back preserves progress. Daily puzzles change at 6 a.m. local time. Started older dailies remain in the calendar. Extra play is independent.")
-            Text("Ten starter puzzles per game, not an unlimited unique collection. Daily difficulty, variants and broader content are future work.")
+            Text(if (OfflinePuzzleGeneration.isGenerated(gameId))
+                "New puzzles are generated offline from finite banks. Saved puzzles keep their complete content and rules. Word familiarity and difficulty are provisional; daily content may repeat, and additional play excludes the latest 100 starts."
+                else "Ten starter puzzles for this game; the collection repeats. On-demand generation for this game is not integrated yet.")
         }
     }, confirmButton = { TextButton(onClick = { help = false }) { Text("Got it") } })
 }
@@ -327,7 +361,7 @@ private fun CalendarScreen(library: Library, gameId: String, onGame: (String) ->
 private fun CreditsScreen(readAsset: (String) -> String) {
     Text("Words with a history", style = MaterialTheme.typography.headlineMedium)
     Text("ENABLE · Enhanced North American Benchmark Lexicon", style = MaterialTheme.typography.titleMedium)
-    Text("Public-domain word list compiled by Alan Beale with M. Cooper and contributors. Used for accepted Wordish guesses and Bee vocabulary. Game-specific filters and familiar goal lists are CLEAN Words adaptations.")
+    Text("Public-domain word list compiled by Alan Beale with M. Cooper and contributors. Used for accepted tWordle guesses and Bee vocabulary. Game-specific filters and familiar goal lists are CLEAN Words adaptations.")
     Text("Source: github.com/dolph/dictionary · enable1.txt\nPublic-domain notice: github.com/BartMassey/wordlists · README-enable2k.txt\nRetrieved October 25, 2026. Exact source hashes and transformations are recorded in the project.")
     var expanded by rememberSaveable { mutableStateOf(false) }
     TextButton(onClick = { expanded = !expanded }) { Text(if (expanded) "Hide source notice" else "Read bundled source notice") }
@@ -336,6 +370,8 @@ private fun CreditsScreen(readAsset: (String) -> String) {
     HorizontalDivider()
     Text("Original starter content", style = MaterialTheme.typography.titleMedium)
     Text("Ten puzzles per game were selected or authored for CLEAN Words during development. Category explanations, themes and crossword clues are original starter drafts; they are not copied NYT puzzle collections. Mechanical checks do not establish final fairness or difficulty.")
+    Text("Generated word games", style = MaterialTheme.typography.titleMedium)
+    Text("tWordle uses an original 1,387-answer AI editorial shortlist with the unchanged ENABLE guess policy. Speling Bee derives seven-letter sets from original AI editorial pangram candidates, then enumerates every accepted word from its bundled ENABLE index. Familiarity lists set an attainable word-count goal; all accepted words count equally. Both banks have zero human or frequency review and provisional difficulty. Sources and license notice are bundled; no first-run download.")
     Text("Built with Kotlin, AndroidX, Jetpack Compose and Material 3. No ads, accounts, analytics or required internet.")
 }
 

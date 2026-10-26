@@ -31,7 +31,7 @@ import dev.clean.words.core.PuzzleRecord
 
 object CrosswordGame : GameModule {
     override val id = "crossword"
-    override val title = "Minuscule Crossword"
+    override val title = "Crossita"
     override val description = "Six crossing answers in a pocket-size 5×5 grid."
     override val puzzles = CrosswordContent.puzzles
     override fun validate(puzzle: PuzzleRecord) = CrosswordRules.validate(puzzle)

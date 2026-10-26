@@ -45,7 +45,7 @@ import kotlin.math.floor
 
 object StrandsGame : GameModule {
     override val id = "strands"
-    override val title = "Strand-ish"
+    override val title = "Stranded"
     override val description = "Connect neighboring letters into themed words."
     override val puzzles = StrandsContent.puzzles
 

@@ -36,7 +36,7 @@ import dev.clean.words.core.PuzzleRecord
 
 object WordishGame : GameModule {
     override val id = "wordish"
-    override val title = "Wordish"
+    override val title = "tWordle"
     override val description = "Find the five-letter word in six guesses."
     override val puzzles = listOf("APPLE", "CRANE", "PLANT", "BRICK", "SHORE", "LIGHT", "MUSIC", "DREAM", "FLUTE", "GHOST").mapIndexed { index, answer ->
         PuzzleRecord("wordish-original-${index + 1}", title = "Original word ${index + 1}", data = mapOf(

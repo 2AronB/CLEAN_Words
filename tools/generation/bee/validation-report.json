@@ -1,0 +1,7763 @@
+{
+  "version": "bee-mask-index-v1",
+  "sourceSha256": "3f16130220645692ed49c7134e24a18504c2ca55b3c012f7290e3e77c63b1a89",
+  "indexSha256": "d9dcf290c0c057c0df9277bc1be855771336445991da6f09e60133829ba20143",
+  "dictionaryPolicy": "enable-ascii-fourplus-v1",
+  "totalDictionaryWords": 171755,
+  "indexedWords": 98144,
+  "indexMasks": 37313,
+  "originalDraftOccurrences": 3679,
+  "aiEditorialFamiliarWords": 3636,
+  "humanReviewedCount": 0,
+  "empiricalFrequencyCount": 0,
+  "sevenDistinctFamiliarMasks": 310,
+  "defaultEligibleSets": 283,
+  "defaultEligibleSetCenters": 1489,
+  "defaultAcceptedRange": [
+    34,
+    398
+  ],
+  "defaultFamiliarRange": [
+    12,
+    67
+  ],
+  "defaultGoalRange": [
+    9,
+    47
+  ],
+  "rejectedDraftOccurrences": 33,
+  "rejected": [
+    {
+      "word": "BOMB",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "JUNE",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "MARS",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "ABSOLUTE",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "BEHAVIOR",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "CHLORINE",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "EMPTYING",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "FORECAST",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "HANDSOME",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "HELLING",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "HOSPITAL",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "OCTOBER",
+      "reason": "not in pinned ENABLE >=4 ASCII policy"
+    },
+    {
+      "word": "OFFLINE",
+      "reason": "not in pinned ENABLE >=4 ASCII policy"
+    },
+    {
+      "word": "PODCAST",
+      "reason": "not in pinned ENABLE >=4 ASCII policy"
+    },
+    {
+      "word": "POLISHED",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "SHIRTED",
+      "reason": "not in pinned ENABLE >=4 ASCII policy"
+    },
+    {
+      "word": "SPECTRUM",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "SPRIGHTLY",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "STEADILY",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "STERLING",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "STRONGLY",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "SUNDAY",
+      "reason": "not in pinned ENABLE >=4 ASCII policy"
+    },
+    {
+      "word": "SUNFLOWER",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "TRIANGLE",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "TROPICAL",
+      "reason": "more than seven distinct letters: impossible in this profile"
+    },
+    {
+      "word": "FORTUN",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "FRENCH",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "GERMAN",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "INDIAN",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "ONLINE",
+      "reason": "not in pinned ENABLE >=4 ASCII policy"
+    },
+    {
+      "word": "OXFORD",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "SEXUAL",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    },
+    {
+      "word": "SOVIET",
+      "reason": "editorial exclusion: proper-name/culturally specific/sensitive or doubtful sense"
+    }
+  ],
+  "defaultRejectedSetCenters": 681,
+  "rejectedBoards": [
+    {
+      "letters": "ACEHIMN",
+      "center": "H",
+      "accepted": 57,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFGILMN",
+      "center": "F",
+      "accepted": 56,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFGILMN",
+      "center": "G",
+      "accepted": 138,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFGILMN",
+      "center": "M",
+      "accepted": 106,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEGHINO",
+      "center": "G",
+      "accepted": 83,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEGHINO",
+      "center": "H",
+      "accepted": 61,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DFGILNO",
+      "center": "D",
+      "accepted": 70,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DFGILNO",
+      "center": "F",
+      "accepted": 54,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DFGILNO",
+      "center": "N",
+      "accepted": 124,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGHILNO",
+      "center": "D",
+      "accepted": 64,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGHILNO",
+      "center": "H",
+      "accepted": 35,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "DGHILNO",
+      "center": "L",
+      "accepted": 79,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGHILNO",
+      "center": "N",
+      "accepted": 111,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CGIKLNO",
+      "center": "G",
+      "accepted": 109,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BCEIMNO",
+      "center": "B",
+      "accepted": 41,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEGIMNO",
+      "center": "G",
+      "accepted": 86,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGILNP",
+      "center": "C",
+      "accepted": 77,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGILNP",
+      "center": "G",
+      "accepted": 129,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGIMNP",
+      "center": "C",
+      "accepted": 46,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGIMNP",
+      "center": "G",
+      "accepted": 91,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGIMNP",
+      "center": "M",
+      "accepted": 80,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGIMNP",
+      "center": "P",
+      "accepted": 62,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DHILNOP",
+      "center": "D",
+      "accepted": 29,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "DHILNOP",
+      "center": "H",
+      "accepted": 20,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DHILNOP",
+      "center": "I",
+      "accepted": 49,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DHILNOP",
+      "center": "L",
+      "accepted": 47,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "DHILNOP",
+      "center": "N",
+      "accepted": 36,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DHILNOP",
+      "center": "P",
+      "accepted": 39,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABDEGLR",
+      "center": "E",
+      "accepted": 415,
+      "familiar": 54,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ABCEILR",
+      "center": "I",
+      "accepted": 188,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADEGINR",
+      "center": "E",
+      "accepted": 493,
+      "familiar": 48,
+      "wordTarget": 34,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEGINR",
+      "center": "G",
+      "accepted": 412,
+      "familiar": 35,
+      "wordTarget": 25,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEGINR",
+      "center": "N",
+      "accepted": 415,
+      "familiar": 35,
+      "wordTarget": 25,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEGINR",
+      "center": "R",
+      "accepted": 482,
+      "familiar": 50,
+      "wordTarget": 35,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGHINR",
+      "center": "H",
+      "accepted": 70,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIKMNR",
+      "center": "K",
+      "accepted": 51,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIKMNR",
+      "center": "M",
+      "accepted": 95,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGINOR",
+      "center": "C",
+      "accepted": 122,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACHMNOR",
+      "center": "H",
+      "accepted": 60,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CFIMNOR",
+      "center": "C",
+      "accepted": 52,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CFIMNOR",
+      "center": "F",
+      "accepted": 27,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CFIMNOR",
+      "center": "I",
+      "accepted": 64,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGHIPR",
+      "center": "A",
+      "accepted": 71,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGHIPR",
+      "center": "C",
+      "accepted": 45,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGHIPR",
+      "center": "G",
+      "accepted": 30,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGHIPR",
+      "center": "H",
+      "accepted": 41,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGHIPR",
+      "center": "I",
+      "accepted": 52,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGHIPR",
+      "center": "P",
+      "accepted": 43,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACGHIPR",
+      "center": "R",
+      "accepted": 64,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIKNPR",
+      "center": "K",
+      "accepted": 55,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIKNPR",
+      "center": "P",
+      "accepted": 89,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABDEILS",
+      "center": "E",
+      "accepted": 455,
+      "familiar": 32,
+      "wordTarget": 23,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ABDEILS",
+      "center": "L",
+      "accepted": 406,
+      "familiar": 34,
+      "wordTarget": 24,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ABDEILS",
+      "center": "S",
+      "accepted": 418,
+      "familiar": 27,
+      "wordTarget": 19,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACDELNS",
+      "center": "A",
+      "accepted": 402,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACDELNS",
+      "center": "E",
+      "accepted": 430,
+      "familiar": 41,
+      "wordTarget": 29,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEIJMNS",
+      "center": "I",
+      "accepted": 202,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIJMNS",
+      "center": "J",
+      "accepted": 32,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIJMNS",
+      "center": "S",
+      "accepted": 273,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFHINOS",
+      "center": "A",
+      "accepted": 85,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFHINOS",
+      "center": "F",
+      "accepted": 53,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFHINOS",
+      "center": "H",
+      "accepted": 49,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFHINOS",
+      "center": "I",
+      "accepted": 68,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFHINOS",
+      "center": "N",
+      "accepted": 100,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFHINOS",
+      "center": "O",
+      "accepted": 75,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACEILPS",
+      "center": "S",
+      "accepted": 434,
+      "familiar": 33,
+      "wordTarget": 24,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACHINPS",
+      "center": "A",
+      "accepted": 175,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACHINPS",
+      "center": "C",
+      "accepted": 103,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACHINPS",
+      "center": "S",
+      "accepted": 177,
+      "familiar": 13,
+      "wordTarget": 10,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "DEILNPS",
+      "center": "E",
+      "accepted": 484,
+      "familiar": 44,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 5,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEILNPS",
+      "center": "S",
+      "accepted": 416,
+      "familiar": 31,
+      "wordTarget": 22,
+      "familiarLengthBuckets": 5,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEILOPS",
+      "center": "E",
+      "accepted": 443,
+      "familiar": 35,
+      "wordTarget": 25,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEILOPS",
+      "center": "S",
+      "accepted": 441,
+      "familiar": 38,
+      "wordTarget": 27,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEGNOPS",
+      "center": "G",
+      "accepted": 111,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABELMRS",
+      "center": "A",
+      "accepted": 474,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ABELMRS",
+      "center": "E",
+      "accepted": 474,
+      "familiar": 46,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ABELMRS",
+      "center": "S",
+      "accepted": 429,
+      "familiar": 25,
+      "wordTarget": 18,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACDENRS",
+      "center": "A",
+      "accepted": 490,
+      "familiar": 35,
+      "wordTarget": 25,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACDENRS",
+      "center": "E",
+      "accepted": 605,
+      "familiar": 43,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACDENRS",
+      "center": "R",
+      "accepted": 466,
+      "familiar": 29,
+      "wordTarget": 21,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACDENRS",
+      "center": "S",
+      "accepted": 506,
+      "familiar": 20,
+      "wordTarget": 14,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEFINRS",
+      "center": "E",
+      "accepted": 542,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EFGINRS",
+      "center": "E",
+      "accepted": 410,
+      "familiar": 31,
+      "wordTarget": 22,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEIMNRS",
+      "center": "A",
+      "accepted": 454,
+      "familiar": 28,
+      "wordTarget": 20,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEIMNRS",
+      "center": "E",
+      "accepted": 543,
+      "familiar": 44,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEIMNRS",
+      "center": "I",
+      "accepted": 413,
+      "familiar": 26,
+      "wordTarget": 19,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEIMNRS",
+      "center": "R",
+      "accepted": 403,
+      "familiar": 33,
+      "wordTarget": 24,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEIMNRS",
+      "center": "S",
+      "accepted": 561,
+      "familiar": 26,
+      "wordTarget": 19,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADGNORS",
+      "center": "S",
+      "accepted": 189,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEGNORS",
+      "center": "E",
+      "accepted": 446,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGNORS",
+      "center": "R",
+      "accepted": 405,
+      "familiar": 31,
+      "wordTarget": 22,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGNORS",
+      "center": "S",
+      "accepted": 445,
+      "familiar": 24,
+      "wordTarget": 17,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CIMNORS",
+      "center": "C",
+      "accepted": 125,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIMNORS",
+      "center": "I",
+      "accepted": 167,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIMNORS",
+      "center": "M",
+      "accepted": 117,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIMNORS",
+      "center": "S",
+      "accepted": 168,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACEIPRS",
+      "center": "A",
+      "accepted": 504,
+      "familiar": 37,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEIPRS",
+      "center": "E",
+      "accepted": 646,
+      "familiar": 53,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEIPRS",
+      "center": "P",
+      "accepted": 480,
+      "familiar": 41,
+      "wordTarget": 29,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEIPRS",
+      "center": "R",
+      "accepted": 593,
+      "familiar": 45,
+      "wordTarget": 32,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEIPRS",
+      "center": "S",
+      "accepted": 612,
+      "familiar": 31,
+      "wordTarget": 22,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEKLPRS",
+      "center": "A",
+      "accepted": 426,
+      "familiar": 45,
+      "wordTarget": 32,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEKLPRS",
+      "center": "E",
+      "accepted": 500,
+      "familiar": 56,
+      "wordTarget": 40,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEKLPRS",
+      "center": "S",
+      "accepted": 451,
+      "familiar": 32,
+      "wordTarget": 23,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELMPRS",
+      "center": "A",
+      "accepted": 528,
+      "familiar": 56,
+      "wordTarget": 40,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELMPRS",
+      "center": "E",
+      "accepted": 548,
+      "familiar": 58,
+      "wordTarget": 41,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELMPRS",
+      "center": "R",
+      "accepted": 405,
+      "familiar": 29,
+      "wordTarget": 21,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELMPRS",
+      "center": "S",
+      "accepted": 518,
+      "familiar": 38,
+      "wordTarget": 27,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EIMOPRS",
+      "center": "E",
+      "accepted": 514,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EIMOPRS",
+      "center": "R",
+      "accepted": 446,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EIMOPRS",
+      "center": "S",
+      "accepted": 503,
+      "familiar": 25,
+      "wordTarget": 18,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENOPRS",
+      "center": "E",
+      "accepted": 558,
+      "familiar": 50,
+      "wordTarget": 35,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENOPRS",
+      "center": "P",
+      "accepted": 433,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENOPRS",
+      "center": "R",
+      "accepted": 468,
+      "familiar": 41,
+      "wordTarget": 29,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENOPRS",
+      "center": "S",
+      "accepted": 557,
+      "familiar": 37,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ABCEINT",
+      "center": "B",
+      "accepted": 61,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABCEINT",
+      "center": "C",
+      "accepted": 94,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABCEINT",
+      "center": "I",
+      "accepted": 113,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADEHKNT",
+      "center": "K",
+      "accepted": 49,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGHIMNT",
+      "center": "D",
+      "accepted": 25,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGHIMNT",
+      "center": "G",
+      "accepted": 49,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGHIMNT",
+      "center": "H",
+      "accepted": 24,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGHIMNT",
+      "center": "M",
+      "accepted": 18,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DGHIMNT",
+      "center": "N",
+      "accepted": 53,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGHIMNT",
+      "center": "T",
+      "accepted": 39,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABGINOT",
+      "center": "B",
+      "accepted": 93,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EGIMNPT",
+      "center": "G",
+      "accepted": 83,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EGIMNPT",
+      "center": "P",
+      "accepted": 77,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACEILRT",
+      "center": "E",
+      "accepted": 401,
+      "familiar": 47,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEINRT",
+      "center": "A",
+      "accepted": 406,
+      "familiar": 40,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEINRT",
+      "center": "E",
+      "accepted": 449,
+      "familiar": 51,
+      "wordTarget": 36,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEINRT",
+      "center": "R",
+      "accepted": 434,
+      "familiar": 45,
+      "wordTarget": 32,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEINRT",
+      "center": "T",
+      "accepted": 443,
+      "familiar": 40,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEINPRT",
+      "center": "E",
+      "accepted": 432,
+      "familiar": 53,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEJOPRT",
+      "center": "C",
+      "accepted": 69,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEJOPRT",
+      "center": "J",
+      "accepted": 17,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "DEFHIST",
+      "center": "D",
+      "accepted": 130,
+      "familiar": 12,
+      "wordTarget": 9,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "DEFHIST",
+      "center": "F",
+      "accepted": 90,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACEILST",
+      "center": "A",
+      "accepted": 503,
+      "familiar": 40,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEILST",
+      "center": "E",
+      "accepted": 521,
+      "familiar": 45,
+      "wordTarget": 32,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEILST",
+      "center": "L",
+      "accepted": 482,
+      "familiar": 48,
+      "wordTarget": 34,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEILST",
+      "center": "S",
+      "accepted": 588,
+      "familiar": 47,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACEILST",
+      "center": "T",
+      "accepted": 504,
+      "familiar": 45,
+      "wordTarget": 32,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEHIMST",
+      "center": "C",
+      "accepted": 126,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADEINST",
+      "center": "A",
+      "accepted": 531,
+      "familiar": 30,
+      "wordTarget": 21,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEINST",
+      "center": "D",
+      "accepted": 428,
+      "familiar": 30,
+      "wordTarget": 21,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEINST",
+      "center": "E",
+      "accepted": 745,
+      "familiar": 51,
+      "wordTarget": 36,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEINST",
+      "center": "I",
+      "accepted": 563,
+      "familiar": 25,
+      "wordTarget": 18,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEINST",
+      "center": "N",
+      "accepted": 607,
+      "familiar": 37,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEINST",
+      "center": "S",
+      "accepted": 716,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEINST",
+      "center": "T",
+      "accepted": 634,
+      "familiar": 39,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACGINST",
+      "center": "C",
+      "accepted": 146,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADGINST",
+      "center": "D",
+      "accepted": 99,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHIKNST",
+      "center": "K",
+      "accepted": 69,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEGMNST",
+      "center": "A",
+      "accepted": 420,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGMNST",
+      "center": "E",
+      "accepted": 438,
+      "familiar": 47,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGMNST",
+      "center": "S",
+      "accepted": 415,
+      "familiar": 30,
+      "wordTarget": 21,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEKOST",
+      "center": "K",
+      "accepted": 85,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EHILOST",
+      "center": "S",
+      "accepted": 422,
+      "familiar": 46,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEINOST",
+      "center": "E",
+      "accepted": 520,
+      "familiar": 35,
+      "wordTarget": 25,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEINOST",
+      "center": "I",
+      "accepted": 430,
+      "familiar": 19,
+      "wordTarget": 14,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEINOST",
+      "center": "N",
+      "accepted": 510,
+      "familiar": 41,
+      "wordTarget": 29,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEINOST",
+      "center": "O",
+      "accepted": 419,
+      "familiar": 31,
+      "wordTarget": 22,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEINOST",
+      "center": "S",
+      "accepted": 549,
+      "familiar": 26,
+      "wordTarget": 19,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEINOST",
+      "center": "T",
+      "accepted": 450,
+      "familiar": 33,
+      "wordTarget": 24,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEIMPST",
+      "center": "E",
+      "accepted": 455,
+      "familiar": 43,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEIMPST",
+      "center": "S",
+      "accepted": 518,
+      "familiar": 39,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEIMPST",
+      "center": "T",
+      "accepted": 410,
+      "familiar": 40,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEINPST",
+      "center": "C",
+      "accepted": 150,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEINPST",
+      "center": "E",
+      "accepted": 432,
+      "familiar": 38,
+      "wordTarget": 27,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEINPST",
+      "center": "S",
+      "accepted": 412,
+      "familiar": 31,
+      "wordTarget": 22,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELNPST",
+      "center": "A",
+      "accepted": 595,
+      "familiar": 73,
+      "wordTarget": 52,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELNPST",
+      "center": "E",
+      "accepted": 647,
+      "familiar": 83,
+      "wordTarget": 59,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELNPST",
+      "center": "L",
+      "accepted": 432,
+      "familiar": 57,
+      "wordTarget": 40,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELNPST",
+      "center": "S",
+      "accepted": 598,
+      "familiar": 63,
+      "wordTarget": 45,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELNPST",
+      "center": "T",
+      "accepted": 477,
+      "familiar": 60,
+      "wordTarget": 42,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIOPST",
+      "center": "E",
+      "accepted": 434,
+      "familiar": 32,
+      "wordTarget": 23,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIOPST",
+      "center": "S",
+      "accepted": 427,
+      "familiar": 29,
+      "wordTarget": 21,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEKOPST",
+      "center": "K",
+      "accepted": 82,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADEHRST",
+      "center": "A",
+      "accepted": 644,
+      "familiar": 59,
+      "wordTarget": 42,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEHRST",
+      "center": "E",
+      "accepted": 795,
+      "familiar": 68,
+      "wordTarget": 48,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEHRST",
+      "center": "R",
+      "accepted": 643,
+      "familiar": 52,
+      "wordTarget": 37,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEHRST",
+      "center": "S",
+      "accepted": 658,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEHRST",
+      "center": "T",
+      "accepted": 558,
+      "familiar": 46,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEFHRST",
+      "center": "A",
+      "accepted": 470,
+      "familiar": 54,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEFHRST",
+      "center": "E",
+      "accepted": 581,
+      "familiar": 60,
+      "wordTarget": 42,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEFHRST",
+      "center": "R",
+      "accepted": 482,
+      "familiar": 46,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEFHRST",
+      "center": "S",
+      "accepted": 519,
+      "familiar": 40,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEFHRST",
+      "center": "T",
+      "accepted": 479,
+      "familiar": 52,
+      "wordTarget": 37,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEIRST",
+      "center": "E",
+      "accepted": 650,
+      "familiar": 46,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEIRST",
+      "center": "I",
+      "accepted": 437,
+      "familiar": 33,
+      "wordTarget": 24,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEIRST",
+      "center": "R",
+      "accepted": 504,
+      "familiar": 37,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEIRST",
+      "center": "S",
+      "accepted": 498,
+      "familiar": 26,
+      "wordTarget": 19,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEIRST",
+      "center": "T",
+      "accepted": 404,
+      "familiar": 32,
+      "wordTarget": 23,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEIKRST",
+      "center": "E",
+      "accepted": 429,
+      "familiar": 34,
+      "wordTarget": 24,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACELRST",
+      "center": "A",
+      "accepted": 790,
+      "familiar": 68,
+      "wordTarget": 48,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACELRST",
+      "center": "C",
+      "accepted": 423,
+      "familiar": 31,
+      "wordTarget": 22,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACELRST",
+      "center": "E",
+      "accepted": 874,
+      "familiar": 76,
+      "wordTarget": 54,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACELRST",
+      "center": "L",
+      "accepted": 482,
+      "familiar": 43,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACELRST",
+      "center": "R",
+      "accepted": 675,
+      "familiar": 44,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACELRST",
+      "center": "S",
+      "accepted": 792,
+      "familiar": 53,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ACELRST",
+      "center": "T",
+      "accepted": 685,
+      "familiar": 60,
+      "wordTarget": 42,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGLRST",
+      "center": "A",
+      "accepted": 732,
+      "familiar": 68,
+      "wordTarget": 48,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGLRST",
+      "center": "E",
+      "accepted": 827,
+      "familiar": 75,
+      "wordTarget": 53,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGLRST",
+      "center": "L",
+      "accepted": 443,
+      "familiar": 43,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGLRST",
+      "center": "R",
+      "accepted": 615,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGLRST",
+      "center": "S",
+      "accepted": 726,
+      "familiar": 48,
+      "wordTarget": 34,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGLRST",
+      "center": "T",
+      "accepted": 608,
+      "familiar": 54,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "BEIMRST",
+      "center": "B",
+      "accepted": 150,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BEIMRST",
+      "center": "E",
+      "accepted": 531,
+      "familiar": 45,
+      "wordTarget": 32,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "BEIMRST",
+      "center": "R",
+      "accepted": 403,
+      "familiar": 34,
+      "wordTarget": 24,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "BEIMRST",
+      "center": "S",
+      "accepted": 445,
+      "familiar": 23,
+      "wordTarget": 17,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGNRST",
+      "center": "A",
+      "accepted": 726,
+      "familiar": 55,
+      "wordTarget": 39,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGNRST",
+      "center": "E",
+      "accepted": 846,
+      "familiar": 64,
+      "wordTarget": 45,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGNRST",
+      "center": "N",
+      "accepted": 474,
+      "familiar": 33,
+      "wordTarget": 24,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGNRST",
+      "center": "R",
+      "accepted": 697,
+      "familiar": 44,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGNRST",
+      "center": "S",
+      "accepted": 734,
+      "familiar": 38,
+      "wordTarget": 27,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGNRST",
+      "center": "T",
+      "accepted": 657,
+      "familiar": 50,
+      "wordTarget": 35,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AGINRST",
+      "center": "A",
+      "accepted": 449,
+      "familiar": 32,
+      "wordTarget": 23,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AGINRST",
+      "center": "I",
+      "accepted": 414,
+      "familiar": 32,
+      "wordTarget": 23,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EGINRST",
+      "center": "E",
+      "accepted": 801,
+      "familiar": 54,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EGINRST",
+      "center": "I",
+      "accepted": 646,
+      "familiar": 45,
+      "wordTarget": 32,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EGINRST",
+      "center": "N",
+      "accepted": 624,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EGINRST",
+      "center": "R",
+      "accepted": 613,
+      "familiar": 43,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EGINRST",
+      "center": "S",
+      "accepted": 683,
+      "familiar": 40,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EGINRST",
+      "center": "T",
+      "accepted": 596,
+      "familiar": 39,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEFORST",
+      "center": "E",
+      "accepted": 550,
+      "familiar": 45,
+      "wordTarget": 32,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEFORST",
+      "center": "R",
+      "accepted": 483,
+      "familiar": 48,
+      "wordTarget": 34,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEFORST",
+      "center": "S",
+      "accepted": 442,
+      "familiar": 30,
+      "wordTarget": 21,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGORST",
+      "center": "A",
+      "accepted": 538,
+      "familiar": 44,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGORST",
+      "center": "E",
+      "accepted": 682,
+      "familiar": 54,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGORST",
+      "center": "R",
+      "accepted": 681,
+      "familiar": 51,
+      "wordTarget": 36,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGORST",
+      "center": "S",
+      "accepted": 671,
+      "familiar": 45,
+      "wordTarget": 32,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEGORST",
+      "center": "T",
+      "accepted": 605,
+      "familiar": 55,
+      "wordTarget": 39,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEHORST",
+      "center": "E",
+      "accepted": 548,
+      "familiar": 49,
+      "wordTarget": 35,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEHORST",
+      "center": "O",
+      "accepted": 449,
+      "familiar": 47,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEHORST",
+      "center": "R",
+      "accepted": 471,
+      "familiar": 44,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEHORST",
+      "center": "S",
+      "accepted": 521,
+      "familiar": 46,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEHORST",
+      "center": "T",
+      "accepted": 451,
+      "familiar": 47,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIORST",
+      "center": "D",
+      "accepted": 450,
+      "familiar": 30,
+      "wordTarget": 21,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIORST",
+      "center": "E",
+      "accepted": 718,
+      "familiar": 55,
+      "wordTarget": 39,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIORST",
+      "center": "I",
+      "accepted": 428,
+      "familiar": 27,
+      "wordTarget": 19,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIORST",
+      "center": "O",
+      "accepted": 424,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIORST",
+      "center": "R",
+      "accepted": 637,
+      "familiar": 55,
+      "wordTarget": 39,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIORST",
+      "center": "S",
+      "accepted": 644,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIORST",
+      "center": "T",
+      "accepted": 545,
+      "familiar": 46,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEKORST",
+      "center": "E",
+      "accepted": 428,
+      "familiar": 32,
+      "wordTarget": 23,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEKORST",
+      "center": "S",
+      "accepted": 417,
+      "familiar": 32,
+      "wordTarget": 23,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "BELORST",
+      "center": "E",
+      "accepted": 497,
+      "familiar": 47,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "BELORST",
+      "center": "S",
+      "accepted": 478,
+      "familiar": 39,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEMORST",
+      "center": "E",
+      "accepted": 573,
+      "familiar": 52,
+      "wordTarget": 37,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEMORST",
+      "center": "O",
+      "accepted": 421,
+      "familiar": 51,
+      "wordTarget": 36,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEMORST",
+      "center": "R",
+      "accepted": 461,
+      "familiar": 44,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEMORST",
+      "center": "S",
+      "accepted": 484,
+      "familiar": 35,
+      "wordTarget": 25,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEMORST",
+      "center": "T",
+      "accepted": 402,
+      "familiar": 40,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EHNORST",
+      "center": "E",
+      "accepted": 587,
+      "familiar": 59,
+      "wordTarget": 42,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EHNORST",
+      "center": "O",
+      "accepted": 442,
+      "familiar": 54,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EHNORST",
+      "center": "R",
+      "accepted": 468,
+      "familiar": 46,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EHNORST",
+      "center": "S",
+      "accepted": 544,
+      "familiar": 49,
+      "wordTarget": 35,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EHNORST",
+      "center": "T",
+      "accepted": 516,
+      "familiar": 57,
+      "wordTarget": 40,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EMNORST",
+      "center": "E",
+      "accepted": 625,
+      "familiar": 57,
+      "wordTarget": 40,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EMNORST",
+      "center": "O",
+      "accepted": 463,
+      "familiar": 53,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EMNORST",
+      "center": "R",
+      "accepted": 462,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EMNORST",
+      "center": "S",
+      "accepted": 551,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EMNORST",
+      "center": "T",
+      "accepted": 515,
+      "familiar": 54,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIPRST",
+      "center": "E",
+      "accepted": 795,
+      "familiar": 57,
+      "wordTarget": 40,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIPRST",
+      "center": "I",
+      "accepted": 553,
+      "familiar": 37,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIPRST",
+      "center": "P",
+      "accepted": 421,
+      "familiar": 28,
+      "wordTarget": 20,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIPRST",
+      "center": "R",
+      "accepted": 593,
+      "familiar": 44,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIPRST",
+      "center": "S",
+      "accepted": 652,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEIPRST",
+      "center": "T",
+      "accepted": 486,
+      "familiar": 35,
+      "wordTarget": 25,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELPRST",
+      "center": "A",
+      "accepted": 891,
+      "familiar": 84,
+      "wordTarget": 59,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELPRST",
+      "center": "E",
+      "accepted": 1035,
+      "familiar": 96,
+      "wordTarget": 68,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELPRST",
+      "center": "L",
+      "accepted": 558,
+      "familiar": 55,
+      "wordTarget": 39,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELPRST",
+      "center": "P",
+      "accepted": 592,
+      "familiar": 58,
+      "wordTarget": 41,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELPRST",
+      "center": "R",
+      "accepted": 752,
+      "familiar": 48,
+      "wordTarget": 34,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELPRST",
+      "center": "S",
+      "accepted": 916,
+      "familiar": 69,
+      "wordTarget": 49,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELPRST",
+      "center": "T",
+      "accepted": 750,
+      "familiar": 70,
+      "wordTarget": 49,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENPRST",
+      "center": "A",
+      "accepted": 780,
+      "familiar": 64,
+      "wordTarget": 45,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENPRST",
+      "center": "E",
+      "accepted": 966,
+      "familiar": 79,
+      "wordTarget": 56,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENPRST",
+      "center": "N",
+      "accepted": 474,
+      "familiar": 35,
+      "wordTarget": 25,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENPRST",
+      "center": "P",
+      "accepted": 517,
+      "familiar": 50,
+      "wordTarget": 35,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENPRST",
+      "center": "R",
+      "accepted": 758,
+      "familiar": 52,
+      "wordTarget": 37,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENPRST",
+      "center": "S",
+      "accepted": 847,
+      "familiar": 57,
+      "wordTarget": 40,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENPRST",
+      "center": "T",
+      "accepted": 756,
+      "familiar": 62,
+      "wordTarget": 44,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEILNU",
+      "center": "C",
+      "accepted": 77,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEILNU",
+      "center": "U",
+      "accepted": 93,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEGHOU",
+      "center": "C",
+      "accepted": 47,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEGHOU",
+      "center": "D",
+      "accepted": 68,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEGHOU",
+      "center": "E",
+      "accepted": 71,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEGHOU",
+      "center": "G",
+      "accepted": 36,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEGHOU",
+      "center": "H",
+      "accepted": 42,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEGHOU",
+      "center": "O",
+      "accepted": 58,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEGHOU",
+      "center": "U",
+      "accepted": 32,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BCKLNOU",
+      "center": "B",
+      "accepted": 37,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BCKLNOU",
+      "center": "C",
+      "accepted": 39,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BCKLNOU",
+      "center": "N",
+      "accepted": 34,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BCKLNOU",
+      "center": "U",
+      "accepted": 30,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GIJMNPU",
+      "center": "G",
+      "accepted": 43,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GIJMNPU",
+      "center": "I",
+      "accepted": 53,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GIJMNPU",
+      "center": "J",
+      "accepted": 9,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "GIJMNPU",
+      "center": "M",
+      "accepted": 34,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GIJMNPU",
+      "center": "N",
+      "accepted": 49,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GIJMNPU",
+      "center": "P",
+      "accepted": 37,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "GIJMNPU",
+      "center": "U",
+      "accepted": 31,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "CDELOPU",
+      "center": "C",
+      "accepted": 87,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDELOPU",
+      "center": "D",
+      "accepted": 139,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDELOPU",
+      "center": "U",
+      "accepted": 81,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EFHLOPU",
+      "center": "F",
+      "accepted": 26,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "EFHLOPU",
+      "center": "H",
+      "accepted": 26,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EFHLOPU",
+      "center": "U",
+      "accepted": 26,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "ACEFLRU",
+      "center": "U",
+      "accepted": 99,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BDEILRU",
+      "center": "I",
+      "accepted": 181,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEFILRU",
+      "center": "U",
+      "accepted": 67,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BCELMRU",
+      "center": "C",
+      "accepted": 49,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BCELMRU",
+      "center": "M",
+      "accepted": 65,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACEGORU",
+      "center": "U",
+      "accepted": 54,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABCIORU",
+      "center": "A",
+      "accepted": 78,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABCIORU",
+      "center": "B",
+      "accepted": 66,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABCIORU",
+      "center": "C",
+      "accepted": 69,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABCIORU",
+      "center": "I",
+      "accepted": 50,
+      "familiar": 1,
+      "wordTarget": 1,
+      "familiarLengthBuckets": 1,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "ABCIORU",
+      "center": "O",
+      "accepted": 61,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABCIORU",
+      "center": "R",
+      "accepted": 80,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABCIORU",
+      "center": "U",
+      "accepted": 33,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "AFLMORU",
+      "center": "U",
+      "accepted": 60,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AJLNORU",
+      "center": "A",
+      "accepted": 57,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AJLNORU",
+      "center": "J",
+      "accepted": 11,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "AJLNORU",
+      "center": "L",
+      "accepted": 49,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AJLNORU",
+      "center": "N",
+      "accepted": 43,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AJLNORU",
+      "center": "O",
+      "accepted": 29,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AJLNORU",
+      "center": "R",
+      "accepted": 37,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AJLNORU",
+      "center": "U",
+      "accepted": 42,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "FIMNORU",
+      "center": "F",
+      "accepted": 25,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "FIMNORU",
+      "center": "I",
+      "accepted": 44,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "FIMNORU",
+      "center": "U",
+      "accepted": 35,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEOPRU",
+      "center": "U",
+      "accepted": 117,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACEIQRU",
+      "center": "A",
+      "accepted": 71,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACEIQRU",
+      "center": "C",
+      "accepted": 64,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACEIQRU",
+      "center": "I",
+      "accepted": 58,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACEIQRU",
+      "center": "Q",
+      "accepted": 22,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "ACEIQRU",
+      "center": "U",
+      "accepted": 50,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CENOQRU",
+      "center": "C",
+      "accepted": 60,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CENOQRU",
+      "center": "N",
+      "accepted": 53,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CENOQRU",
+      "center": "Q",
+      "accepted": 10,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "CENOQRU",
+      "center": "R",
+      "accepted": 65,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CENOQRU",
+      "center": "U",
+      "accepted": 47,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACILMSU",
+      "center": "C",
+      "accepted": 148,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACILMSU",
+      "center": "I",
+      "accepted": 164,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACILMSU",
+      "center": "U",
+      "accepted": 118,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABDHNSU",
+      "center": "A",
+      "accepted": 105,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABDHNSU",
+      "center": "B",
+      "accepted": 64,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABDHNSU",
+      "center": "D",
+      "accepted": 52,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "ABDHNSU",
+      "center": "H",
+      "accepted": 44,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "ABDHNSU",
+      "center": "N",
+      "accepted": 68,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABDHNSU",
+      "center": "S",
+      "accepted": 112,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABDHNSU",
+      "center": "U",
+      "accepted": 72,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABEMNSU",
+      "center": "B",
+      "accepted": 131,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABEMNSU",
+      "center": "U",
+      "accepted": 123,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CHINOSU",
+      "center": "C",
+      "accepted": 115,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CHINOSU",
+      "center": "H",
+      "accepted": 64,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CHINOSU",
+      "center": "I",
+      "accepted": 99,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CHINOSU",
+      "center": "S",
+      "accepted": 121,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CHINOSU",
+      "center": "U",
+      "accepted": 73,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHINOSU",
+      "center": "H",
+      "accepted": 79,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "GHINOSU",
+      "center": "O",
+      "accepted": 100,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHINOSU",
+      "center": "S",
+      "accepted": 146,
+      "familiar": 16,
+      "wordTarget": 12,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "GHINOSU",
+      "center": "U",
+      "accepted": 73,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CELNOSU",
+      "center": "C",
+      "accepted": 183,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CELNOSU",
+      "center": "U",
+      "accepted": 171,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BHILPSU",
+      "center": "B",
+      "accepted": 42,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BHILPSU",
+      "center": "I",
+      "accepted": 66,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIOQSU",
+      "center": "A",
+      "accepted": 32,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIOQSU",
+      "center": "E",
+      "accepted": 39,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIOQSU",
+      "center": "I",
+      "accepted": 22,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "AEIOQSU",
+      "center": "O",
+      "accepted": 14,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "AEIOQSU",
+      "center": "Q",
+      "accepted": 20,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "AEIOQSU",
+      "center": "S",
+      "accepted": 54,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIOQSU",
+      "center": "U",
+      "accepted": 30,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "BDEHRSU",
+      "center": "B",
+      "accepted": 123,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EGINRSU",
+      "center": "E",
+      "accepted": 428,
+      "familiar": 31,
+      "wordTarget": 22,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EGINRSU",
+      "center": "S",
+      "accepted": 416,
+      "familiar": 29,
+      "wordTarget": 21,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "GHINRSU",
+      "center": "H",
+      "accepted": 66,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHINRSU",
+      "center": "R",
+      "accepted": 83,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHINRSU",
+      "center": "U",
+      "accepted": 90,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEMNRSU",
+      "center": "S",
+      "accepted": 408,
+      "familiar": 25,
+      "wordTarget": 18,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEORSU",
+      "center": "E",
+      "accepted": 475,
+      "familiar": 38,
+      "wordTarget": 27,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEORSU",
+      "center": "R",
+      "accepted": 434,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CDEORSU",
+      "center": "S",
+      "accepted": 433,
+      "familiar": 24,
+      "wordTarget": 17,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DGNORSU",
+      "center": "D",
+      "accepted": 101,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGNORSU",
+      "center": "G",
+      "accepted": 67,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGNORSU",
+      "center": "R",
+      "accepted": 87,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DGNORSU",
+      "center": "S",
+      "accepted": 121,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADEQRSU",
+      "center": "Q",
+      "accepted": 33,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADEFLTU",
+      "center": "U",
+      "accepted": 88,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADEMNTU",
+      "center": "U",
+      "accepted": 116,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EILNOTU",
+      "center": "U",
+      "accepted": 58,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKPTU",
+      "center": "C",
+      "accepted": 30,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKPTU",
+      "center": "E",
+      "accepted": 44,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKPTU",
+      "center": "H",
+      "accepted": 28,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "CEHKPTU",
+      "center": "K",
+      "accepted": 25,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKPTU",
+      "center": "P",
+      "accepted": 25,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "CEHKPTU",
+      "center": "T",
+      "accepted": 31,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKPTU",
+      "center": "U",
+      "accepted": 25,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEKRTU",
+      "center": "C",
+      "accepted": 91,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEKRTU",
+      "center": "D",
+      "accepted": 113,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEKRTU",
+      "center": "K",
+      "accepted": 42,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEKRTU",
+      "center": "T",
+      "accepted": 81,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIPRTU",
+      "center": "C",
+      "accepted": 116,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIPRTU",
+      "center": "U",
+      "accepted": 84,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHIPRTU",
+      "center": "G",
+      "accepted": 25,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHIPRTU",
+      "center": "H",
+      "accepted": 22,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHIPRTU",
+      "center": "I",
+      "accepted": 32,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHIPRTU",
+      "center": "P",
+      "accepted": 21,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "GHIPRTU",
+      "center": "R",
+      "accepted": 27,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHIPRTU",
+      "center": "T",
+      "accepted": 37,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHIPRTU",
+      "center": "U",
+      "accepted": 23,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDOPRTU",
+      "center": "C",
+      "accepted": 32,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDOPRTU",
+      "center": "D",
+      "accepted": 36,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "FNOPRTU",
+      "center": "F",
+      "accepted": 33,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEOQRTU",
+      "center": "Q",
+      "accepted": 30,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "BCEJSTU",
+      "center": "B",
+      "accepted": 54,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "BCEJSTU",
+      "center": "C",
+      "accepted": 44,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "BCEJSTU",
+      "center": "E",
+      "accepted": 107,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "BCEJSTU",
+      "center": "J",
+      "accepted": 28,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "BCEJSTU",
+      "center": "S",
+      "accepted": 119,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "BCEJSTU",
+      "center": "T",
+      "accepted": 89,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "BCEJSTU",
+      "center": "U",
+      "accepted": 86,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "CEIJSTU",
+      "center": "C",
+      "accepted": 72,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIJSTU",
+      "center": "E",
+      "accepted": 132,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIJSTU",
+      "center": "I",
+      "accepted": 91,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIJSTU",
+      "center": "J",
+      "accepted": 40,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIJSTU",
+      "center": "S",
+      "accepted": 157,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIJSTU",
+      "center": "T",
+      "accepted": 127,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIJSTU",
+      "center": "U",
+      "accepted": 95,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADIMSTU",
+      "center": "A",
+      "accepted": 147,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADIMSTU",
+      "center": "D",
+      "accepted": 91,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADIMSTU",
+      "center": "I",
+      "accepted": 132,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADIMSTU",
+      "center": "M",
+      "accepted": 140,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADIMSTU",
+      "center": "U",
+      "accepted": 89,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EILNSTU",
+      "center": "E",
+      "accepted": 470,
+      "familiar": 37,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EILNSTU",
+      "center": "S",
+      "accepted": 498,
+      "familiar": 32,
+      "wordTarget": 23,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EILNSTU",
+      "center": "T",
+      "accepted": 425,
+      "familiar": 39,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CEMOSTU",
+      "center": "C",
+      "accepted": 112,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CINOSTU",
+      "center": "C",
+      "accepted": 167,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CLNOSTU",
+      "center": "C",
+      "accepted": 105,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AENPSTU",
+      "center": "E",
+      "accepted": 416,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AENPSTU",
+      "center": "S",
+      "accepted": 437,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADNRSTU",
+      "center": "D",
+      "accepted": 85,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADEFORV",
+      "center": "V",
+      "accepted": 72,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIMPRV",
+      "center": "M",
+      "accepted": 90,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIMPRV",
+      "center": "V",
+      "accepted": 56,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINOPRV",
+      "center": "G",
+      "accepted": 90,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINOPRV",
+      "center": "I",
+      "accepted": 100,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINOPRV",
+      "center": "N",
+      "accepted": 100,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINOPRV",
+      "center": "O",
+      "accepted": 81,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINOPRV",
+      "center": "P",
+      "accepted": 60,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINOPRV",
+      "center": "R",
+      "accepted": 68,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINOPRV",
+      "center": "V",
+      "accepted": 11,
+      "familiar": 1,
+      "wordTarget": 1,
+      "familiarLengthBuckets": 1,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "ADEIRSV",
+      "center": "E",
+      "accepted": 552,
+      "familiar": 47,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEIRSV",
+      "center": "R",
+      "accepted": 462,
+      "familiar": 39,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADEIRSV",
+      "center": "S",
+      "accepted": 441,
+      "familiar": 25,
+      "wordTarget": 18,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AFLORSV",
+      "center": "F",
+      "accepted": 65,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFLORSV",
+      "center": "S",
+      "accepted": 110,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AFLORSV",
+      "center": "V",
+      "accepted": 47,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "CDEIRTV",
+      "center": "C",
+      "accepted": 116,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CDEIRTV",
+      "center": "V",
+      "accepted": 105,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABINRTV",
+      "center": "B",
+      "accepted": 37,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABINRTV",
+      "center": "I",
+      "accepted": 74,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABINRTV",
+      "center": "N",
+      "accepted": 67,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABINRTV",
+      "center": "R",
+      "accepted": 72,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABINRTV",
+      "center": "T",
+      "accepted": 66,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABINRTV",
+      "center": "V",
+      "accepted": 25,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "AEHRSTV",
+      "center": "A",
+      "accepted": 442,
+      "familiar": 47,
+      "wordTarget": 33,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEHRSTV",
+      "center": "E",
+      "accepted": 567,
+      "familiar": 57,
+      "wordTarget": 40,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEHRSTV",
+      "center": "R",
+      "accepted": 464,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEHRSTV",
+      "center": "S",
+      "accepted": 517,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEHRSTV",
+      "center": "T",
+      "accepted": 435,
+      "familiar": 41,
+      "wordTarget": 29,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELRSTV",
+      "center": "A",
+      "accepted": 593,
+      "familiar": 61,
+      "wordTarget": 43,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELRSTV",
+      "center": "E",
+      "accepted": 754,
+      "familiar": 78,
+      "wordTarget": 55,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELRSTV",
+      "center": "L",
+      "accepted": 429,
+      "familiar": 48,
+      "wordTarget": 34,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELRSTV",
+      "center": "R",
+      "accepted": 554,
+      "familiar": 40,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELRSTV",
+      "center": "S",
+      "accepted": 670,
+      "familiar": 55,
+      "wordTarget": 39,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELRSTV",
+      "center": "T",
+      "accepted": 538,
+      "familiar": 50,
+      "wordTarget": 35,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AELNRUV",
+      "center": "U",
+      "accepted": 92,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AILRTUV",
+      "center": "U",
+      "accepted": 38,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AILRTUV",
+      "center": "V",
+      "accepted": 46,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIKLNW",
+      "center": "A",
+      "accepted": 122,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIKLNW",
+      "center": "G",
+      "accepted": 112,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIKLNW",
+      "center": "K",
+      "accepted": 43,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "AGIKLNW",
+      "center": "L",
+      "accepted": 99,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "AGIKLNW",
+      "center": "W",
+      "accepted": 51,
+      "familiar": 12,
+      "wordTarget": 9,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "AGIMNRW",
+      "center": "M",
+      "accepted": 80,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIMNRW",
+      "center": "W",
+      "accepted": 39,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GIKNORW",
+      "center": "K",
+      "accepted": 42,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGHINSW",
+      "center": "W",
+      "accepted": 102,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHINOSW",
+      "center": "H",
+      "accepted": 77,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "GHINOSW",
+      "center": "O",
+      "accepted": 121,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GHINOSW",
+      "center": "W",
+      "accepted": 83,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DEILRSW",
+      "center": "E",
+      "accepted": 458,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EHIPRSW",
+      "center": "H",
+      "accepted": 115,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACDEHTW",
+      "center": "W",
+      "accepted": 49,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DEILSTW",
+      "center": "E",
+      "accepted": 410,
+      "familiar": 39,
+      "wordTarget": 28,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EINRSTW",
+      "center": "E",
+      "accepted": 693,
+      "familiar": 61,
+      "wordTarget": 43,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EINRSTW",
+      "center": "I",
+      "accepted": 474,
+      "familiar": 37,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EINRSTW",
+      "center": "N",
+      "accepted": 441,
+      "familiar": 34,
+      "wordTarget": 24,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EINRSTW",
+      "center": "R",
+      "accepted": 466,
+      "familiar": 42,
+      "wordTarget": 30,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EINRSTW",
+      "center": "S",
+      "accepted": 583,
+      "familiar": 38,
+      "wordTarget": 27,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EINRSTW",
+      "center": "T",
+      "accepted": 539,
+      "familiar": 44,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADORTUW",
+      "center": "U",
+      "accepted": 38,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADORTUW",
+      "center": "W",
+      "accepted": 21,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABILMOX",
+      "center": "A",
+      "accepted": 84,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABILMOX",
+      "center": "B",
+      "accepted": 64,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABILMOX",
+      "center": "I",
+      "accepted": 61,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABILMOX",
+      "center": "O",
+      "accepted": 55,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ABILMOX",
+      "center": "X",
+      "accepted": 22,
+      "familiar": 1,
+      "wordTarget": 1,
+      "familiarLengthBuckets": 1,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "AEILNPX",
+      "center": "X",
+      "accepted": 29,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "CELMOPX",
+      "center": "C",
+      "accepted": 28,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CELMOPX",
+      "center": "M",
+      "accepted": 29,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "CELMOPX",
+      "center": "X",
+      "accepted": 8,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "EIMRTUX",
+      "center": "U",
+      "accepted": 43,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EIMRTUX",
+      "center": "X",
+      "accepted": 19,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "ACDIMNY",
+      "center": "A",
+      "accepted": 107,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACDIMNY",
+      "center": "C",
+      "accepted": 57,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACDIMNY",
+      "center": "D",
+      "accepted": 59,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACDIMNY",
+      "center": "I",
+      "accepted": 83,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACDIMNY",
+      "center": "M",
+      "accepted": 70,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACDIMNY",
+      "center": "N",
+      "accepted": 78,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACDIMNY",
+      "center": "Y",
+      "accepted": 41,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHIMNY",
+      "center": "H",
+      "accepted": 31,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHIMNY",
+      "center": "M",
+      "accepted": 37,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHIMNY",
+      "center": "Y",
+      "accepted": 26,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHILOY",
+      "center": "A",
+      "accepted": 73,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHILOY",
+      "center": "D",
+      "accepted": 67,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHILOY",
+      "center": "H",
+      "accepted": 54,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHILOY",
+      "center": "I",
+      "accepted": 54,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHILOY",
+      "center": "O",
+      "accepted": 71,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHILOY",
+      "center": "Y",
+      "accepted": 55,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGILNPY",
+      "center": "G",
+      "accepted": 141,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGILNPY",
+      "center": "Y",
+      "accepted": 79,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNOPY",
+      "center": "A",
+      "accepted": 74,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNOPY",
+      "center": "C",
+      "accepted": 47,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNOPY",
+      "center": "M",
+      "accepted": 56,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNOPY",
+      "center": "N",
+      "accepted": 60,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNOPY",
+      "center": "O",
+      "accepted": 71,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNOPY",
+      "center": "P",
+      "accepted": 37,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNOPY",
+      "center": "Y",
+      "accepted": 42,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BDEINRY",
+      "center": "B",
+      "accepted": 100,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "BDEINRY",
+      "center": "Y",
+      "accepted": 51,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNORY",
+      "center": "C",
+      "accepted": 77,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNORY",
+      "center": "N",
+      "accepted": 89,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACMNORY",
+      "center": "Y",
+      "accepted": 56,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EIKLNSY",
+      "center": "Y",
+      "accepted": 85,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADILPSY",
+      "center": "Y",
+      "accepted": 102,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACNORSY",
+      "center": "N",
+      "accepted": 125,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACNORSY",
+      "center": "Y",
+      "accepted": 70,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINPRSY",
+      "center": "P",
+      "accepted": 87,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINPRSY",
+      "center": "R",
+      "accepted": 66,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINPRSY",
+      "center": "Y",
+      "accepted": 38,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "ADEIMTY",
+      "center": "Y",
+      "accepted": 39,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACILPTY",
+      "center": "P",
+      "accepted": 87,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACILPTY",
+      "center": "Y",
+      "accepted": 79,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEMNPTY",
+      "center": "Y",
+      "accepted": 55,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACHIRTY",
+      "center": "I",
+      "accepted": 67,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACHIRTY",
+      "center": "Y",
+      "accepted": 40,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACILRTY",
+      "center": "Y",
+      "accepted": 82,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHNRTY",
+      "center": "D",
+      "accepted": 32,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHNRTY",
+      "center": "H",
+      "accepted": 24,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHNRTY",
+      "center": "N",
+      "accepted": 40,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHNRTY",
+      "center": "R",
+      "accepted": 60,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHNRTY",
+      "center": "T",
+      "accepted": 49,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADHNRTY",
+      "center": "Y",
+      "accepted": 38,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACFORTY",
+      "center": "F",
+      "accepted": 38,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACFORTY",
+      "center": "Y",
+      "accepted": 37,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKSTY",
+      "center": "C",
+      "accepted": 52,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKSTY",
+      "center": "H",
+      "accepted": 70,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKSTY",
+      "center": "K",
+      "accepted": 46,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKSTY",
+      "center": "S",
+      "accepted": 113,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKSTY",
+      "center": "T",
+      "accepted": 97,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEHKSTY",
+      "center": "Y",
+      "accepted": 50,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "AEJMSTY",
+      "center": "J",
+      "accepted": 19,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEJMSTY",
+      "center": "Y",
+      "accepted": 66,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DEINSTY",
+      "center": "E",
+      "accepted": 402,
+      "familiar": 36,
+      "wordTarget": 26,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "DEINSTY",
+      "center": "Y",
+      "accepted": 78,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGINSTY",
+      "center": "Y",
+      "accepted": 69,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIOSTY",
+      "center": "C",
+      "accepted": 119,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIOSTY",
+      "center": "E",
+      "accepted": 148,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIOSTY",
+      "center": "I",
+      "accepted": 88,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "CEIOSTY",
+      "center": "O",
+      "accepted": 124,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CEIOSTY",
+      "center": "Y",
+      "accepted": 59,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "HLMOSTY",
+      "center": "M",
+      "accepted": 66,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "HLMOSTY",
+      "center": "Y",
+      "accepted": 43,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EHNOSTY",
+      "center": "Y",
+      "accepted": 82,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEMRSTY",
+      "center": "A",
+      "accepted": 529,
+      "familiar": 53,
+      "wordTarget": 38,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEMRSTY",
+      "center": "E",
+      "accepted": 589,
+      "familiar": 58,
+      "wordTarget": 41,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEMRSTY",
+      "center": "R",
+      "accepted": 499,
+      "familiar": 41,
+      "wordTarget": 29,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEMRSTY",
+      "center": "S",
+      "accepted": 555,
+      "familiar": 43,
+      "wordTarget": 31,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AEMRSTY",
+      "center": "T",
+      "accepted": 489,
+      "familiar": 51,
+      "wordTarget": 36,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "GINRSTY",
+      "center": "R",
+      "accepted": 65,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINRSTY",
+      "center": "S",
+      "accepted": 81,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINRSTY",
+      "center": "T",
+      "accepted": 75,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "GINRSTY",
+      "center": "Y",
+      "accepted": 26,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "HIORSTY",
+      "center": "I",
+      "accepted": 88,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "HIORSTY",
+      "center": "Y",
+      "accepted": 48,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIKLQUY",
+      "center": "C",
+      "accepted": 21,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIKLQUY",
+      "center": "I",
+      "accepted": 19,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CIKLQUY",
+      "center": "K",
+      "accepted": 16,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CIKLQUY",
+      "center": "L",
+      "accepted": 22,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIKLQUY",
+      "center": "Q",
+      "accepted": 4,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "CIKLQUY",
+      "center": "U",
+      "accepted": 14,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CIKLQUY",
+      "center": "Y",
+      "accepted": 16,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "ADLNRUY",
+      "center": "A",
+      "accepted": 102,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADLNRUY",
+      "center": "D",
+      "accepted": 59,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADLNRUY",
+      "center": "L",
+      "accepted": 80,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADLNRUY",
+      "center": "N",
+      "accepted": 64,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADLNRUY",
+      "center": "R",
+      "accepted": 62,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADLNRUY",
+      "center": "U",
+      "accepted": 70,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ADLNRUY",
+      "center": "Y",
+      "accepted": 55,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EGNORUY",
+      "center": "N",
+      "accepted": 68,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EGNORUY",
+      "center": "U",
+      "accepted": 46,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EGNORUY",
+      "center": "Y",
+      "accepted": 52,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EJNORUY",
+      "center": "E",
+      "accepted": 41,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EJNORUY",
+      "center": "J",
+      "accepted": 17,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EJNORUY",
+      "center": "N",
+      "accepted": 33,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EJNORUY",
+      "center": "O",
+      "accepted": 28,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EJNORUY",
+      "center": "R",
+      "accepted": 37,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EJNORUY",
+      "center": "U",
+      "accepted": 25,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EJNORUY",
+      "center": "Y",
+      "accepted": 28,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DLOPRUY",
+      "center": "D",
+      "accepted": 53,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DLOPRUY",
+      "center": "U",
+      "accepted": 41,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "DLOPRUY",
+      "center": "Y",
+      "accepted": 46,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEKQSUY",
+      "center": "A",
+      "accepted": 60,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEKQSUY",
+      "center": "E",
+      "accepted": 65,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEKQSUY",
+      "center": "K",
+      "accepted": 48,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEKQSUY",
+      "center": "Q",
+      "accepted": 23,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEKQSUY",
+      "center": "S",
+      "accepted": 80,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEKQSUY",
+      "center": "U",
+      "accepted": 38,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEKQSUY",
+      "center": "Y",
+      "accepted": 36,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AILQTUY",
+      "center": "A",
+      "accepted": 37,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AILQTUY",
+      "center": "I",
+      "accepted": 34,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AILQTUY",
+      "center": "L",
+      "accepted": 43,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AILQTUY",
+      "center": "Q",
+      "accepted": 11,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AILQTUY",
+      "center": "T",
+      "accepted": 32,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AILQTUY",
+      "center": "U",
+      "accepted": 23,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AILQTUY",
+      "center": "Y",
+      "accepted": 20,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EILQTUY",
+      "center": "E",
+      "accepted": 40,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "EILQTUY",
+      "center": "Q",
+      "accepted": 13,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "EILQTUY",
+      "center": "U",
+      "accepted": 30,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "EILQTUY",
+      "center": "Y",
+      "accepted": 17,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "CELRTUY",
+      "center": "T",
+      "accepted": 94,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CELRTUY",
+      "center": "Y",
+      "accepted": 49,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CNORTUY",
+      "center": "C",
+      "accepted": 53,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CNORTUY",
+      "center": "Y",
+      "accepted": 36,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "LOPRTUY",
+      "center": "Y",
+      "accepted": 50,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACIPRVY",
+      "center": "A",
+      "accepted": 54,
+      "familiar": 6,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACIPRVY",
+      "center": "C",
+      "accepted": 33,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "ACIPRVY",
+      "center": "I",
+      "accepted": 42,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "ACIPRVY",
+      "center": "P",
+      "accepted": 35,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "ACIPRVY",
+      "center": "R",
+      "accepted": 49,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ACIPRVY",
+      "center": "V",
+      "accepted": 16,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "ACIPRVY",
+      "center": "Y",
+      "accepted": 27,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "ELNOTVY",
+      "center": "Y",
+      "accepted": 39,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIRTVY",
+      "center": "I",
+      "accepted": 114,
+      "familiar": 11,
+      "wordTarget": 8,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIRTVY",
+      "center": "V",
+      "accepted": 81,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEIRTVY",
+      "center": "Y",
+      "accepted": 50,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIRTVY",
+      "center": "A",
+      "accepted": 56,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIRTVY",
+      "center": "G",
+      "accepted": 28,
+      "familiar": 4,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIRTVY",
+      "center": "I",
+      "accepted": 41,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIRTVY",
+      "center": "R",
+      "accepted": 53,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIRTVY",
+      "center": "T",
+      "accepted": 36,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AGIRTVY",
+      "center": "V",
+      "accepted": 19,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "AGIRTVY",
+      "center": "Y",
+      "accepted": 25,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIORTVY",
+      "center": "C",
+      "accepted": 30,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "familiar length buckets<3"
+      ]
+    },
+    {
+      "letters": "CIORTVY",
+      "center": "I",
+      "accepted": 35,
+      "familiar": 5,
+      "wordTarget": 4,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIORTVY",
+      "center": "O",
+      "accepted": 44,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIORTVY",
+      "center": "R",
+      "accepted": 39,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIORTVY",
+      "center": "T",
+      "accepted": 44,
+      "familiar": 8,
+      "wordTarget": 6,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "CIORTVY",
+      "center": "V",
+      "accepted": 8,
+      "familiar": 2,
+      "wordTarget": 2,
+      "familiarLengthBuckets": 2,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400",
+        "familiar length buckets<3",
+        "no familiar four-letter word"
+      ]
+    },
+    {
+      "letters": "CIORTVY",
+      "center": "Y",
+      "accepted": 16,
+      "familiar": 3,
+      "wordTarget": 3,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12",
+        "accepted outside 20..400"
+      ]
+    },
+    {
+      "letters": "EOPRTVY",
+      "center": "Y",
+      "accepted": 61,
+      "familiar": 9,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEHLTWY",
+      "center": "W",
+      "accepted": 54,
+      "familiar": 10,
+      "wordTarget": 7,
+      "familiarLengthBuckets": 4,
+      "failures": [
+        "familiar<12"
+      ]
+    },
+    {
+      "letters": "AEHLTWY",
+      "center": "Y",
+      "accepted": 54,
+      "familiar": 7,
+      "wordTarget": 5,
+      "familiarLengthBuckets": 3,
+      "failures": [
+        "familiar<12"
+      ]
+    }
+  ],
+  "originalDraftSha256": "bffd5a944b8c2a163eaa279bda8bb1c3ca039058e0ef4000ef3b73c570dee82b",
+  "wordishShortlistSha256": "390a36fde39a5264d51032eb7dea2187dd2934c940f1ad2f9dda2d6a9bf15414",
+  "limitations": [
+    "Familiarity is original AI editorial judgment, not empirical frequency",
+    "0 human-reviewed words; no calibrated difficulty",
+    "Broad ENABLE accepted words include uncommon/archaic/inflected/potentially sensitive words",
+    "All accepted words count equally; familiarity membership determines initial goal count only"
+  ]
+}

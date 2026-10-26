@@ -1,6 +1,73 @@
 # Continue CLEAN Words
 
-Updated: 2026-10-25. Current checkpoint: F1 initial-playtest improvements built/tested.
+Updated: 2026-10-25. Current checkpoint: G1 Wordish/Bee generation integrated and
+verified; five-game generation conversion remains partial. Older checkpoints below
+are historical; use this section and PRODUCT G1 for current scope.
+
+## Active generated-play task — 2026-10-25
+
+Owner explicitly requested WORDISH.md -> BEE.md -> INTEGRATION.md (D-023).
+Those two module implementations and shared integration are authorized/completed.
+Earlier prompt preparation had no generator code authorized or verified; at this
+task's entry unfinished Wordish files had not been verified. Do not repeat that
+approval question. Other module prompts are not automatically authorized.
+
+tWordle: 1,387 original AI editorial answer candidates; unchanged 8,636 ENABLE
+guesses/six-guess rules. Bee: 98,144-word source index and 3,636 AI familiarity
+candidates; 1,489 qualifying set/center identities across 283 sets. Both banks have
+zero human/frequency review; difficulty/goal comfort remain provisional. Bee v2
+freezes all accepted words/goal count; old v1/v2 snapshots are unchanged.
+Module APIs/provenance/results are in generators/wordish/ and generators/bee/.
+
+New daily/extra starts use separate generation worker and ordered durable save
+before UI opening. Daily seeds pin game, policy and local 6 a.m. puzzle date and ignore history;
+extra UUID seeds exclude semantic content from latest 100 starts. Existing daily
+snapshots always win. Loading/cancel/retry/exhaustion/source errors are honest;
+normal cancellation/failed-save retry purge active/recovery copies. Incomplete
+or failed rollback still requires keep-open/retry; process death at that point
+is not guaranteed. No durable start journal, silent starter fallback, new variant,
+dependency/permission/service/network/global-setting change or public app release.
+
+Missing: Connections/Strands/Crossword generator handoffs. Their labeled 10-starter
+cycles remain functional; do not claim all-five generated closure. Preserve all
+old player snapshots and the owner's display names (D-022). Untracked user
+gradle/gradle-daemon-jvm.properties remains unchanged/un-staged.
+
+Checks: 114 JVM tests pass; build/test APK/lint pass (0 errors/1 prior target 36
+warning). Two real-source 1,000-seed reports; both preprocessing --check pass.
+Android 8/8 pass on offline emulator-5554 update install (64.115 seconds) and offline
+fresh project-local emulator-5556 first install (69.8 seconds), without clearing data.
+Final strengthened suite also passes 8/8 (67.246 seconds), including calendar
+reopen/recreation; generated-board screenshots inspected. Details: VERIFICATION.
+Final delivered APK smoke also passes (1/1, 19.126 seconds); packaged source bytes
+and unchanged signing certificate verified after LF input normalization. Physical phone
+not targeted. Human fairness/Bee goal-length/input/motion/text/accessibility and
+actual overnight/clock-zone interruption acceptance remain open.
+
+APK artifacts/CLEAN-Words-generation-debug.apk, 0.3.0-generation/code 3; same signer
+verified against prior APK. SHA256 1834f5e87f8da21e6930f09e5cc8efd9516dec3e50448df8bde540043a0eade1.
+Exact next action: install this APK as an update without clearing data and batch
+MANUAL-ACCEPTANCE for generated tWordle/Bee and old history. To complete all-five
+generation later, obtain the other three module deliveries under their separate task scope, inspect
+their real APIs/contracts, then extend the explicit adapters/tests/credits. Do
+not implement undocumented variants or the whole backlog automatically.
+
+## Prior checkpoints (historical)
+
+
+## Display-name update — 2026-10-25
+
+D-022: tWordle, Speling Bee, Stranded and Crossita are the exact owner-requested
+names. Connektions unchanged. Module titles and offline credits updated; Android
+UI selectors, PRODUCT and manual checklist aligned. Internal IDs, content and
+saved snapshots unchanged. This small presentation change was handled locally.
+Offline assembleDebug and compileDebugAndroidTestKotlin pass; git diff --check
+passes. Device/emulator UI tests were not rerun for this rename.
+APK: artifacts/CLEAN-Words-names-debug.apk (same versionCode 2; install as update).
+SHA256: 6067a8e66451ec3ef0670ec43dd8ec0ca70f37c6961585a88cffe1e9b1f5fad6.
+Next: install this APK as an update without clearing data; review names on home,
+game headers, Help and calendar alongside the existing F1 manual acceptance.
+Previous F1 artifact below predates this rename. No new dependencies or permissions.
 
 ## Authority and constraints
 
@@ -53,6 +120,15 @@ Android tests: a physical phone may be connected. User's untracked
 'gradle/gradle-daemon-jvm.properties' predates F1 and was not changed/staged.
 
 ## Parallel development and next action
+
+Latest user request: prompts to convert each game into generated play. Prepared
+docs/agent-prompts/generation/ with COMMON, five isolated module prompts and one
+primary INTEGRATION prompt. This preparing chat changed Markdown only; no generator
+code/build/data conversion was executed or authorized by requesting prompts.
+When the user pastes a prompt as an implementation task, that authorizes its
+bounded scope. Five pure module deliveries require primary runtime integration;
+do not call them completed app conversion before daily/extra flows actually use
+them. Existing F1 bug-fix authority remains; future generators are not automatic.
 
 Primary owns core/shared UI/build/integration; game agents own isolated folders.
 CONTRACT and FEEDBACK-01 apply. Ready-to-paste concurrent Connections task:

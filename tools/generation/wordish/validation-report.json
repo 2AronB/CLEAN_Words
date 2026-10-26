@@ -1,0 +1,281 @@
+{
+  "version": "original-shortlist-v1",
+  "tsvSha256": "390a36fde39a5264d51032eb7dea2187dd2934c940f1ad2f9dda2d6a9bf15414",
+  "draftOccurrences": 1451,
+  "distinctDraftCandidates": 1449,
+  "eligibleCount": 1387,
+  "aiEditorialReviewedCount": 1387,
+  "humanReviewedCount": 0,
+  "empiricalFamiliarityReviewedCount": 0,
+  "provisionalDifficultyCount": 1387,
+  "rejectedOccurrences": 64,
+  "rejected": [
+    {
+      "word": "AROUND",
+      "reason": "six letters; malformed draft entry"
+    },
+    {
+      "word": "BLIND",
+      "reason": "ambiguous disability/metaphor use; defer editorial review"
+    },
+    {
+      "word": "CRAZY",
+      "reason": "potentially stigmatizing description excluded from initial shortlist"
+    },
+    {
+      "word": "CRIME",
+      "reason": "defer crime category for initial shortlist"
+    },
+    {
+      "word": "DEBUT",
+      "reason": "accentless spelling and familiarity review deferred"
+    },
+    {
+      "word": "FIXED",
+      "reason": "routine inflected variant excluded"
+    },
+    {
+      "word": "FRAUD",
+      "reason": "defer crime category for initial shortlist"
+    },
+    {
+      "word": "MIXED",
+      "reason": "routine inflected variant excluded"
+    },
+    {
+      "word": "NOTED",
+      "reason": "routine inflected variant excluded"
+    },
+    {
+      "word": "THIEF",
+      "reason": "defer crime category for initial shortlist"
+    },
+    {
+      "word": "TIRED",
+      "reason": "routine inflected variant excluded"
+    },
+    {
+      "word": "BOOZE",
+      "reason": "alcohol slang excluded from initial answer shortlist"
+    },
+    {
+      "word": "CHINA",
+      "reason": "ordinary porcelain sense exists but capitalization ambiguity; defer review"
+    },
+    {
+      "word": "CIGAR",
+      "reason": "tobacco excluded from initial answer shortlist"
+    },
+    {
+      "word": "CLAWS",
+      "reason": "regular plural excluded"
+    },
+    {
+      "word": "DOWRY",
+      "reason": "culturally sensitive context; defer editorial review"
+    },
+    {
+      "word": "DRAKE",
+      "reason": "less familiar animal term deferred"
+    },
+    {
+      "word": "DRIED",
+      "reason": "routine inflected variant excluded"
+    },
+    {
+      "word": "DWARF",
+      "reason": "ambiguous potentially derogatory person sense; defer editorial review"
+    },
+    {
+      "word": "EMCEE",
+      "reason": "spelled-out abbreviation deferred"
+    },
+    {
+      "word": "ENVOY",
+      "reason": "less familiar occupation term deferred"
+    },
+    {
+      "word": "EPOCH",
+      "reason": "less familiar abstract term deferred"
+    },
+    {
+      "word": "FANCY",
+      "reason": "duplicate draft occurrence"
+    },
+    {
+      "word": "FATAL",
+      "reason": "death emphasis; defer initial shortlist"
+    },
+    {
+      "word": "FREAK",
+      "reason": "targeted-insult risk; defer editorial review"
+    },
+    {
+      "word": "FUGUE",
+      "reason": "specialized music vocabulary deferred"
+    },
+    {
+      "word": "GAMMA",
+      "reason": "specialized Greek-letter vocabulary deferred"
+    },
+    {
+      "word": "GIPSY",
+      "reason": "outdated potentially offensive label"
+    },
+    {
+      "word": "GLEEF",
+      "reason": "not ordinary English; malformed draft entry"
+    },
+    {
+      "word": "GNASH",
+      "reason": "less familiar verb deferred"
+    },
+    {
+      "word": "GUAVA",
+      "reason": "familiarity varies by region; defer review"
+    },
+    {
+      "word": "MAXIM",
+      "reason": "less familiar abstract term deferred"
+    },
+    {
+      "word": "MELEE",
+      "reason": "accentless spelling and familiarity review deferred"
+    },
+    {
+      "word": "MOGUL",
+      "reason": "ambiguous cultural/title sense deferred"
+    },
+    {
+      "word": "MUTED",
+      "reason": "routine inflected variant excluded"
+    },
+    {
+      "word": "PRONG",
+      "reason": "less familiar noun deferred"
+    },
+    {
+      "word": "RABID",
+      "reason": "illness/insult ambiguity; defer editorial review"
+    },
+    {
+      "word": "SABER",
+      "reason": "weapon noun and spelling ambiguity deferred"
+    },
+    {
+      "word": "SCALP",
+      "reason": "ambiguous violent verb sense deferred"
+    },
+    {
+      "word": "SHIED",
+      "reason": "routine inflected variant excluded"
+    },
+    {
+      "word": "SINEW",
+      "reason": "less familiar anatomical term deferred"
+    },
+    {
+      "word": "SKULL",
+      "reason": "anatomical/death associations deferred"
+    },
+    {
+      "word": "SOOTH",
+      "reason": "archaic standalone form deferred"
+    },
+    {
+      "word": "SPORE",
+      "reason": "specialized biological term deferred"
+    },
+    {
+      "word": "SPUNK",
+      "reason": "regional sexual slang ambiguity; defer editorial review"
+    },
+    {
+      "word": "STANK",
+      "reason": "unpleasant irregular inflection deferred"
+    },
+    {
+      "word": "STUNK",
+      "reason": "unpleasant irregular inflection deferred"
+    },
+    {
+      "word": "TAPIR",
+      "reason": "less familiar animal deferred"
+    },
+    {
+      "word": "TEPEE",
+      "reason": "variant-spelling ambiguity deferred"
+    },
+    {
+      "word": "THANK",
+      "reason": "duplicate draft occurrence"
+    },
+    {
+      "word": "TRAWL",
+      "reason": "less familiar verb deferred"
+    },
+    {
+      "word": "TRIPE",
+      "reason": "less familiar food/insult ambiguity deferred"
+    },
+    {
+      "word": "TUMOR",
+      "reason": "illness-specific sensitive answer deferred"
+    },
+    {
+      "word": "ULCER",
+      "reason": "illness-specific sensitive answer deferred"
+    },
+    {
+      "word": "VELDT",
+      "reason": "less familiar regional spelling deferred"
+    },
+    {
+      "word": "VENOM",
+      "reason": "potentially unpleasant answer deferred"
+    },
+    {
+      "word": "VIXEN",
+      "reason": "animal sense exists but gendered insult ambiguity; defer review"
+    },
+    {
+      "word": "VODKA",
+      "reason": "alcohol-specific answer deferred"
+    },
+    {
+      "word": "WARTY",
+      "reason": "potentially unpleasant descriptor deferred"
+    },
+    {
+      "word": "WAXEN",
+      "reason": "less familiar adjective deferred"
+    },
+    {
+      "word": "WHELP",
+      "reason": "animal/insult ambiguity; defer review"
+    },
+    {
+      "word": "WIDOW",
+      "reason": "bereavement-specific answer deferred"
+    },
+    {
+      "word": "WRACK",
+      "reason": "wrack/rack spelling ambiguity deferred"
+    },
+    {
+      "word": "WREST",
+      "reason": "less familiar verb deferred"
+    }
+  ],
+  "guessVersion": "enable-five-v1",
+  "guessSourceSha256": "3f16130220645692ed49c7134e24a18504c2ca55b3c012f7290e3e77c63b1a89",
+  "sourceLimitations": [
+    "Original AI editorial selection; not frequency-ranked",
+    "No player fairness review or difficulty calibration",
+    "No external answer list or proprietary puzzle sequence used",
+    "ENABLE membership checks guess validity only"
+  ],
+  "policySha256": "ff473368b60a9e8b6e75339697de4383f1a8e9294755affdca0b086ef19877db",
+  "draftSha256": "4c8e13a3ff4e2109aecd10f4aaa96c4adcf23f7429f4423b81c4a1aacb8a7279",
+  "exclusionsSha256": "2622b7d8a9edd285123ccbcf59ff40263a810db836c3ee3fe0921d8b66b3fede"
+}

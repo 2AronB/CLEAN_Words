@@ -1,5 +1,20 @@
 # Spelling Meh content and score policy
 
+## G1 generated starts — 2026-10-25
+
+Display name: Speling Bee. New starts use generators/bee/BeeGenerator and the
+bundled ENABLE mask index, rather than the ten seeds below. Original licensed
+source/hash/notice remain unchanged. Index holds 98,144 usable words; an original
+3,636-word AI familiarity shortlist yields 310 candidate sets, 1,489 qualifying
+set/center identities across 283 sets. Every accepted matching word is enumerated
+and frozen with pangrams, length totals/source/profile pins. Existing v2 schema
+freezes familiar-count goal ceil(70%) (inventory 9–47); all accepted words count
+equally. Old v1/v2 snapshots/results stay intact. Human/frequency review count 0;
+no calibrated difficulty/new polygon modes. Source/policy: assets/generation/bee/;
+pipeline: tools/generation/bee/; API/checks/limits: generators/bee/README.md,
+INTEGRATION.md and REPORT.md. Broad ENABLE acceptance includes obscure/inflected/
+potentially sensitive words. Familiarity is provisional and does not limit credit.
+
 Ten distinct original seven-letter sets/goals prepared 2026-10-25: CENTRAL,
 READING, KITCHEN, PICTURE, JOURNEY, CAPTURE, ANOTHER, SUBJECT, BLANKET, COUNTRY.
 Each seed uses all seven distinct letters and is a dictionary-listed goal pangram.

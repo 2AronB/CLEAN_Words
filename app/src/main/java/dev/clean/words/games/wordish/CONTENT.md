@@ -1,5 +1,17 @@
 # Wordish content and provenance
 
+## G1 generated starts — 2026-10-25
+
+New starts use generators/wordish/WordishGenerator and 1,387 original AI editorial
+answers in assets/generation/wordish/answers.tsv. Human/frequency review count 0;
+difficulty provisional. Spelling/inflection/names/sensitive-content policy is in
+that asset folder's policy.json. tools/generation/wordish/prepare-bank.mjs --check
+reproduces the bank and transparent rejection report. No proprietary answer
+sequence was copied. ENABLE acceptance remains exactly enable-five-v1. The ten
+starter records below and every saved snapshot remain valid/unchanged. API/checks:
+generators/wordish/README.md, INTEGRATION.md and REPORT.md. Finite bank, no unlimited
+novelty claim. App credits preserve ENABLE notice and disclose editorial limits.
+
 Ten original answer selections: APPLE, CRANE, PLANT, BRICK, SHORE, LIGHT, MUSIC,
 DREAM, FLUTE, GHOST. Selected for CLEAN Words on 2026-10-25 as familiar words;
 not taken from a proprietary answer sequence. Difficulty is not calibrated.

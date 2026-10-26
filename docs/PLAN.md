@@ -1,5 +1,19 @@
 # Discovery and delivery plan
 
+G1 update (2026-10-25): owner authorized Wordish, Bee and primary integration.
+Both generators and real daily/additional worker/save adapters are implemented.
+Other three games retain labeled starters because their generator modules have
+not been delivered. Counts/behavior: PRODUCT G1; actual checks/phone/fairness gaps:
+VERIFICATION. No new dependencies. The original S1 plan below remains historical.
+
+G1 verification covers two real-source 1,000-seed reports, independent Bee source
+filtering, semantic exclusions, pinned fixtures, legacy snapshot retention,
+source-error/cancel/retry/double-tap/date-boundary tests and recovery-copy cleanup.
+Use tools/test-emulator.ps1 with explicit -Serial and optional -ReportPath for
+offline UI/session/update checks; never clear player data. Full five-game closure
+needs the other three handoffs and real UI checks. Human phone/fairness and process
+death during incomplete save/rollback remain unverified.
+
 Status: S1 authorized and implemented 2026-10-25, with ten samples per game.
 Verification and device acceptance are tracked in CONTINUE and VERIFICATION.
 Current feedback F1 is authorized and specified in FEEDBACK-01. Input now uses

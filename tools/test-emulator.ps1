@@ -1,6 +1,7 @@
 param(
     [ValidatePattern('^emulator-[0-9]+$')][string]$Serial = 'emulator-5554',
-    [string]$Adb = "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe"
+    [string]$Adb = "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe",
+    [string]$ReportPath = 'artifacts/F1-device-test.txt'
 )
 $ErrorActionPreference = 'Stop'
 # Explicit serial prevents test runners from touching a connected personal phone.
@@ -20,8 +21,8 @@ try {
     New-Item -ItemType Directory -Path artifacts -Force | Out-Null
     $taskTestOutput = & $Adb -s $Serial shell am instrument -w dev.clean.words.test/androidx.test.runner.AndroidJUnitRunner 2>&1
     $taskExitCode = $LASTEXITCODE
-    $taskTestOutput | Tee-Object -FilePath artifacts\F1-device-test.txt
+    $taskTestOutput | Tee-Object -FilePath $ReportPath
     if ($taskExitCode -ne 0 -or (($taskTestOutput -join "`n") -notmatch 'OK \(\d+ tests?\)')) {
-        throw 'Android tests did not report success; inspect artifacts/F1-device-test.txt.'
+        throw "Android tests did not report success; inspect $ReportPath."
     }
 } finally { Pop-Location }
