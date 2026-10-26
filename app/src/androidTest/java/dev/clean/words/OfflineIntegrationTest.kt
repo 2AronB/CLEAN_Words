@@ -173,16 +173,24 @@ class OfflineIntegrationTest {
                     val groups = ConnectionsRules.groups(attempt.puzzle)
                     val triple = attempt.puzzle.data.getValue("decoy.0.members").split('|')
                     val wrong = triple + groups.flatMap { it.words }.first { it !in triple }
-                    repeat(2) { retry ->
-                        wrong.forEach { word -> click(word, exact = true) }
+                    repeat(2) {
+                        wrong.forEachIndexed { index, word ->
+                            click(word, exact = true)
+                            eventually("selected wrong-set tile ${index + 1}") {
+                                ConnectionsRules.selection(disk.load().library!!.attempts.first { it.id == attempt.id }.state).size == index + 1
+                            }
+                        }
                         click("Enter", exact = true)
                         eventually("same wrong set counts once") {
                             val state = disk.load().library!!.attempts.first { it.id == attempt.id }.state
                             ConnectionsRules.mistakes(state).size == 1 &&
-                                ConnectionsRules.selection(state).size == if (retry == 0) 0 else 4
+                                ConnectionsRules.selection(state).size == 4
+                        }
+                        click("Clear", exact = true) // wrong submissions preserve selection under existing rules
+                        eventually("selection cleared before next submission") {
+                            ConnectionsRules.selection(disk.load().library!!.attempts.first { it.id == attempt.id }.state).isEmpty()
                         }
                     }
-                    click("Clear", exact = true) // repeated wrong-set submission preserves selection under existing rules
                     groups.first().words.forEach { click(it, exact = true) }
                     click("Enter", exact = true)
                     eventually("generated group solved and saved") {
@@ -191,7 +199,10 @@ class OfflineIntegrationTest {
                 }
                 val beforeRecreate = disk.load().library!!.attempts.first { it.id == attempt.id }
                 scenario.recreate()
-                eventually("restored generated content") { has("Generated locally · provisional content quality") }
+                eventually("restored generated content") {
+                    if (has("Generated locally · provisional content quality")) true
+                    else { scroll(backward = true); false }
+                }
                 instrumentation.uiAutomation.takeScreenshot()?.let { screenshot ->
                     java.io.FileOutputStream(File(context.cacheDir, "generation-${game.id}.png")).use {
                         assertTrue(screenshot.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, it))
@@ -328,16 +339,18 @@ class OfflineIntegrationTest {
         }
         repeat(10) {
             instrumentation.waitForIdleSync()
+            if (android.os.Build.VERSION.SDK_INT >= 33) instrumentation.uiAutomation.clearCache()
             val node = clickableMatch(instrumentation.uiAutomation.rootInActiveWindow)
             if (node != null) {
                 node.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_ON_SCREEN.id)
                 SystemClock.sleep(100)
+                if (android.os.Build.VERSION.SDK_INT >= 33) instrumentation.uiAutomation.clearCache()
                 val refreshed = clickableMatch(instrumentation.uiAutomation.rootInActiveWindow)
                 if (refreshed?.performAction(AccessibilityNodeInfo.ACTION_CLICK) == true) {
                     SystemClock.sleep(250); return
                 }
-                // Compose can expose an enabled visible card whose accessibility click is
-                // rejected after recreation. Exercise its actual touch target instead.
+                // Use the visible rendered target when a recreated card rejects its
+                // accessibility action. Disabled targets never receive a forced tap.
                 if (refreshed != null && refreshed.isVisibleToUser && refreshed.isEnabled) {
                     val bounds = android.graphics.Rect()
                     refreshed.getBoundsInScreen(bounds)

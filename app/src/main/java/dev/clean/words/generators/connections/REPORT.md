@@ -51,9 +51,10 @@ six diverse seeds, genuine composition beyond two fixtures, source/profile error
 exact-three enforcement, competing-partition rejection, tiny-pool exhaustion,
 budget-versus-exhaustion distinction, cancellation before/during work, semantic
 exclusions, caller-list detachment and generated/legacy codec round-trips.
-The full JVM suite currently passes 170 tests, zero failures. Offline APK builds
-and lint pass; lint retains the prior target SDK warning. Android/update delivery
-results are recorded in docs/VERIFICATION and CONTINUE after device verification.
+The full JVM suite currently passes 171 tests, zero failures. Offline APK builds
+and lint pass; lint retains the prior target SDK warning. Full offline Android
+update suite passes 14/14 in 175.357 seconds; generated-board screenshot inspected.
+Exact APK/hash/signer and remaining device/manual gaps: docs/VERIFICATION/CONTINUE.
 
 Frozen content includes intended words/senses/explanations, category/review and
 source/policy pins, both decoy triples/senses/context and every tested modeled

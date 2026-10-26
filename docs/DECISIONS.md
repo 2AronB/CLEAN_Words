@@ -14,7 +14,7 @@ Human fairness and actual-phone acceptance remain separate from automated checks
 
 ## D-026 — Connections bounded slice 1 and deliberate decoys
 
-Current authorization is extended by D-027 below.
+Current authorization is extended by D-027 above.
 
 2026-10-26 — Owner requested decoy-first composition (two or three tempting
 members, then fill the four real groups) and authorized "Start on slice 1" with

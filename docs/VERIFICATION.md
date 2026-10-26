@@ -1,3 +1,60 @@
+## Connektions C2 verification — 2026-10-26
+
+Owner authorized remaining slices and Connections-only integration (D-027).
+Pure decoy-first composer, compiled pinned bank, worker adapter, semantic recent
+exclusions, credits and version 0.5.0-connections/code 5 are implemented. No new
+dependency/permission/service/network/global setting or storage schema.
+
+- 171 JVM tests pass, zero failures/errors. Includes 15 focused composer tests,
+  runtime Node/Kotlin source-pin equality, legacy daily retention, full snapshots,
+  cancellation, budget/exhaustion distinction, exact-three decoy enforcement and
+  independent competing-partition checks.
+- Real bank: 200 independent seeds -> 198 semantic boards; 200 rolling latest-100
+  starts -> 200 boards; zero failures. Every successful result is independently
+  checked against all recorded quartets/partitions. Nine of 20 categories and
+  four decoy pairs appear; zero human reviews. Full timing/reuse/rejections and
+  source pins: generators/connections/REPORT.md and tools/generation/connections/
+  qualification.txt. Mechanical variety does not establish editorial variety.
+- Node pilot validator/self-tests and typed bank --check pass. Converter excludes
+  authored board fixtures; test alias and runtime use the same actual bank.
+- Offline assembleDebug/assembleDebugAndroidTest and final lint pass (0 errors,
+  one prior target SDK warning).
+- Update installed on explicit offline project-local emulator-5556 from code 4,
+  using install -r, no uninstall or storage clear. New empty test-library sessions
+  cover generated daily/extra and restart. Existing saved main-app history remains.
+- Initial Android run had four UI timeouts behind an observed Pixel Launcher ANR.
+  After dismissing the emulator dialog, test-harness issues were corrected: wrong
+  guesses retain selection under existing rules, and recreated accessibility nodes
+  require fresh cache/visible targeting with a real-touch fallback. No game rule
+  or production input behavior was changed to satisfy a test. Earlier failed logs
+  remain in artifacts/connections-device-test.txt, connections-device-retry.txt,
+  and connections-focused-device-test*.txt.
+- Focused all-three-generated UI flow passes 1/1 (48.561 seconds), including
+  Connections wrong/repeated guesses, Clear, solved group persistence, recreation
+  and frozen content. Final full Android suite passes **14/14 in 175.357 seconds**
+  on offline emulator-5556, including the updated all-three UI test, existing
+  Bee opening tests, all fifty starter rule/save checks, permissions/credits,
+  legacy Connections daily/save-retry tests and crossword rapid-input regression.
+  Final log: artifacts/connections-final-device-test.txt. No failures were skipped.
+- Generated board screenshot artifacts/connections-generated-board.png inspected:
+  solved-group explanation, remaining tile text, controls and saved-state label
+  fit the emulator viewport. Actual phone/large-text review remains open.
+
+APK: artifacts/CLEAN-Words-connections-debug.apk, versionCode 5.
+SHA256 69cb6d6399fd1ac803ebfb4f83ada3cf75cc67c7e92177cf4f5e14d897e29f9c.
+Signing certificate SHA256 5d01ad4ef91eff366eab754f3853d8460b26007bce1a80a5416a0b5d7ed20916,
+identical to prior Bee-opening APK. Install as an update, never clear player data.
+Delivered APK SHA256 equals the installed built APK; production source did not
+change during test-helper repairs. Project emulator was shut down after checks.
+
+Unverified: human ambiguity/fairness/desired difficulty, category breadth and actual
+phone/text-size/input/motion review; real overnight/time-zone interruption and
+process death during incomplete save rollback. C2 uses upgrade installation and
+new empty per-test libraries; separate clean-device first installation was not
+rerun. Stranded/Crossita remain honest ten-starter cycles, not generated games.
+No all-five conversion, public release or reviewed-content claim. Manual batch:
+MANUAL-ACCEPTANCE C2. Older verification sections below retain their own scope.
+
 ## Connections slice 1 verification — 2026-10-26
 
 Development-only tooling: `node tools/generation/connections/author-pilot.mjs`

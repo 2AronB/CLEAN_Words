@@ -11,7 +11,8 @@
 - [ ] Separate content batches: more compatible categories/fixtures; wider prompt
   targets (120 categories/five pilot boards) remain unmet. Human ambiguity review.
 - [x] Slice 4: Connections-only shared integration, preserving all prior saves.
-- [ ] Slice 5: offline build/emulator/update checks, docs and APK delivery.
+- [x] Slice 5: offline build/lint, 171 JVM and 14 Android tests, update/signature/
+  frozen-save checks, screenshot review, docs and versioned APK delivery.
 
 Exact next action and paths: CONTINUE. Do not use pilot fixtures as runtime pool.
 

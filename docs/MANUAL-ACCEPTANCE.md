@@ -76,3 +76,22 @@ Known S1 limits: one standard mode per game, small cycling pool, mostly direct
 editorial categories/clues, simple history, no streak calculation, no backup or
 export. The remaining MVP work is in TODO/FUTURE-DEVELOPMENT; this checklist
 does not waive it.
+## Connektions C2 phone/fairness batch — 2026-10-26
+
+Install CLEAN-Words-connections-debug.apk as an update, preserving app data.
+Existing saved dailies keep their prior boards; choose Another puzzle to try
+generation immediately. Review several extra boards in one session:
+
+- Look for tempting incomplete relationships, then assess whether the four actual
+  groups resolve convincingly. Record unintended full groups/alternate solutions
+  and unfamiliar senses or cultural prerequisites. Mechanical checks cannot
+  decide this; difficulty and fairness remain provisional.
+- Confirm selection, Clear/Enter/Delete, first/repeated wrong guesses (selection
+  stays; an identical wrong set costs no additional mistake), solved-group
+  explanations, recreation/restart and return through calendar/extra history.
+- Check tile readability, longer explanations, scrolling and larger system text
+  on the actual phone. Generated category variety is currently limited.
+- Check older Wordish/Bee/Connections progress remains, Bee scoring still behaves
+  as approved, and Stranded/Crossita retain their disclosed starter behavior.
+
+Do not uninstall or clear storage. No public release acceptance is implied.

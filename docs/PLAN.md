@@ -4,8 +4,9 @@ Connections C2 (2026-10-26): owner authorized all remaining slices and integrati
 after the standalone checkpoint. Composer/400-start qualification and explicit
 Connections-only adapter are implemented. No expanded bank was needed to pass the
 bounded pipeline; limited category variety remains disclosed and requires later
-content review/expansion. All 170 JVM tests/build/lint pass. Android update/retry
-and screenshot delivery checks are finishing; see CONTINUE for exact current step.
+content review/expansion. All 171 JVM tests/build/lint pass; offline Android suite
+14/14 passes on code-4 update installation. Screenshot/signature/artifact checks
+complete; see CONTINUE for APK, human review gaps and exact next action.
 
 Connections C1 (2026-10-26, D-026): slice 1 complete; 20-category original pilot,
 two modeled-decoy fixtures and proposed module contract validated locally.

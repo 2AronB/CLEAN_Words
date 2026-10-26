@@ -1,6 +1,6 @@
 # Continue CLEAN Words
 
-## Connections remaining slices authorized — 2026-10-26
+## Connektions C2 integrated and verified — 2026-10-26
 
 Owner first authorized "Next slice", then "Work through the remaining slices
 then integrate." This now authorizes qualification and Connections-only app
@@ -20,17 +20,24 @@ Runtime bank compiled without fixture boards; explicit worker/policy/signature
 adapter, honest credits/home/hub disclosure and version 0.5.0-connections/code 5
 implemented. All 171 JVM tests/builds/lint pass (0 errors/1 prior SDK warning).
 Offline update from Bee code 4 installed on project emulator-5556; no data clear.
-Initial Android run: 10 pass/4 UI timeouts; observed Pixel Launcher ANR covered
-the app. After dismissing it, retry had two test failures: existing offscreen
-accessibility card clicks and a new incorrect repeated-wrong-set assertion.
-Corrected assertion to preserve existing selected tiles, added visible-target
-lookup and real touch fallback in test helper. Focused UI recheck is in progress;
-no production rule change. Initial APK artifacts/CLEAN-Words-connections-debug.apk
+Final full Android suite passes 14/14 in 175.357 seconds on offline emulator-5556,
+including all three generated games through real UI, repeated wrong-set behavior,
+solved-group/recreation/disk retention, legacy daily precedence and save-failure
+retry. Screenshot artifacts/connections-generated-board.png inspected. Earlier
+emulator launcher ANR/test-harness failures and their fixes remain documented in
+VERIFICATION; no production game rule was changed to satisfy tests.
+APK artifacts/CLEAN-Words-connections-debug.apk
 has SHA256 69cb6d6399fd1ac803ebfb4f83ada3cf75cc67c7e92177cf4f5e14d897e29f9c;
-same signing cert as Bee code 4. Not final device-verified yet.
-Next: rebuild current Android test helper, complete focused/full offline retry,
-inspect generated Connections screenshot, finish artifact/docs and push verified
-source. Human fairness stays open; Stranded/Crossita generators remain unbuilt.
+same signing cert as Bee code 4; exact built/delivered bytes verified equal.
+No physical phone was targeted, and no player storage was cleared. Final source
+checkpoint includes all completed slices; preserve unrelated Wordish staging/
+tools and untracked user Gradle JVM file. Test emulator is shut down at handoff.
+Exact next action: install this APK as an update without clearing data, choose
+Another puzzle in Connektions (existing daily retains its old snapshot), then
+batch MANUAL-ACCEPTANCE C2. Human ambiguity/fairness/difficulty/actual-phone/
+large-text/input/motion review stays open. Separate clean-device first install
+was not rerun; fresh test-library sessions and an actual code-4 update passed.
+Stranded/Crossita generators remain unbuilt; do not claim all-five generation.
 
 ## Connections slice 1 complete — 2026-10-26
 
