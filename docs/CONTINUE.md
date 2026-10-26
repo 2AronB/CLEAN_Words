@@ -46,6 +46,11 @@ actual overnight/clock-zone interruption acceptance remain open.
 
 APK artifacts/CLEAN-Words-generation-debug.apk, 0.3.0-generation/code 3; same signer
 verified against prior APK. SHA256 1834f5e87f8da21e6930f09e5cc8efd9516dec3e50448df8bde540043a0eade1.
+Verified implementation commit 28d3f3f is pushed to origin/main. Only the
+pre-existing untracked Gradle JVM file remains outside committed work. Fresh
+project-local test emulator-5556 was shut down after the tests; screenshots/logs
+and disposable AVD files are retained under ignored artifacts/. No physical
+phone or its storage was used.
 Exact next action: install this APK as an update without clearing data and batch
 MANUAL-ACCEPTANCE for generated tWordle/Bee and old history. To complete all-five
 generation later, obtain the other three module deliveries under their separate task scope, inspect
