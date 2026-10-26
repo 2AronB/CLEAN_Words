@@ -8,14 +8,29 @@ integration/delivery; do not repeat the scope approval question. Primary owns
 module implementation, input conversion, shared integration and coordinated builds.
 Slice 2 code is implemented: pure bounded decoy-first composer, canonical typed
 bank/profile pins, all-recorded partition checks, complete snapshots and explicit
-failure/cancel results. Actual pilot is converted to TEST-ONLY Kotlin without
-board fixtures. 169 JVM tests pass (15 new focused composer tests), zero failures.
+failure/cancel results. Standalone checkpoint 799ab22 used TEST-ONLY pilot Kotlin
+without board fixtures and passed 169 JVM tests (15 new focused composer tests).
 Independent test author supplied positive/negative tests; final independent code
 review was unavailable when that agent reached its usage limit. Primary reviews.
 Keep existing rules, runtime flows, saves, Wordish staging and user Gradle file.
-Next: run 200-seed actual-bank qualification plus latest-100 exclusion sequence;
-then bundle pinned inputs and adapt existing worker/signatures/credits. Test real
-daily/extra/resume/update offline before APK delivery. Human fairness stays open.
+Qualification complete: 200 seeds -> 198 semantic boards; rolling-100 sequence
+of 200 -> 200 boards; zero failures, nine used categories/four decoy pairs, zero
+human reviews. All 400 outputs independently checked against modeled partitions.
+Runtime bank compiled without fixture boards; explicit worker/policy/signature
+adapter, honest credits/home/hub disclosure and version 0.5.0-connections/code 5
+implemented. All 171 JVM tests/builds/lint pass (0 errors/1 prior SDK warning).
+Offline update from Bee code 4 installed on project emulator-5556; no data clear.
+Initial Android run: 10 pass/4 UI timeouts; observed Pixel Launcher ANR covered
+the app. After dismissing it, retry had two test failures: existing offscreen
+accessibility card clicks and a new incorrect repeated-wrong-set assertion.
+Corrected assertion to preserve existing selected tiles, added visible-target
+lookup and real touch fallback in test helper. Focused UI recheck is in progress;
+no production rule change. Initial APK artifacts/CLEAN-Words-connections-debug.apk
+has SHA256 69cb6d6399fd1ac803ebfb4f83ada3cf75cc67c7e92177cf4f5e14d897e29f9c;
+same signing cert as Bee code 4. Not final device-verified yet.
+Next: rebuild current Android test helper, complete focused/full offline retry,
+inspect generated Connections screenshot, finish artifact/docs and push verified
+source. Human fairness stays open; Stranded/Crossita generators remain unbuilt.
 
 ## Connections slice 1 complete — 2026-10-26
 

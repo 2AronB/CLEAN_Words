@@ -1,9 +1,11 @@
-# Connections generation — slice 1
+# Connections decoy-first generation
 
-2026-10-26. Pilot inputs and proposed contract only. No Kotlin generator,
-runtime adapter, production content replacement or new APK is delivered here.
-No existing Connections staging delivery was available. Existing starters and
-all saves remain unchanged. Development inputs: [pilot.json](../../../../../../../../../tools/generation/connections/pilot.json).
+2026-10-26. Pure Kotlin composer and explicit shared adapter are implemented.
+Owner authorized slices 2–5 and integration. New daily/extra starts compose from
+the pinned original pilot; old starters and saved snapshots remain unchanged.
+Development inputs: [pilot.json](../../../../../../../../../tools/generation/connections/pilot.json).
+No prior Connections staging handoff existed. Review limits and measured variety
+are in [REPORT.md](REPORT.md). This does not complete all-five generation.
 
 ## Owner intent and scope
 
@@ -13,25 +15,37 @@ around their words. Initial target: two distinct relationships with exactly
 three visible members each, spanning at least two intended groups. Two-member
 relationships may support a board, but do not satisfy that initial target.
 Do not count the same relationship twice with different labels. Do not silently
-reduce this target when inputs are insufficient. This is slice 1 only; composer,
-qualification and integration are later independently resumable slices.
+reduce this target when inputs are insufficient. Content remains provisional.
 
-## Proposed pure Kotlin API for slice 2
+## Pure Kotlin API
 
 Module-local `ConnectionsGenerator(bank).generate(seed: Long,
 profile: ConnectionsProfile, recentSignatures: Set<String>,
 cancelled: () -> Boolean): ConnectionsGenerationResult`.
 
-Profile pins schema, bank SHA-256, generator and selection-policy versions,
-two-three-member-decoy target and candidate/search budgets. Result distinguishes
+Profile pins canonical typed bank SHA-256, generator and selection-policy versions,
+two-three-member-decoy target and candidate/search budgets. Bank schema is v1.
+Result distinguishes
 `Success(puzzle: PuzzleRecord, diagnostics)`, `NoCandidate(reason, diagnostics)`
 and `Cancelled`. Reasons distinguish invalid source, impossible constraints,
 recent-pool exhaustion and budget exhaustion; a bounded failed search cannot
 prove the entire pool exhausted. Diagnostics include attempts/search steps,
 rejections, chosen category/member IDs, decoy evidence and tested candidate
-groups. Runtime timing is diagnostic only, never part of deterministic content.
+groups. `NoCandidate` reasons are INVALID_SOURCE, INVALID_PROFILE,
+IMPOSSIBLE_CONSTRAINTS, RECENT_POOL_EXHAUSTED and BUDGET_EXHAUSTED. Only a complete
+modeled traversal can report impossible constraints/recent exhaustion. Runtime
+timing is measured by the qualification harness, never part of deterministic content.
 Check cancellation within selection and partition loops. Use stable sorted
-iteration and a documented pinned RNG; never wall clock or hash-set order.
+iteration and `java.util.Random`/Collections.shuffle under POLICY
+`two-triples-java-random-dfs-v1`; never wall clock or hash-set order.
+
+Bounds: 256 intended categories, 128 decoy relations, 4–16 members per relation,
+64-character tiles and 1024-character metadata/senses. Larger sources are rejected.
+Generator copies accepted caller-owned lists. Default limits: 250,000 counted
+search steps and 500 evaluated boards (maximum configurable 2,000,000/10,000).
+Cancellation is checked before work and throughout indexing, selection, filling
+and partition traversal. Source validation/canonical hashing are separately
+bounded by the source format; caller prepares/runs the module on the worker.
 
 ## Input contract v1
 
@@ -62,7 +76,7 @@ found. Require precisely the intended partition. An isolated extra valid quartet
 is not by itself a second full solution. Broad relationships can still make
 a puzzle feel unfair; human review remains necessary even with one partition.
 
-Slice 2: index member-to-category memberships; select decoy pairs; assign their
+Implementation: index member-to-category memberships; select decoy pairs; assign their
 visible triples to candidate solution categories; backtrack to complete four
 disjoint groups; recompute all modeled intersections and partitions; reject
 nonqualifying boards. Bound every phase and report honest failures. Store tested
@@ -88,6 +102,8 @@ No calibrated difficulty, abundance or guaranteed 200-seed success is claimed.
 
 ## Next checkpoint
 
-Implement the API/composer and focused deterministic tests in slice 2. Qualify
-against the actual bank in slice 3 (at least 200 seeds); expand inputs separately
-where observed search/variety deficits justify it. See [integration mapping](INTEGRATION.md).
+The actual bank passed 200 seeds and a separate 200-start rolling exclusion
+sequence, with independently enumerated quartets/partitions for every success.
+Only nine intended categories/four decoy pairings appeared. Broader bank expansion
+and human review are still needed; 198/200 seed variety does not imply unlimited
+categories or novelty. See [integration mapping](INTEGRATION.md) and REPORT.

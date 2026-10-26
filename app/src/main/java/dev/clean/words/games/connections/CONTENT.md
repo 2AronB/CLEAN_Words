@@ -1,5 +1,15 @@
 # Connections starter content
 
+## Generated daily/extra play — 2026-10-26
+
+New starts compose from the original provisional 20-category/five-decoy bank in
+generators/connections/BundledConnectionsBank.kt. Full provenance/pins, algorithms,
+qualification metrics and limitations: generators/connections/README.md and
+REPORT.md. No published puzzle archive or external relationship dataset was used.
+Two three-word decoys and modeled full-partition uniqueness are required. All
+content has zero human reviews; fairness and category variety remain provisional.
+The ten starters below and every already-started snapshot are preserved unchanged.
+
 Ten complete boards, forty categories and 160 displayed tiles were authored for
 CLEAN Words on 2026-10-25. These are original combinations and explanations,
 not imported NYT puzzles or a licensed external corpus. Ordinary vocabulary and

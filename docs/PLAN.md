@@ -1,5 +1,12 @@
 # Discovery and delivery plan
 
+Connections C2 (2026-10-26): owner authorized all remaining slices and integration
+after the standalone checkpoint. Composer/400-start qualification and explicit
+Connections-only adapter are implemented. No expanded bank was needed to pass the
+bounded pipeline; limited category variety remains disclosed and requires later
+content review/expansion. All 170 JVM tests/build/lint pass. Android update/retry
+and screenshot delivery checks are finishing; see CONTINUE for exact current step.
+
 Connections C1 (2026-10-26, D-026): slice 1 complete; 20-category original pilot,
 two modeled-decoy fixtures and proposed module contract validated locally.
 Checkpoint sequence: (2) standalone bounded decoy-first composer and focused

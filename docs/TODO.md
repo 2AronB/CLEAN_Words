@@ -5,11 +5,12 @@
 - [x] Slice 1: inspect staging/live snapshot shape; 20 original category inputs,
   five decoy relations, two complete examples; validator/negative fixtures and
   documented API/snapshot/novelty contract. All provisional, zero human reviews.
-- [ ] Slice 2, later authorization: standalone Kotlin composer and focused tests.
-- [ ] Slice 3: actual-bank 200-seed qualification; quantify variety/search limits.
+- [x] Slice 2: standalone Kotlin composer and 15 focused tests; saved checkpoint.
+- [x] Slice 3: 200 actual-bank seeds plus 200 rolling exclusions, independent
+  modeled partition checks; variety/search/rejection/reuse results recorded.
 - [ ] Separate content batches: more compatible categories/fixtures; wider prompt
   targets (120 categories/five pilot boards) remain unmet. Human ambiguity review.
-- [ ] Slice 4: Connections-only shared integration, preserving all prior saves.
+- [x] Slice 4: Connections-only shared integration, preserving all prior saves.
 - [ ] Slice 5: offline build/emulator/update checks, docs and APK delivery.
 
 Exact next action and paths: CONTINUE. Do not use pilot fixtures as runtime pool.

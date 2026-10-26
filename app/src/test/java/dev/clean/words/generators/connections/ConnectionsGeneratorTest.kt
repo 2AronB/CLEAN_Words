@@ -248,7 +248,7 @@ class ConnectionsGeneratorTest {
         }
     }
 
-    private fun assertIndependentBoard(source: ConnectionsBank, result: ConnectionsGenerationResult.Success) {
+    internal fun assertIndependentBoard(source: ConnectionsBank, result: ConnectionsGenerationResult.Success) {
         val groups = ConnectionsRules.groups(result.puzzle)
         assertEquals(emptyList<String>(), ConnectionsRules.validate(result.puzzle))
         assertEquals(4, result.diagnostics.chosenCategoryIds.size)

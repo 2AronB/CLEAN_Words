@@ -1,5 +1,32 @@
 # CLEAN Words product discovery
 
+## Generated Connektions C2 — authorized 2026-10-26
+
+Owner authorized the remaining generator slices and Connections-only integration.
+New Connektions daily/additional starts use the offline decoy-first composer with
+the 20-category/five-decoy original AI draft bank; four solution groups and two
+distinct cross-group three-member decoys are mandatory. Every recorded relation's
+four-member subsets are checked for a second full partition. Unknown human
+interpretations remain outside that model; no human review or calibrated challenge
+is claimed. Actual qualification used nine categories/four decoy pairings, so
+category variety is limited despite 198 distinct boards across 200 seeds.
+
+The existing generation lane/save-before-open/cancel/retry behavior applies.
+Pinned game/policy/local-6-a.m.-date daily seeds ignore extra history; an existing
+daily snapshot always wins. Extras exclude canonical group/member partitions
+from the latest 100 starts, including old starters. Ordering/labels/versions do
+not make old content novel. Bounded search failure, source errors and genuine
+recent exhaustion are distinct visible failures; no silent starter fallback or
+quality relaxation. Full content, category senses/explanations, source/review
+pins and decoy/alternative evidence are frozen. Old rules/results/saves remain.
+
+This gives three generated games (tWordle, Speling Bee, Connektions). Stranded
+and Crossita still disclose their ten-starter cycles. Five-game generation,
+120-category expansion, difficulty calibration and human phone/ambiguity review
+are not complete. No new dependency/SDK/service/permission/network/global setting.
+Verified checks/artifact status: VERIFICATION and CONTINUE. Earlier C1/G1 notes
+below describe their historical scope.
+
 ## Connections decoy-first pilot C1 — 2026-10-26
 
 Owner reports insufficient overlap in current Connektions. Prefer choosing two

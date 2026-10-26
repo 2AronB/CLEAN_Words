@@ -1,4 +1,20 @@
+## D-027 — Connections remaining slices and integration authorized
+
+2026-10-26 — Owner first requested the next standalone slice, then explicitly
+requested "Work through the remaining slices then integrate." This authorizes
+qualification, Connections-only shared integration and tested update delivery,
+superseding earlier slice-only boundaries. Preserve existing histories and Bee/
+Wordish behavior. No new runtime dependency/SDK/service/permission/network/global
+setting or public release. Composer checkpoint 799ab22 passed 169 JVM tests.
+The unchanged original pilot then passed 200 independent seeds and 200 rolling-
+100 starts. Input expansion is still needed for editorial/category variety;
+it is not claimed complete by those successful mechanical checks. All source/
+policy/review pins and actual limitations must remain in the handoff and credits.
+Human fairness and actual-phone acceptance remain separate from automated checks.
+
 ## D-026 — Connections bounded slice 1 and deliberate decoys
+
+Current authorization is extended by D-027 below.
 
 2026-10-26 — Owner requested decoy-first composition (two or three tempting
 members, then fill the four real groups) and authorized "Start on slice 1" with

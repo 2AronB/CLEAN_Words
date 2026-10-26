@@ -137,10 +137,10 @@ class OfflineIntegrationTest {
         }
     }
 
-    @Test fun bothGeneratedGamesStartThroughUiTypeAndResumeTheirFrozenContent() {
+    @Test fun allThreeGeneratedGamesStartThroughUiAndResumeTheirFrozenContent() {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             eventually("home") { has("A little word time.") }
-            listOf(WordishGame, BeeGame).forEach { game ->
+            listOf(WordishGame, BeeGame, ConnectionsGame).forEach { game ->
                 click(game.title)
                 eventually("hub") { has("Stay a little longer") }
                 val dailyLabel = when {
@@ -149,7 +149,7 @@ class OfflineIntegrationTest {
                     else -> "View today's result"
                 }
                 click(dailyLabel)
-                eventually("daily board") { has(if (game.id == "wordish") "correct place" else "Center letter:") }
+                eventually("daily board") { has(when(game.id) {"wordish" -> "correct place"; "bee" -> "Center letter:"; else -> "Mistakes remaining"}) }
                 instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
                 eventually("daily hub") { has("Another puzzle") }
                 click("Another puzzle")
@@ -162,14 +162,34 @@ class OfflineIntegrationTest {
                 if (game.id == "wordish") {
                     "APPLE".forEach { click(it.toString(), exact = true) }
                     eventually("five-letter input saved") { disk.load().library!!.attempts.first { it.id == attempt.id }.state["draft"] == "APPLE" }
-                } else {
+                } else if (game.id == "bee") {
                     val word = BeePuzzle.from(attempt.puzzle).goalWords.minBy { it.length }
                     word.forEach { click(it.toString(), exact = true) }
                     click("Enter word", exact = true)
                     eventually("generated Bee word accepted and saved") {
                         word in BeeState.from(disk.load().library!!.attempts.first { it.id == attempt.id }.state).found
                     }
+                } else {
+                    val groups = ConnectionsRules.groups(attempt.puzzle)
+                    val triple = attempt.puzzle.data.getValue("decoy.0.members").split('|')
+                    val wrong = triple + groups.flatMap { it.words }.first { it !in triple }
+                    repeat(2) { retry ->
+                        wrong.forEach { word -> click(word, exact = true) }
+                        click("Enter", exact = true)
+                        eventually("same wrong set counts once") {
+                            val state = disk.load().library!!.attempts.first { it.id == attempt.id }.state
+                            ConnectionsRules.mistakes(state).size == 1 &&
+                                ConnectionsRules.selection(state).size == if (retry == 0) 0 else 4
+                        }
+                    }
+                    click("Clear", exact = true) // repeated wrong-set submission preserves selection under existing rules
+                    groups.first().words.forEach { click(it, exact = true) }
+                    click("Enter", exact = true)
+                    eventually("generated group solved and saved") {
+                        ConnectionsRules.solved(disk.load().library!!.attempts.first { it.id == attempt.id }.state) == setOf(0)
+                    }
                 }
+                val beforeRecreate = disk.load().library!!.attempts.first { it.id == attempt.id }
                 scenario.recreate()
                 eventually("restored generated content") { has("Generated locally · provisional content quality") }
                 instrumentation.uiAutomation.takeScreenshot()?.let { screenshot ->
@@ -179,6 +199,7 @@ class OfflineIntegrationTest {
                     screenshot.recycle()
                 }
                 assertEquals(attempt.puzzle, disk.load().library!!.attempts.first { it.id == attempt.id }.puzzle)
+                assertEquals(beforeRecreate.state, disk.load().library!!.attempts.first { it.id == attempt.id }.state)
                 instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
                 eventually("hub after generated play") { has("Another puzzle") }
                 instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
@@ -297,10 +318,10 @@ class OfflineIntegrationTest {
         fun clickableMatch(node: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
             if (node == null) return null
             val values = listOf(node.text?.toString().orEmpty(), node.contentDescription?.toString().orEmpty())
-            if (values.any { if (exact) it == text else it.contains(text) }) {
+            if (node.isVisibleToUser && values.any { if (exact) it == text else it.contains(text) }) {
                 var target: AccessibilityNodeInfo? = node
                 while (target != null && !target.isClickable) target = target.parent
-                if (target != null) return target
+                if (target != null && target.isVisibleToUser && target.isEnabled) return target
             }
             repeat(node.childCount) { clickableMatch(node.getChild(it))?.let { found -> return found } }
             return null
@@ -314,6 +335,25 @@ class OfflineIntegrationTest {
                 val refreshed = clickableMatch(instrumentation.uiAutomation.rootInActiveWindow)
                 if (refreshed?.performAction(AccessibilityNodeInfo.ACTION_CLICK) == true) {
                     SystemClock.sleep(250); return
+                }
+                // Compose can expose an enabled visible card whose accessibility click is
+                // rejected after recreation. Exercise its actual touch target instead.
+                if (refreshed != null && refreshed.isVisibleToUser && refreshed.isEnabled) {
+                    val bounds = android.graphics.Rect()
+                    refreshed.getBoundsInScreen(bounds)
+                    val display = context.resources.displayMetrics
+                    if (bounds.intersect(0, 0, display.widthPixels, display.heightPixels) && !bounds.isEmpty) {
+                        val now = SystemClock.uptimeMillis()
+                        val down = android.view.MotionEvent.obtain(now, now, android.view.MotionEvent.ACTION_DOWN,
+                            bounds.exactCenterX(), bounds.exactCenterY(), 0)
+                        val up = android.view.MotionEvent.obtain(now, now + 80, android.view.MotionEvent.ACTION_UP,
+                            bounds.exactCenterX(), bounds.exactCenterY(), 0)
+                        try {
+                            val sent = instrumentation.uiAutomation.injectInputEvent(down, true) &&
+                                instrumentation.uiAutomation.injectInputEvent(up, true)
+                            if (sent) { SystemClock.sleep(300); return }
+                        } finally { down.recycle(); up.recycle() }
+                    }
                 }
             }
             scroll(backward = it >= 5); SystemClock.sleep(200)

@@ -3,6 +3,7 @@ package dev.clean.words.core
 import dev.clean.words.GameRegistry
 import dev.clean.words.generators.wordish.*
 import dev.clean.words.generators.bee.*
+import dev.clean.words.generators.connections.*
 import dev.clean.words.games.bee.BeeOpening
 import dev.clean.words.games.bee.BeeOpeningQuality
 
@@ -10,9 +11,11 @@ import dev.clean.words.games.bee.BeeOpeningQuality
 class OfflinePuzzleGeneration(private val readAsset: (String) -> String) : PuzzleGenerator {
     private var wordish: WordishGenerator? = null
     private var bee: BeeGenerator? = null
+    private var connections: ConnectionsGenerator? = null
 
     companion object {
-        fun isGenerated(gameId: String) = gameId == "wordish" || gameId == "bee"
+        fun isGenerated(gameId: String) = gameId == "wordish" || gameId == "bee" || gameId == "connections"
+        const val connectionsPolicy = "${ConnectionsGenerator.VERSION}|${ConnectionsGenerator.POLICY}|${BundledConnectionsBank.version}|${BundledConnectionsBank.contentSha256}|${BundledConnectionsBank.sourceSha256}|two-decoys|250000-steps|500-candidates"
         const val beeOpeningApproval = "owner-no-ratio-filter-2026-10-26-v1"
         const val beePolicy = "${BeeGenerator.openingVersion}|${BeeGenerator.openingProfileVersion}|${BeeBundledSource.selectionPolicy}|${BeeBundledSource.indexVersion}|${BeeBundledSource.indexSha256}|${BeeBundledSource.dictionaryPolicy}|${BeeBundledSource.familiarityVersion}|${BeeBundledSource.defaultProfileId}|${BeeOpening.SCORING}|${BeeOpening.BENCHMARK_POLICY}|${BeeOpening.ROUNDING}|ratio-permille=0|$beeOpeningApproval"
     }
@@ -20,12 +23,14 @@ class OfflinePuzzleGeneration(private val readAsset: (String) -> String) : Puzzl
     fun policy(gameId: String): String = when (gameId) {
         "wordish" -> WordishGenerator.runtimePolicy
         "bee" -> beePolicy
+        "connections" -> connectionsPolicy
         else -> "explicit-starter-cycle-v1"
     }
 
     fun signature(gameId: String, puzzle: PuzzleRecord): String? = when (gameId) {
         "wordish" -> puzzle.data["answer"]?.takeIf { it.matches(Regex("[A-Z]{5}")) }?.let(WordishGenerator::answerSignature)
         "bee" -> runCatching { BeeGenerator.signature(puzzle.data["letters"].orEmpty(), puzzle.data["center"].orEmpty().single()) }.getOrNull()
+        "connections" -> runCatching { ConnectionsGenerator.semanticSignature(puzzle) }.getOrNull()
         else -> null
     }
 
@@ -53,6 +58,19 @@ class OfflinePuzzleGeneration(private val readAsset: (String) -> String) : Puzzl
                     is BeeGenerationResult.Exhausted -> GenerationOutcome.Unavailable("No fresh Speling Bee letter set and center qualify. The bank is finite. Saved play and earlier puzzles remain available.")
                     is BeeGenerationResult.SearchLimit -> GenerationOutcome.Unavailable("No Speling Bee candidate qualified within the bounded search. Saved puzzles remain available; additional play uses an independent seed.")
                     is BeeGenerationResult.InvalidInput -> GenerationOutcome.Unavailable("Speling Bee source error: ${result.reason}")
+                }
+            }
+            "connections" -> {
+                val generator = connections ?: ConnectionsGenerator(BundledConnectionsBank.bank).also { connections = it }
+                when (val result = generator.generate(request.seed, ConnectionsProfile(BundledConnectionsBank.contentSha256), request.recentSignatures, cancelled)) {
+                    is ConnectionsGenerationResult.Success -> GenerationOutcome.Ready(result.puzzle)
+                    is ConnectionsGenerationResult.Cancelled -> GenerationOutcome.Cancelled
+                    is ConnectionsGenerationResult.NoCandidate -> GenerationOutcome.Unavailable(when (result.reason) {
+                        ConnectionsFailure.BUDGET_EXHAUSTED -> "No Connektions board qualified within the bounded search. Saved puzzles remain available; retry or try additional play with another seed."
+                        ConnectionsFailure.RECENT_POOL_EXHAUSTED -> "No fresh Connektions board qualifies outside your recent window. The relationship bank is finite. Saved puzzles remain available."
+                        ConnectionsFailure.IMPOSSIBLE_CONSTRAINTS -> "The Connektions bank cannot compose a board meeting its decoy and solution rules. Saved puzzles remain available."
+                        else -> "Connektions source or policy validation failed. Saved puzzles are preserved; please report this packaging error."
+                    })
                 }
             }
             else -> {

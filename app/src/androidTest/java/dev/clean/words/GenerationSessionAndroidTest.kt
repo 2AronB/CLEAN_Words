@@ -8,6 +8,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import dev.clean.words.core.*
 import dev.clean.words.games.bee.BeeGame
 import dev.clean.words.games.wordish.WordishGame
+import dev.clean.words.games.connections.ConnectionsGame
+import dev.clean.words.games.connections.ConnectionsRules
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -51,7 +53,7 @@ class GenerationSessionAndroidTest {
         val (s, owner) = session(directory)
         var expected = Library()
         try {
-            listOf(WordishGame, BeeGame).forEach { game ->
+            listOf(WordishGame, BeeGame, ConnectionsGame).forEach { game ->
                 ui { s.open(game, PuzzleMode.DAILY); s.open(game, PuzzleMode.DAILY) }
                 val dailyId = waitStarted(s)
                 val dailyOnDisk = AtomicLibraryStore(directory).load().library!!.attempts.single { it.id == dailyId }
@@ -75,14 +77,14 @@ class GenerationSessionAndroidTest {
                 }
             }
             ui { expected = s.library }
-            assertEquals(8, expected.attempts.size)
+            assertEquals(12, expected.attempts.size)
             assertEquals(expected, AtomicLibraryStore(directory).load().library)
         } finally { ui { owner.clear() } }
         val (restored, nextOwner) = session(directory) { throw AssertionError("Resume must not prepare source or regenerate") }
         try {
             ui {
                 assertEquals(expected, restored.library)
-                listOf(WordishGame, BeeGame).forEach { game ->
+                listOf(WordishGame, BeeGame, ConnectionsGame).forEach { game ->
                     restored.open(game, PuzzleMode.DAILY)
                     assertEquals(expected.attempts.single { it.gameId == game.id && it.mode == PuzzleMode.DAILY }.id, restored.openedAttemptId)
                     restored.consumeOpenedAttempt()
@@ -143,5 +145,50 @@ class GenerationSessionAndroidTest {
             waitStarted(s)
             ui { assertEquals(2, s.library.attempts.size); assertEquals(legacy, s.library.attempts.first()) }
         } finally { ui { owner.clear() } }
+    }
+
+    @Test fun legacyConnectionsDailyWinsAndFailedGeneratedStartCannotReplaceIt() {
+        val directory = freshDirectory(); val disk = AtomicLibraryStore(directory)
+        val now = Instant.now(); val zone = ZoneId.systemDefault()
+        val old = AttemptRules.create(Library(), ConnectionsGame, PuzzleMode.DAILY, now, zone)
+        val before = Library(listOf(old)); disk.save(before)
+        val collision = File(directory, "attempts.pending.cw"); assertTrue(collision.mkdir())
+        val (s, owner) = session(directory)
+        try {
+            ui {
+                s.open(ConnectionsGame, PuzzleMode.DAILY, now, zone)
+                assertEquals(old.id, s.openedAttemptId)
+                assertEquals(before, s.library)
+                assertNull(s.launching)
+                s.consumeOpenedAttempt()
+                s.open(ConnectionsGame, PuzzleMode.EXTRA)
+            }
+            eventually("Connections save failure") { var blocked = false; ui { blocked = s.pendingSave }; blocked }
+            ui { assertNull(s.openedAttemptId); assertEquals(before, s.library) }
+            assertEquals(before, disk.load().library)
+            assertTrue(collision.delete()) // this test's empty collision only
+            ui { s.retrySave() }
+            eventually("Connections retry rollback") { var blocked = true; ui { blocked = s.pendingSave }; !blocked }
+            assertEquals(before, disk.load().library)
+            ui { s.open(ConnectionsGame, PuzzleMode.EXTRA) }
+            val id = waitStarted(s)
+            val generated = disk.load().library!!.attempts.single { it.id == id }
+            assertNotNull(generated.puzzle.data["generator"])
+            assertEquals(before.attempts.first(), disk.load().library!!.attempts.first())
+            var state = emptyMap<String, String>()
+            for (tile in 0..3) state = ConnectionsRules.select(state, tile)
+            state = ConnectionsRules.submit(generated.puzzle, state)
+            ui { s.change(id, state, ConnectionsGame) }
+            eventually("Connections group retained on disk") { disk.load().library!!.attempts.single { it.id == id }.state == state }
+        } finally { ui { owner.clear() } }
+        val (restored, nextOwner) = session(directory)
+        try {
+            ui {
+                assertEquals(old, restored.library.attempts.first())
+                assertEquals(setOf(0), ConnectionsRules.solved(restored.library.attempts.last().state))
+                restored.open(ConnectionsGame, PuzzleMode.DAILY, now, zone)
+                assertEquals(old.id, restored.openedAttemptId)
+            }
+        } finally { ui { nextOwner.clear() } }
     }
 }

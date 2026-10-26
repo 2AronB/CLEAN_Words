@@ -5,6 +5,8 @@ import dev.clean.words.games.bee.BeePuzzle
 import dev.clean.words.games.bee.BeeRules
 import dev.clean.words.games.bee.BeeState
 import dev.clean.words.games.wordish.WordishGame
+import dev.clean.words.games.connections.ConnectionsGame
+import dev.clean.words.generators.connections.BundledConnectionsBank
 import dev.clean.words.generators.bee.BeeBundledSource
 import dev.clean.words.generators.bee.BeeGenerator
 import dev.clean.words.generators.bee.BeeVocabulary
@@ -32,6 +34,22 @@ class OfflinePuzzleGenerationTest {
             id, policy, recent)
     }
 
+    @Test fun connectionsRuntimePinsMatchTypedInputsAndLegacyDailyStillWins() {
+        assertEquals("4910c764db422f9b7aa81ede9e87ad3199f1826eb628b40f795a5891427a8c63", BundledConnectionsBank.bank.contentSha256)
+        assertEquals(BundledConnectionsBank.contentSha256, BundledConnectionsBank.bank.contentSha256)
+        assertEquals(BundledConnectionsBank.sourceSha256, BundledConnectionsBank.bank.sourceSha256)
+        val engine = OfflinePuzzleGeneration { error("Compiled Connections must not require an asset download/read") }
+        assertTrue(OfflinePuzzleGeneration.isGenerated("connections"))
+        assertTrue(engine.policy("connections").contains(BundledConnectionsBank.contentSha256))
+        val now = Instant.parse("2026-10-25T12:00:00Z"); val zone = ZoneId.of("UTC")
+        val old = AttemptRules.create(Library(), ConnectionsGame, PuzzleMode.DAILY, now, zone)
+        val generated = (engine.generate(request(engine,"connections")) { false } as GenerationOutcome.Ready).puzzle
+        assertEquals(old, AttemptRules.createSnapshot(Library(listOf(old)), ConnectionsGame, PuzzleMode.DAILY, generated, now, zone))
+        assertNotNull(engine.signature("connections", old.puzzle))
+        assertTrue(engine.generate(request(engine,"connections").copy(policy = "wrong-source")) { false } is GenerationOutcome.Unavailable)
+        assertEquals(GenerationOutcome.Cancelled, engine.generate(request(engine,"connections")) { true })
+    }
+
     @Test fun activeOpeningThousandSeedsRetainBaseVarietyAndApprovedZeroFilter() {
         val generator = BeeGenerator(BeeVocabulary.fromBundledIndex(readAsset(BeeBundledSource.indexPath)))
         val signatures = mutableSetOf<String>(); val sets = mutableSetOf<String>()
@@ -53,7 +71,7 @@ class OfflinePuzzleGenerationTest {
 
     @Test fun realAdaptersPinDailyIndependentOfExtrasAndExcludeMeaningfulContent() {
         val e = OfflinePuzzleGeneration(::readAsset)
-        listOf("wordish", "bee").forEach { game ->
+        listOf("wordish", "bee", "connections").forEach { game ->
             val req = request(e, game)
             val daily = (e.generate(req) { false } as GenerationOutcome.Ready).puzzle
             val signatures = mutableSetOf(e.signature(game, daily)!!)
@@ -105,7 +123,7 @@ class OfflinePuzzleGenerationTest {
         assertEquals(BeeGenerator.signature("CENTRAL", 'A'), BeeGenerator.signature("LARTNEC", 'A'))
         assertNotEquals(BeeGenerator.signature("CENTRAL", 'A'), BeeGenerator.signature("LARTNEC", 'E'))
         assertTrue(e.policy("bee").contains(BeeBundledSource.indexSha256))
-        listOf("connections", "strands", "crossword").forEach { id ->
+        listOf("strands", "crossword").forEach { id ->
             assertFalse(OfflinePuzzleGeneration.isGenerated(id))
             val game = GameRegistry.get(id)
             repeat(12) { ordinal ->

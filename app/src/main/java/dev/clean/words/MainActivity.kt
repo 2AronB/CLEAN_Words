@@ -191,7 +191,7 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                             OutlinedButton(onClick = { navigate("calendar") }, modifier = Modifier.fillMaxWidth()
                                 .semantics { contentDescription = "Calendar & history" }) { Text("Calendar & history") }
                             TextButton(onClick = { navigate("credits") }) { Text("Credits & sources") }
-                            Text("Development edition · tWordle and Speling Bee generate locally from finite banks. Other games use 10 starters each. Difficulty is provisional.",
+                            Text("Development edition · tWordle, Speling Bee and Connektions generate locally from finite banks. Stranded and Crossita use 10 starters each. Difficulty is provisional.",
                                 style = MaterialTheme.typography.bodySmall)
                         }
                         "hub" -> {
@@ -201,6 +201,7 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                                 "Generated offline from a finite word bank. Familiarity and daily challenge still need player review. Saved dailies keep their original puzzle."
                                 else "Starter collection · 10 puzzles. Repeats are possible; daily challenge has not been calibrated.")
                             if (gameId == "bee") Text("New puzzles: your first ten distinct accepted words set an opening score against this board’s best ten. Keep playing afterward for the word goal and more points. Score fairness is provisional.")
+                            if (gameId == "connections") Text("Boards include tempting partial connections across the four solution groups. Categories and ambiguity still need player review; this is a small provisional relationship bank.")
                             val currentProgress = current?.let { AttemptPresentation.inspect(it) }
                             currentProgress?.let { OpeningSummary(it) }
                             if (gameId == "bee" && current != null && currentProgress?.opening == null && currentProgress?.errors?.isEmpty() == true)
@@ -398,6 +399,7 @@ private fun CreditsScreen(readAsset: (String) -> String) {
     Text("Generated word games", style = MaterialTheme.typography.titleMedium)
     Text("tWordle uses an original 1,387-answer AI editorial shortlist with the unchanged ENABLE guess policy. Speling Bee derives seven-letter sets from original AI editorial pangram candidates, then enumerates every accepted word from its bundled ENABLE index. Familiarity lists set an attainable word-count goal; all accepted words count equally. Both banks have zero human or frequency review and provisional difficulty. Sources and license notice are bundled; no first-run download.")
     Text("New Speling Bee puzzles record the first ten accepted words against the board’s best-ten points. The full ENABLE accepted set and existing familiarity input are retained, with no extra familiarity-ratio filter. Score fairness remains provisional. Older saved puzzles keep their original rules.")
+    Text("Connektions composes boards offline from 20 original AI-authored categories and five decoy relationships, with two deliberate three-word near-matches and checks against competing solutions in the recorded relationship model. These are provisional drafts with zero human reviews; this model cannot capture every possible interpretation. Category variety is limited. No published puzzle archive or external relationship dataset was used; no first-run download. Existing saved boards keep their exact content.")
     Text("Built with Kotlin, AndroidX, Jetpack Compose and Material 3. No ads, accounts, analytics or required internet.")
 }
 

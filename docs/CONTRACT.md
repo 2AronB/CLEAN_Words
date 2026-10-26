@@ -1,5 +1,19 @@
 # S1 game integration contract v1
 
+## Connektions generation extension C2 — 2026-10-26
+
+OfflinePuzzleGeneration now adapts the module-local ConnectionsGenerator from
+its compiled pinned bank. Policy includes generator/selection/bank versions,
+JSON and canonical typed hashes, two-decoy target and search limits. Preparation
+and generation stay on the existing worker; no game/UI/storage schema changes.
+Current PuzzleRecord group fields retain stable tile indices. Snapshots add
+source/profile/review pins, intended senses, two exact-three decoy contexts and
+tested quartets. Rules remain four distinct wrong sets. Existing daily snapshots
+win; additional exclusions derive the same semantic group/member partition for
+legacy and generated boards. Failure/cancellation uses existing coordinator/save
+rollback behavior. No implicit starter fallback. Stranded/Crossita remain starters.
+Module API/limits/qualification: generators/connections/README and REPORT.
+
 ## Bee opening integration — 2026-10-26
 
 Owner approved activation without an additional familiarity-ratio filter. New
@@ -21,7 +35,8 @@ Wordish/Bee profiles/results remain module-local. Core OfflinePuzzleGeneration
 explicitly adapts GenerationRequest to Ready(full PuzzleRecord), Unavailable or
 Cancelled. No universal dictionary/runtime plugin system. Module API/input pins:
 generators/<game>/INTEGRATION.md. Primary owns core/shared UI; live game rules/UI
-need no generator changes. Other three games retain labeled ten-record starters.
+need no generator changes. Stranded/Crossita retain labeled ten-record starters;
+Connections is extended by C2 above.
 
 GenerationCoordinator prepares/generates on a separate worker and suppresses
 canceled/superseded callbacks. AppSession owns existing-daily lookup, pinned
