@@ -3,6 +3,8 @@ package dev.clean.words.generators.bee
 import dev.clean.words.core.PuzzleRecord
 import dev.clean.words.games.bee.BeePuzzle
 import dev.clean.words.games.bee.BeeRules
+import dev.clean.words.games.bee.BeeOpening
+import dev.clean.words.games.bee.BeeOpeningQuality
 import java.security.MessageDigest
 import java.util.Collections
 import java.util.Random
@@ -54,6 +56,7 @@ class BeeVocabulary(
     val familiarityVersion: String,
     val sourceHash: String = beeSha256(words.sorted().joinToString("\n") + "|" + familiarWords.sorted().joinToString("\n")),
     isCancelled: () -> Boolean = { false },
+    val familiarityEvidence: String = "original-ai-editorial; human-review-pending; frequency-unknown",
 ) {
     val words: List<String>
     val familiarWords: Set<String>
@@ -63,6 +66,7 @@ class BeeVocabulary(
     init {
         require(words.size <= 200_000) { "Bee vocabulary exceeds 200,000-word bound" }
         require(dictionaryVersion.isNotBlank() && familiarityVersion.isNotBlank() && sourceHash.isNotBlank())
+        require(familiarityEvidence.isNotBlank())
         val copied = words.sorted()
         val known = familiarWords.toSet()
         val grouped = sortedMapOf<Int, MutableList<String>>()
@@ -112,6 +116,8 @@ class BeeGenerator(private val vocabulary: BeeVocabulary) {
     companion object {
         const val version = BeeBundledSource.generatorVersion
         const val selectionPolicy = BeeBundledSource.selectionPolicy
+        const val openingVersion = "bee-seven-opening-selector-v1"
+        const val openingProfileVersion = "bee-opening-quality-v1"
         fun signature(letters: String, center: Char): String {
             require(letters.length == 7 && letters.toSet().size == 7 && letters.all { it in 'A'..'Z' } && center in letters)
             return "bee:letters:${letters.toList().sorted().joinToString("")}:center:$center"
@@ -119,7 +125,19 @@ class BeeGenerator(private val vocabulary: BeeVocabulary) {
     }
 
     /** No IO. Bounded shuffled candidate selection; every accepted word is frozen on success. */
-    fun generate(request: BeeRequest, isCancelled: () -> Boolean = { false }): BeeGenerationResult {
+    fun generate(request: BeeRequest, isCancelled: () -> Boolean = { false }): BeeGenerationResult =
+        generateWithPolicy(request, null, isCancelled)
+
+    /** Explicit opt-in only. Production must supply the owner's versioned quality decision. */
+    fun generateOpening(request: BeeRequest, quality: BeeOpeningQuality?,
+        isCancelled: () -> Boolean = { false }): BeeGenerationResult {
+        if (isCancelled()) return BeeGenerationResult.Cancelled(0)
+        if (quality == null) return BeeGenerationResult.InvalidInput("Opening quality threshold awaits owner approval")
+        return generateWithPolicy(request, quality, isCancelled)
+    }
+
+    private fun generateWithPolicy(request: BeeRequest, quality: BeeOpeningQuality?,
+        isCancelled: () -> Boolean): BeeGenerationResult {
         if (isCancelled()) return BeeGenerationResult.Cancelled(0)
         val p = request.profile
         if (p.id.isBlank() || p.minFamiliarWords !in 1..10_000 || p.minAcceptedWords !in 1..10_000 ||
@@ -160,12 +178,18 @@ class BeeGenerator(private val vocabulary: BeeVocabulary) {
             }
             val familiar = accepted.intersect(vocabulary.familiarWords)
             val pangrams = accepted.filter { beeMask(it) == mask }
+            val board = BeePuzzle(letters, center, familiar, accepted, vocabulary.dictionaryVersion, BeePuzzle.WORD_COUNT_SCORING)
             val failed = buildList {
                 if (familiar.size < p.minFamiliarWords) add("too-few-familiar")
                 if (accepted.size !in p.minAcceptedWords..p.maxAcceptedWords) add("accepted-count")
                 if (familiar.map { it.length }.distinct().size < p.minFamiliarLengthBuckets) add("familiar-length-mix")
                 if (p.requireFamiliarFour && familiar.none { it.length == 4 }) add("no-familiar-four")
                 if (pangrams.none { it in familiar }) add("no-familiar-pangram")
+                if (quality != null) {
+                    if (accepted.size < BeeOpening.LENGTH || familiar.size < BeeOpening.LENGTH) add("opening-too-few-words")
+                    if (BeeOpening.benchmark(board, familiar).toLong() * 1000 <
+                        BeeOpening.benchmark(board).toLong() * quality.minimumRatioPermille) add("opening-familiar-ratio")
+                }
             }
             if (failed.isNotEmpty()) {
                 failed.forEach { rejectionCounts[it] = (rejectionCounts[it] ?: 0) + 1 }
@@ -173,25 +197,32 @@ class BeeGenerator(private val vocabulary: BeeVocabulary) {
             }
             val profileSnapshot = listOf(p.id, p.minFamiliarWords, p.minAcceptedWords, p.maxAcceptedWords,
                 p.minFamiliarLengthBuckets, p.requireFamiliarFour, p.maxCandidateAttempts).joinToString("|")
-            val identity = beeSha256(listOf(version, selectionPolicy, vocabulary.sourceHash, vocabulary.dictionaryVersion,
-                vocabulary.familiarityVersion, profileSnapshot, request.seed, signature).joinToString("|"))
-            val board = BeePuzzle(letters, center, familiar, accepted, vocabulary.dictionaryVersion, BeePuzzle.WORD_COUNT_SCORING)
+            val selectedVersion = if (quality == null) version else openingVersion
+            val selectedProfile = if (quality == null) p.id else "${p.id}:$openingProfileVersion"
+            val selectedThresholds = if (quality == null) profileSnapshot else listOf(profileSnapshot, openingProfileVersion,
+                BeeOpening.SCORING, BeeOpening.BENCHMARK_POLICY, quality.minimumRatioPermille, quality.approvalVersion,
+                vocabulary.familiarityEvidence).joinToString("|")
+            val identity = beeSha256(listOf(selectedVersion, selectionPolicy, vocabulary.sourceHash, vocabulary.dictionaryVersion,
+                vocabulary.familiarityVersion, selectedThresholds, request.seed, signature).joinToString("|"))
             val snapshot = board.snapshot("bee-generated-$identity")
             val data = snapshot.data + mapOf(
-                "generator" to version, "selectionPolicy" to selectionPolicy,
-                "profile" to p.id, "profileThresholds" to profileSnapshot, "seed" to request.seed.toString(),
+                "generator" to selectedVersion, "selectionPolicy" to selectionPolicy,
+                "profile" to selectedProfile, "profileThresholds" to selectedThresholds, "seed" to request.seed.toString(),
                 "contentSignature" to signature, "sourceIndex" to BeeBundledSource.indexVersion,
                 "sourceIndexSha256" to vocabulary.sourceHash, "dictionaryPolicy" to BeeBundledSource.dictionaryPolicy,
                 "familiarityVersion" to vocabulary.familiarityVersion,
-                "review" to "original-ai-editorial; human-review-pending; frequency-unknown",
+                "review" to if (quality == null) "original-ai-editorial; human-review-pending; frequency-unknown" else vocabulary.familiarityEvidence,
                 "difficulty" to "provisional-uncalibrated", "wordTarget" to board.wordTarget.toString(),
                 "pangrams" to pangrams.joinToString(","),
                 "lengthTotals" to accepted.groupingBy { it.length }.eachCount().toSortedMap().entries.joinToString(",") { "${it.key}:${it.value}" },
                 "origin" to "Public-domain ENABLE by Alan Beale with M. Cooper/contributors; original CLEAN Words AI editorial familiarity shortlist; see bundled notice and generation/bee/policy.json",
             )
             check(BeeRules.validate(board).isEmpty())
+            val frozen = if (quality == null) snapshot.copy(data = Collections.unmodifiableMap(data))
+                else BeeOpening.freeze(board, data.filterKeys { it !in snapshot.data || it == "wordTarget" }, quality)
+                    .snapshot(snapshot.id).let { it.copy(data = Collections.unmodifiableMap(it.data)) }
             if (isCancelled()) return BeeGenerationResult.Cancelled(inspected)
-            return BeeGenerationResult.Success(snapshot.copy(data = Collections.unmodifiableMap(data)), signature, diagnostics())
+            return BeeGenerationResult.Success(frozen, signature, diagnostics())
         }
         return BeeGenerationResult.Exhausted(diagnostics())
     }

@@ -1,4 +1,36 @@
-# Spelling Meh content and score policy
+# Speling Bee content and score policy
+
+Current activation decision: the owner explicitly approved new scored daily and
+additional starts with **no additional familiarity-ratio filter** on 2026-10-26.
+Primary now integrates v3 and both shared milestones. Full ENABLE acceptance and
+the original familiarity input remain; the optional supplement is review-only.
+Old saved v1/v2 puzzles keep their rules and no opening order is inferred. Score
+fairness remains provisional. Gating statements in the original delivery below
+are historical and superseded by this explicit activation decision.
+
+## Opening policy v3 — 2026-10-26
+
+The Bee-local opening implementation recognizes `bee-opening10-v3` and ordered
+state `bee-ordered-v1`. First ten valid distinct accepted words score against
+the complete frozen accepted vocabulary's best ten words, with unchanged points
+and pangram bonus. Later words add equal completion credit and all-word points;
+they never replace earlier choices. Completion remains a separate frozen familiar
+word-count goal. Before ten the percent is explicitly provisional, including
+when the completion goal has already been reached. No legacy order is inferred.
+
+The owner rejected activating the proposed filter that removed 82.14% of the
+current pool, choosing full ENABLE acceptance and expanded/reviewed familiarity
+coverage before any filter decision. **Scored generation remains gated**; current
+v2 starts/source and all old puzzles/results stay unchanged. No word-length cap
+or narrowed acceptance was introduced. The new separately pinned editorial
+supplement is a draft with zero human/frequency review; absence from a shortlist
+does not imply obscurity. No empirical word-frequency estimates are invented.
+
+Full current-source audit: generators/bee/OPENING-EVALUATION.md. Expanded draft
+and provenance: generators/bee/FAMILIARITY-REVIEW.md. API, recovery behavior,
+actual checks, shared milestone/history work and exact next action:
+generators/bee/INTEGRATION.md. Opening score/state is module-local; app activation
+and human fairness remain separate from rule and codec test success.
 
 ## G1 generated starts — 2026-10-25
 

@@ -7,6 +7,11 @@ import dev.clean.words.games.bee.BeeState
 import dev.clean.words.games.wordish.WordishGame
 import dev.clean.words.generators.bee.BeeBundledSource
 import dev.clean.words.generators.bee.BeeGenerator
+import dev.clean.words.generators.bee.BeeVocabulary
+import dev.clean.words.generators.bee.BeeRequest
+import dev.clean.words.generators.bee.BeeGenerationResult
+import dev.clean.words.games.bee.BeeOpening
+import dev.clean.words.games.bee.BeeOpeningQuality
 import org.junit.Assert.*
 import org.junit.Test
 import java.io.File
@@ -25,6 +30,25 @@ class OfflinePuzzleGenerationTest {
         return GenerationRequest(game, mode, day,
             if (mode == PuzzleMode.DAILY) GenerationSeeds.daily(game, policy, day) else GenerationSeeds.extra(game, policy, id),
             id, policy, recent)
+    }
+
+    @Test fun activeOpeningThousandSeedsRetainBaseVarietyAndApprovedZeroFilter() {
+        val generator = BeeGenerator(BeeVocabulary.fromBundledIndex(readAsset(BeeBundledSource.indexPath)))
+        val signatures = mutableSetOf<String>(); val sets = mutableSetOf<String>()
+        var inspected = 0; var minGoal = Int.MAX_VALUE; var maxGoal = 0
+        repeat(1000) { seed ->
+            val result = generator.generateOpening(BeeRequest(seed.toLong()),
+                BeeOpeningQuality(0, OfflinePuzzleGeneration.beeOpeningApproval)) as BeeGenerationResult.Success
+            val board = BeePuzzle.from(result.puzzle)
+            assertEquals(emptyList<String>(), BeeRules.validate(board))
+            assertEquals("0", result.puzzle.data["minimumFamiliarRatioPermille"])
+            assertEquals(0, BeeOpening.progress(board, BeeState()).words.size)
+            signatures += result.signature; sets += board.letters
+            inspected = maxOf(inspected, result.diagnostics.inspected)
+            minGoal = minOf(minGoal, board.wordTarget); maxGoal = maxOf(maxGoal, board.wordTarget)
+        }
+        println("BEE_ACTIVE_OPENING trials=1000 distinctSetCenters=${signatures.size} distinctSets=${sets.size} failures=0 worstInspected=$inspected goalRange=$minGoal..$maxGoal ratioPermille=0")
+        assertEquals(719, signatures.size); assertEquals(266, sets.size)
     }
 
     @Test fun realAdaptersPinDailyIndependentOfExtrasAndExcludeMeaningfulContent() {
@@ -52,7 +76,8 @@ class OfflinePuzzleGenerationTest {
         assertEquals(old, AttemptRules.createSnapshot(library, WordishGame, PuzzleMode.DAILY, new, now, zone))
         val bee = (e.generate(request(e, "bee")) { false } as GenerationOutcome.Ready).puzzle
         val board = BeePuzzle.from(bee)
-        val state = BeeState(found = board.goalWords.take(board.wordTarget).toSet())
+        var state = BeeState()
+        board.goalWords.take(board.wordTarget).forEach { state = BeeRules.submit(board, state, it) }
         assertEquals(PlayStatus.COMPLETED, BeeRules.result(board, state).status)
         val a = AttemptRules.createSnapshot(library, GameRegistry.get("bee"), PuzzleMode.EXTRA, bee, now, zone).let {
             AttemptRules.update(it, state.toMap(), GameRegistry.get("bee"), now)

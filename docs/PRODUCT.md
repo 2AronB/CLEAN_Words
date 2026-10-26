@@ -1,5 +1,37 @@
 # CLEAN Words product discovery
 
+## Bee opening score B1 — activated 2026-10-26
+
+Owner requested all approved Bee changes integrated, then explicitly selected
+"Activate scoring now without an additional ratio filter". This supersedes the
+side-task gate and rejected 60% floor. New daily/additional Bee puzzles use
+bee-opening10-v3 with full ENABLE acceptance and existing base familiarity input.
+No optional AI supplement is loaded. Original base board filters remain; there
+is no additional ratio rejection or narrowed accepted-word list. Cross-board
+score fairness and vocabulary familiarity remain provisional.
+
+First ten distinct accepted words earn existing points (4 letters=1, longer=length,
+pangram+7). Opening score = those points / points from that frozen board's best
+ten accepted words * 100, half-up to two decimal places. Before ten it is labeled
+provisional; after ten the choices/score cannot change. Invalid/duplicate guesses
+consume no slot. Continued words add all-word points and equal word-goal credit.
+The independent completion goal remains ceil(70% of frozen familiar count).
+
+Opening recording and word-goal completion are independent. Both must finish for
+a new scored daily to leave the prior unfinished-puzzle resume flow. Home, hub,
+history and calendar distinguish them; calendar stays unfinished until both are
+done. completedAt still records first word-goal achievement, never tenth-word
+recording. No extra stored score/timestamp or save-schema change is introduced.
+Ordered submissions/edit revisions persist; malformed/stale/reordered edits are
+refused without overwriting old state/results. Old v1/v2 snapshots keep their
+rules and cannot acquire an inferred opening. A saved older daily wins over new
+generation; Another puzzle immediately tries the new scoring mode.
+
+Generator/source/profile/benchmark/rounding, ratio 0 and explicit owner approval
+owner-no-ratio-filter-2026-10-26-v1 are pinned in seed/snapshot identity. Existing
+offline/cancel/save/error policies and privacy constraints remain. Verification
+and APK: VERIFICATION. Human phone/fairness acceptance remains outstanding.
+
 ## Generated-play G1 — authorized 2026-10-25
 
 Owner requested executing WORDISH.md, BEE.md, then INTEGRATION.md. New tWordle and

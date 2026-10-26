@@ -165,7 +165,7 @@ class OfflineIntegrationTest {
                 } else {
                     val word = BeePuzzle.from(attempt.puzzle).goalWords.minBy { it.length }
                     word.forEach { click(it.toString(), exact = true) }
-                    click("Enter", exact = true)
+                    click("Enter word", exact = true)
                     eventually("generated Bee word accepted and saved") {
                         word in BeeState.from(disk.load().library!!.attempts.first { it.id == attempt.id }.state).found
                     }
@@ -195,6 +195,84 @@ class OfflineIntegrationTest {
         }
     }
 
+    @Test fun beeOpeningRecordsTenThroughUiAndKeepsScoreDuringExplorationAndHistory() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            eventually("home") { has("A little word time.") }
+            click("Speling Bee")
+            eventually("Bee hub") { has("Stay a little longer") }
+            click("Another puzzle")
+            eventually("active opening") { has("Opening 0/10") }
+            val disk = AtomicLibraryStore(File(context.filesDir, "play-library"))
+            val attempt = disk.load().library!!.attempts.last { it.gameId == "bee" && it.mode == PuzzleMode.EXTRA }
+            val board = BeePuzzle.from(attempt.puzzle)
+            assertTrue(board.opening); assertEquals("0", attempt.puzzle.data["minimumFamiliarRatioPermille"])
+            fun saved() = disk.load().library!!.attempts.first { it.id == attempt.id }
+            fun submit(word: String, expectedCount: Int) {
+                enterBeeText(word)
+                eventually("draft persisted") { BeeState.from(saved().state).entry == word }
+                click("Enter word", exact = true)
+                eventually("accepted count $expectedCount") {
+                    val state = BeeState.from(saved().state)
+                    state.acceptedOrder.orEmpty().size == expectedCount && (state.entry.isEmpty() || state.message.isNotEmpty())
+                }
+            }
+            val ten = BeeOpening.bestTen(board)
+            submit("ZZZZ", 0)
+            submit(ten.first(), 1)
+            submit(ten.first(), 1) // duplicate spends no additional opening slot
+            ten.drop(1).take(7).forEachIndexed { index, word -> submit(word, index + 2) }
+            assertEquals(ten.take(8), BeeState.from(saved().state).acceptedOrder)
+            scenario.recreate()
+            eventually("restored eight-word opening") { has("Opening 8/10") }
+            ten.drop(8).forEachIndexed { index, word -> submit(word, index + 9) }
+            val recorded = requireNotNull(AttemptPresentation.inspect(saved()).opening)
+            assertTrue(recorded.recorded); assertEquals("100.00", recorded.percent.toPlainString())
+            val more = board.validWords.filter { it !in ten }.sorted().take(2)
+            more.forEachIndexed { index, word -> submit(word, index + 11) }
+            val explored = saved()
+            val after = requireNotNull(AttemptPresentation.inspect(explored).opening)
+            assertEquals(recorded.words, after.words); assertEquals(recorded.percent, after.percent)
+            assertTrue(after.allWordPoints > recorded.allWordPoints)
+            assertEquals(ten + more, BeeState.from(explored.state).acceptedOrder)
+            scenario.recreate()
+            eventually("restored recorded opening") { has("Recorded opening: 100.00%") }
+            instrumentation.uiAutomation.takeScreenshot()?.let { screenshot ->
+                java.io.FileOutputStream(File(context.cacheDir, "bee-opening-recorded.png")).use {
+                    assertTrue(screenshot.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, it))
+                }
+                screenshot.recycle()
+            }
+            instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+            eventually("hub") { has("Another puzzle") }
+            click("Additional-play history")
+            eventually("recorded opening in history") { has("Opening score: 100.00% · recorded") }
+            click("Opening score: 100.00% · recorded", exact = true)
+            eventually("same opening reopened") { has("Recorded opening: 100.00%") }
+            assertEquals(explored.puzzle, saved().puzzle)
+            assertEquals(ten + more, BeeState.from(saved().state).acceptedOrder)
+        }
+    }
+
+    private fun enterBeeText(word: String) {
+        fun editable(node: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
+            if (node == null) return null
+            if (node.isVisibleToUser && node.isEditable) return node
+            repeat(node.childCount) { editable(node.getChild(it))?.let { found -> return found } }
+            return null
+        }
+        repeat(15) {
+            val field = editable(instrumentation.uiAutomation.rootInActiveWindow)
+            if (field != null) {
+                val args = android.os.Bundle().apply {
+                    putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, word)
+                }
+                if (field.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, args)) return
+            }
+            scroll(); SystemClock.sleep(100)
+        }
+        error("Bee input field unavailable")
+    }
+
     private fun has(text: String, exact: Boolean = false) = find(text, exact) != null
     private fun find(text: String, exact: Boolean = false): AccessibilityNodeInfo? {
         fun visit(node: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
@@ -206,10 +284,10 @@ class OfflineIntegrationTest {
         }
         return visit(instrumentation.uiAutomation.rootInActiveWindow)
     }
-    private fun scroll(): Boolean {
+    private fun scroll(backward: Boolean = false): Boolean {
         fun visit(node: AccessibilityNodeInfo?): Boolean {
             if (node == null) return false
-            if (node.isScrollable && node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)) return true
+            if (node.isScrollable && node.performAction(if (backward) AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD else AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)) return true
             repeat(node.childCount) { if (visit(node.getChild(it))) return true }
             return false
         }
@@ -218,8 +296,8 @@ class OfflineIntegrationTest {
     private fun click(text: String, exact: Boolean = false) {
         fun clickableMatch(node: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
             if (node == null) return null
-            val value = node.text?.toString().orEmpty()
-            if ((if (exact) value == text else value.contains(text)) && node.isVisibleToUser) {
+            val values = listOf(node.text?.toString().orEmpty(), node.contentDescription?.toString().orEmpty())
+            if (values.any { if (exact) it == text else it.contains(text) }) {
                 var target: AccessibilityNodeInfo? = node
                 while (target != null && !target.isClickable) target = target.parent
                 if (target != null) return target
@@ -228,13 +306,17 @@ class OfflineIntegrationTest {
             return null
         }
         repeat(10) {
+            instrumentation.waitForIdleSync()
             val node = clickableMatch(instrumentation.uiAutomation.rootInActiveWindow)
             if (node != null) {
-                if (node.performAction(AccessibilityNodeInfo.ACTION_CLICK)) {
+                node.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_ON_SCREEN.id)
+                SystemClock.sleep(100)
+                val refreshed = clickableMatch(instrumentation.uiAutomation.rootInActiveWindow)
+                if (refreshed?.performAction(AccessibilityNodeInfo.ACTION_CLICK) == true) {
                     SystemClock.sleep(250); return
                 }
             }
-            scroll(); SystemClock.sleep(150)
+            scroll(backward = it >= 5); SystemClock.sleep(200)
         }
         fun texts(node: AccessibilityNodeInfo?): String {
             if (node == null) return "null root"
@@ -243,7 +325,11 @@ class OfflineIntegrationTest {
         error("Clickable text not found: $text; screen=${texts(instrumentation.uiAutomation.rootInActiveWindow)}")
     }
     private fun eventually(label: String, condition: () -> Boolean) {
-        repeat(120) { if (condition()) return; SystemClock.sleep(100) }
+        repeat(120) {
+            if (has("System UI isn't responding")) click("Wait", exact = true)
+            if (condition()) return
+            SystemClock.sleep(100)
+        }
         assertTrue("Timed out waiting for $label", condition())
     }
 }

@@ -21,6 +21,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
@@ -180,12 +182,14 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                                         Column(Modifier.weight(1f)) {
                                             Text(module.title, style = MaterialTheme.typography.titleLarge)
                                             Text(module.description, style = MaterialTheme.typography.bodyMedium)
-                                            Text(saved?.result?.status?.label() ?: "Today's puzzle is ready", style = MaterialTheme.typography.labelMedium)
+                                            Text(saved?.let { AttemptPresentation.inspect(it).label } ?: "Today's puzzle is ready", style = MaterialTheme.typography.labelMedium)
+                                            saved?.let { OpeningSummary(AttemptPresentation.inspect(it)) }
                                         }
                                     }
                                 }
                             }
-                            OutlinedButton(onClick = { navigate("calendar") }, modifier = Modifier.fillMaxWidth()) { Text("Calendar & history") }
+                            OutlinedButton(onClick = { navigate("calendar") }, modifier = Modifier.fillMaxWidth()
+                                .semantics { contentDescription = "Calendar & history" }) { Text("Calendar & history") }
                             TextButton(onClick = { navigate("credits") }) { Text("Credits & sources") }
                             Text("Development edition · tWordle and Speling Bee generate locally from finite banks. Other games use 10 starters each. Difficulty is provisional.",
                                 style = MaterialTheme.typography.bodySmall)
@@ -196,6 +200,11 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                             Text(if (OfflinePuzzleGeneration.isGenerated(gameId))
                                 "Generated offline from a finite word bank. Familiarity and daily challenge still need player review. Saved dailies keep their original puzzle."
                                 else "Starter collection · 10 puzzles. Repeats are possible; daily challenge has not been calibrated.")
+                            if (gameId == "bee") Text("New puzzles: your first ten distinct accepted words set an opening score against this board’s best ten. Keep playing afterward for the word goal and more points. Score fairness is provisional.")
+                            val currentProgress = current?.let { AttemptPresentation.inspect(it) }
+                            currentProgress?.let { OpeningSummary(it) }
+                            if (gameId == "bee" && current != null && currentProgress?.opening == null && currentProgress?.errors?.isEmpty() == true)
+                                Text("Today's saved Bee keeps its original rules. Choose Another puzzle to try the new ten-word opening now.", style = MaterialTheme.typography.bodyMedium)
                             session.launchError?.let { message ->
                                 Note(message) { TextButton(onClick = { session.retryGeneration(game) },
                                     enabled = !session.pendingSave && session.launching == null) { Text("Retry local generation") } }
@@ -203,11 +212,10 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                             Button(onClick = {
                                 session.open(game, PuzzleMode.DAILY)
                             }, enabled = !session.pendingSave && session.launching == null, modifier = Modifier.fillMaxWidth()) {
-                                Text(when (current?.result?.status) { null -> "Play today's puzzle"; PlayStatus.IN_PROGRESS -> "Continue today's puzzle"; else -> "View today's result" })
+                                Text(if (current == null) "Play today's puzzle" else if (currentProgress?.needsResume == true)
+                                    "Continue today's puzzle" else "View today's result")
                             }
-                            val previous = session.library.attempts.filter { it.gameId == gameId && it.mode == PuzzleMode.DAILY &&
-                                it.puzzleDate != null && it.puzzleDate < today.toString() && it.result.status == PlayStatus.IN_PROGRESS }
-                                .maxByOrNull { it.puzzleDate ?: "" }
+                            val previous = AttemptRules.previousUnfinished(session.library, gameId, today)
                             previous?.let { old ->
                                 OutlinedButton(onClick = { showAttempt(old) }, modifier = Modifier.fillMaxWidth()) {
                                     Text("Finish previous puzzle? · ${old.puzzleDate}")
@@ -227,9 +235,10 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                             val attempt = session.library.attempts.firstOrNull { it.id == attemptId }
                             if (attempt == null) Text("This attempt is unavailable. Return to the game list; saved files were not changed.")
                             else {
+                                val progress = remember(attempt) { AttemptPresentation.inspect(attempt) }
                                 val savedErrors = remember(attempt.puzzle, attempt.state) {
                                     runCatching {
-                                        game.validate(attempt.puzzle) +
+                                        game.validate(attempt.puzzle) + progress.errors +
                                             if (runCatching { game.result(attempt.puzzle, attempt.state) }.isFailure)
                                                 listOf("Saved game state is unsupported") else emptyList()
                                     }.getOrElse { listOf("Saved puzzle revision cannot be read") }
@@ -245,14 +254,21 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                                     onChange = { session.change(attempt.id, it, game) }) }
                                 else Text("This saved puzzle cannot be opened: ${savedErrors.joinToString()}. Its files and progress are preserved.",
                                     color = MaterialTheme.colorScheme.error)
-                                AnimatedVisibility(attempt.result.status != PlayStatus.IN_PROGRESS,
+                                AnimatedVisibility(savedErrors.isEmpty() && (attempt.result.status != PlayStatus.IN_PROGRESS || progress.opening?.recorded == true),
                                     enter = fadeIn(tween(260)) + expandVertically(tween(300))) {
                                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                    HorizontalDivider(Modifier.padding(top = 8.dp))
-                                    Text(attempt.result.summary, style = MaterialTheme.typography.titleMedium)
-                                    Text("${attempt.result.status.label()} · saved in history", color = MaterialTheme.colorScheme.primary)
-                                    if (game.id == "bee") Text("You can keep finding words after reaching the goal.")
-                                    OutlinedButton(onClick = { navigate("hub") }) { Text("Back to daily & more") }
+                                        HorizontalDivider(Modifier.padding(top = 8.dp))
+                                        Text(attempt.result.summary, style = MaterialTheme.typography.titleMedium)
+                                        Text("${progress.label} · saved in history", color = MaterialTheme.colorScheme.primary)
+                                        if (progress.opening != null) { OpeningSummary(progress) }
+                                        if (game.id == "bee") {
+                                            Text(when {
+                                                progress.opening == null -> "You can keep finding words after reaching the goal. This saved puzzle keeps its original rules."
+                                                !progress.opening.recorded -> "The word goal is reached. Continue to ten accepted words to record your opening score."
+                                                else -> "Keep exploring. Your recorded opening score stays fixed; later words add to your word goal and total points."
+                                            })
+                                        }
+                                        OutlinedButton(onClick = { navigate("hub") }) { Text("Back to daily & more") }
                                     }
                                 }
                                 Text(if (session.saving) "Saving locally…" else if (session.pendingSave) "Changes need saving — retry above" else "Saved on this device",
@@ -296,15 +312,24 @@ private fun PlayStatus.label() = when (this) {
 
 @Composable
 private fun AttemptCard(attempt: Attempt, onClick: () -> Unit) {
+    val progress = remember(attempt) { AttemptPresentation.inspect(attempt) }
     OutlinedCard(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
         Column(Modifier.padding(14.dp)) {
             Text(if (attempt.mode == PuzzleMode.DAILY) "Daily · ${attempt.puzzleDate}" else attempt.puzzle.title,
                 style = MaterialTheme.typography.titleMedium)
-            Text(attempt.result.status.label())
-            Text(attempt.result.summary, style = MaterialTheme.typography.bodySmall)
-            attempt.completedAt?.let { Text("Finished ${it.take(10)} (UTC date)", style = MaterialTheme.typography.labelSmall) }
+            Text(progress.label)
+            OpeningSummary(progress)
+            if (progress.opening == null) Text(attempt.result.summary, style = MaterialTheme.typography.bodySmall)
+            progress.errors.takeIf { it.isNotEmpty() }?.let { Text("Saved inputs preserved; open for recovery details.") }
+            attempt.completedAt?.let { Text("${if (progress.opening != null) "Word goal reached" else "Finished"} ${it.take(10)} (UTC date)", style = MaterialTheme.typography.labelSmall) }
         }
     }
+}
+
+@Composable
+private fun OpeningSummary(progress: AttemptProgress) {
+    progress.openingLabel?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
+    progress.goalLabel?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
 }
 
 @Composable
@@ -340,7 +365,7 @@ private fun CalendarScreen(library: Library, gameId: String, onGame: (String) ->
                     val date = month.atDay(day).toString()
                     val saved = attempts.firstOrNull { it.puzzleDate == date }
                     val chosen = selectedDate == date
-                    val mark = when (saved?.result?.status) { null -> ""; PlayStatus.IN_PROGRESS -> "…"; PlayStatus.COMPLETED -> "✓"; PlayStatus.FAILED -> "×" }
+                    val mark = saved?.let { AttemptPresentation.inspect(it).calendarMark }.orEmpty()
                     Column(Modifier.weight(1f).heightIn(min = 60.dp)
                         .background(if (chosen) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(8.dp))
                         .clickable { selectedDate = date }.padding(4.dp), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -350,7 +375,7 @@ private fun CalendarScreen(library: Library, gameId: String, onGame: (String) ->
             }
         }
     }
-    Text("… unfinished   ✓ completed   × not solved", style = MaterialTheme.typography.bodySmall)
+    Text("… unfinished (including Bee opening)   ✓ completed   × not solved   ! recovery", style = MaterialTheme.typography.bodySmall)
     Text(selectedDate, style = MaterialTheme.typography.titleMedium)
     val selected = attempts.firstOrNull { it.puzzleDate == selectedDate }
     if (selected == null) Text("No daily puzzle was started for this game on this date.")
@@ -372,13 +397,14 @@ private fun CreditsScreen(readAsset: (String) -> String) {
     Text("Ten puzzles per game were selected or authored for CLEAN Words during development. Category explanations, themes and crossword clues are original starter drafts; they are not copied NYT puzzle collections. Mechanical checks do not establish final fairness or difficulty.")
     Text("Generated word games", style = MaterialTheme.typography.titleMedium)
     Text("tWordle uses an original 1,387-answer AI editorial shortlist with the unchanged ENABLE guess policy. Speling Bee derives seven-letter sets from original AI editorial pangram candidates, then enumerates every accepted word from its bundled ENABLE index. Familiarity lists set an attainable word-count goal; all accepted words count equally. Both banks have zero human or frequency review and provisional difficulty. Sources and license notice are bundled; no first-run download.")
+    Text("New Speling Bee puzzles record the first ten accepted words against the board’s best-ten points. The full ENABLE accepted set and existing familiarity input are retained, with no extra familiarity-ratio filter. Score fairness remains provisional. Older saved puzzles keep their original rules.")
     Text("Built with Kotlin, AndroidX, Jetpack Compose and Material 3. No ads, accounts, analytics or required internet.")
 }
 
 private fun helpFor(id: String): String = when (id) {
     "wordish" -> "Guess a five-letter word in six tries. ✓ means correct place, ~ means elsewhere, × means absent. Repeated letters are counted only as often as they occur in the answer. Invalid words do not consume a guess."
     "connections" -> "Select four words with a shared connection. Find all four groups. Four distinct incorrect guesses end the puzzle. Repeating the same incorrect group does not cost another mistake."
-    "bee" -> "Make words of four or more letters using the seven letters, always including the center. Letters may repeat. In new puzzles, every valid word advances the visible word-count goal. Bars show found/available words by length. Keep playing after the goal. Older saved puzzles retain their original completion rules. Four letters earns 1 point; longer words their length; using all letters adds 7."
+    "bee" -> "Make words of four or more letters using the seven letters, always including the center. Letters may repeat. In new scored puzzles, your first ten distinct accepted words set an opening score: their points divided by this board’s best-ten points, times 100. Rejected and duplicate words do not use a slot. Before ten, the score is provisional; after ten, it stays fixed. Every accepted word also advances a separate word-count goal. You can reach that goal before recording the opening, or record the opening before reaching the goal. Keep playing after both. Bars show all available words by length. Older saved puzzles keep their original rules and have no retrofitted opening. Four letters earns 1 point; longer words their length; using all letters adds 7. Cross-board fairness is provisional; no extra familiarity-ratio filter is applied."
     "strands" -> "Find themed words along neighboring letters, including diagonals. A cell can be used once and found words cannot overlap. One spanning answer joins opposite edges. Tap letters, then Enter. Clear cancels the current path; Delete steps back. A route that blocks the remaining words is rejected without erasing prior play. Undo remains available for older routes."
     else -> "Fill Across and Down answers. Crossing answers share a cell. Finishing a word advances to the next clue without checking it. Delete clears and moves backward. Use the built-in keyboard, or choose the phone keyboard. Check is optional and records assistance without deleting letters. A full but incorrect grid stays unfinished."
 }

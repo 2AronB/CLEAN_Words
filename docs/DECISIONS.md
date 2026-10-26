@@ -1,5 +1,25 @@
 # Decisions
 
+## D-025 — Activate Bee ten-word score without extra ratio filter
+
+2026-10-26 — Owner requests all approved Bee changes integrated. Asked explicitly
+whether to keep the previous gate or activate now, owner chose "Activate scoring
+now without an additional ratio filter". This supersedes the side-task gating
+decision; it does not approve the rejected 60% floor. Full ENABLE acceptance and
+original base familiar input/board filters stay; optional AI supplement remains
+review-only. Active quality = ratio 0, pinned approval
+owner-no-ratio-filter-2026-10-26-v1. No arbitrary threshold or hidden relaxation.
+
+Implement first ten distinct accepted words / absolute best-ten points * 100;
+freeze after ten, retain unrestricted exploration and separate equal-credit word
+goal. Track both milestones in resume/home/hub/history/calendar. Keep v1/v2
+snapshots/order/result semantics, existing daily identity and completion time.
+Score fairness remains provisional; no frequency or human calibration is claimed.
+No new dependencies, permissions, services or settings. Preserve unrelated
+Wordish staging/user Gradle file. VersionCode 4 / 0.4.0-bee-opening is an update,
+not a public release. Module/shared verification and remaining manual checks:
+VERIFICATION and CONTINUE.
+
 ## D-001 — Discovery before implementation
 
 2026-10-25 — Owner instructed. Maintain planning Markdown and inspect workspace;

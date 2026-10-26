@@ -1,5 +1,17 @@
 # Seven-letter Bee generator
 
+2026-10-26 activation: `generateOpening(request, quality, cancel)` is the active
+v3 app path, supplied explicit owner-approved ratio 0 and a pinned approval
+version. The owner chose to activate without an additional ratio filter, keeping
+full ENABLE acceptance and original familiarity input. The optional supplement
+remains review-only. Null quality still returns an honest input error for callers
+without an explicit decision. Existing `generate` remains v2 for compatibility.
+See [INTEGRATION.md](INTEGRATION.md) for ordered state,
+independent opening/completion APIs, shared work and actual test results;
+[OPENING-EVALUATION.md](OPENING-EVALUATION.md) for exhaustive current-source audit;
+[FAMILIARITY-REVIEW.md](FAMILIARITY-REVIEW.md) for the separately pinned draft.
+The description below documents the preserved v2 path.
+
 `BeeGenerator(vocabulary).generate(BeeRequest(seed, profile, recentSignatures),
 isCancelled)` is a pure Kotlin worker entry point. It returns `Success` containing
 the complete existing `PuzzleRecord`, meaningful signature and diagnostics, or

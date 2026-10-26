@@ -1,5 +1,20 @@
 # Agent work queue
 
+## Bee B1 — 2026-10-26
+
+Owner explicitly approved activation without an additional familiarity-ratio
+filter (D-025), superseding the original side-task gate.
+
+- [x] Integrate new v3 daily/extra generation with pinned ratio 0/full acceptance,
+  original familiar source and no automatic optional supplement.
+- [x] Ordered opening score, immutable first ten, separate completion/exploration,
+  independent milestone presentation and resume until both are complete.
+- [x] Refuse stale/reordered/malformed persistence updates; keep legacy saved
+  content/results. Core integration/rule/corpus tests pass; app checks recorded
+  in VERIFICATION after execution.
+- [ ] Human fairness, actual-phone input/layout/accessibility and goal comfort.
+  No measured frequency or calibrated cross-board difficulty claim.
+
 ## G1 module/integration closure — authorized 2026-10-25
 
 Owner requested Wordish -> Bee -> Integration. This supersedes the prompt-only

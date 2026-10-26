@@ -169,6 +169,10 @@ class AppSession(directory: File, readAsset: (String) -> String) : ViewModel() {
         val old = library.attempts.firstOrNull { it.id == id } ?: return
         if (old.gameId != game.id) return
         if (old.result.status != PlayStatus.IN_PROGRESS && game.id != "bee") return
-        commit(AttemptRules.upsert(library, AttemptRules.update(old, state, game, Instant.now())))
+        val next = runCatching { AttemptRules.update(old, state, game, Instant.now()) }.getOrElse {
+            notice = "This edit could not be saved: ${it.message}. Previous inputs and results are preserved."
+            return
+        }
+        commit(AttemptRules.upsert(library, next))
     }
 }

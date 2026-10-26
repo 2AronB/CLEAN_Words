@@ -3,6 +3,8 @@ package dev.clean.words.core
 import dev.clean.words.GameRegistry
 import dev.clean.words.generators.wordish.*
 import dev.clean.words.generators.bee.*
+import dev.clean.words.games.bee.BeeOpening
+import dev.clean.words.games.bee.BeeOpeningQuality
 
 /** Small explicit adapters. Loaded/cached on the generation lane, never the input or save lane. */
 class OfflinePuzzleGeneration(private val readAsset: (String) -> String) : PuzzleGenerator {
@@ -11,7 +13,8 @@ class OfflinePuzzleGeneration(private val readAsset: (String) -> String) : Puzzl
 
     companion object {
         fun isGenerated(gameId: String) = gameId == "wordish" || gameId == "bee"
-        const val beePolicy = "${BeeBundledSource.generatorVersion}|${BeeBundledSource.selectionPolicy}|${BeeBundledSource.indexVersion}|${BeeBundledSource.indexSha256}|${BeeBundledSource.dictionaryPolicy}|${BeeBundledSource.familiarityVersion}|${BeeBundledSource.defaultProfileId}|bee-wordcount-v2"
+        const val beeOpeningApproval = "owner-no-ratio-filter-2026-10-26-v1"
+        const val beePolicy = "${BeeGenerator.openingVersion}|${BeeGenerator.openingProfileVersion}|${BeeBundledSource.selectionPolicy}|${BeeBundledSource.indexVersion}|${BeeBundledSource.indexSha256}|${BeeBundledSource.dictionaryPolicy}|${BeeBundledSource.familiarityVersion}|${BeeBundledSource.defaultProfileId}|${BeeOpening.SCORING}|${BeeOpening.BENCHMARK_POLICY}|${BeeOpening.ROUNDING}|ratio-permille=0|$beeOpeningApproval"
     }
 
     fun policy(gameId: String): String = when (gameId) {
@@ -43,7 +46,8 @@ class OfflinePuzzleGeneration(private val readAsset: (String) -> String) : Puzzl
                 val generator = bee ?: try {
                     BeeGenerator(BeeVocabulary.fromBundledIndex(readAsset(BeeBundledSource.indexPath), cancelled)).also { bee = it }
                 } catch (_: BeePreparationCancelled) { return GenerationOutcome.Cancelled }
-                when (val result = generator.generate(BeeRequest(request.seed, recentSignatures = request.recentSignatures), cancelled)) {
+                when (val result = generator.generateOpening(BeeRequest(request.seed, recentSignatures = request.recentSignatures),
+                    BeeOpeningQuality(0, beeOpeningApproval), cancelled)) {
                     is BeeGenerationResult.Success -> GenerationOutcome.Ready(result.puzzle)
                     is BeeGenerationResult.Cancelled -> GenerationOutcome.Cancelled
                     is BeeGenerationResult.Exhausted -> GenerationOutcome.Unavailable("No fresh Speling Bee letter set and center qualify. The bank is finite. Saved play and earlier puzzles remain available.")

@@ -9,8 +9,8 @@ android {
         applicationId = "dev.clean.words"
         minSdk = 26
         targetSdk = 36
-        versionCode = 3
-        versionName = "0.3.0-generation"
+        versionCode = 4
+        versionName = "0.4.0-bee-opening"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures { compose = true }

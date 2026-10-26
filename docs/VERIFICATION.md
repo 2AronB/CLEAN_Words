@@ -1,4 +1,80 @@
-# G1 generated-play verification — 2026-10-25
+# Bee opening B1 verification — 2026-10-26
+
+Owner approved activation with **no additional familiarity-ratio filter** (D-025).
+New daily/extra starts use bee-opening10-v3 with original 98,144-word ENABLE index
+and 3,636 familiar inputs. Optional 346-word supplement is not loaded. Base board
+filters retain all 1,489 prior qualified set/center identities; no 60% floor or
+accepted-vocabulary narrowing. Fairness remains provisional, not calibrated.
+
+154 JVM tests pass, zero failures/errors. Includes module v3 rules/state/recovery,
+nine shared milestone/persistence/legacy tests and a 1,000-seed active v3 run:
+719 distinct set/center identities across 266 sets, zero failures, worst inspected
+6, sampled goals 9–43. Full inventory still has goals 9–47. Independent raw ENABLE
+filtering verifies unchanged acceptance; source and familiarity pins remain base.
+Both milestone orders and simultaneous completion, immutable opening, sticky
+goal time, codec order, invalid saved/proposed maps, stale edit revisions and
+rewritten accepted prefixes are covered. Legacy v1/v2 and old daily wins remain.
+
+Offline app/test builds and lint pass: zero errors, one existing OldTargetApi
+warning. Three Bee Node --check pipelines/audits pass. Explicit emulator-5556
+(workspace-local CLEAN_Generation_Fresh) update test, Wi-Fi/data disabled:
+**13/13 Android tests pass in 143.351 seconds**. Personal phone was connected but
+was not targeted. No data clearing/uninstall or global settings/dependencies.
+
+Android coverage includes four new session/file tests: actual daily/extra v3,
+ordered first-ten freeze and post-ten play, source-free restart, v2 daily retention,
+goal-before-ten prior resume through restart, save-failure/retry with consecutive
+input and malformed-state preservation. Actual UI test submits the board's best
+ten to get 100%, spends no slots for invalid/duplicate guesses, recreates at eight,
+continues to twelve without changing score, then reopens from history. Existing
+daily/extra/calendar/recreation, 50 starters and rapid crossword tests also pass.
+
+Commands (process-local Android Studio JBR, existing offline approved cache):
+
+```powershell
+.\gradlew.bat --offline :app:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:assembleDebugAndroidTest
+node tools/generation/bee/prepare-index.mjs --check
+node tools/generation/bee/opening-benchmark.mjs --check
+node tools/generation/bee/prepare-familiarity-supplement.mjs --check
+.\tools\test-emulator.ps1 -Serial emulator-5556 -ReportPath artifacts/bee-opening-final-device-test.txt
+```
+
+Initial lint found indentation in the result panel; fixed, no baseline suppression.
+First Android run failed 3/13: cold emulator System UI ANR and accessibility targets
+after scrolling. UI-only retry failed 1/5 locating the offscreen Calendar action.
+Added cold-System-UI recovery in the test, show-on-screen/re-fetched click targets,
+and stable Enter-word/Calendar accessibility labels. Corrected a test-only Android
+show-on-screen constant reference. Final full 13-test run passes; no storage reset
+or weakened assertions. Screenshot review led to compact score-card text, with
+the full formula still in Help; final exact-APK UI smoke recorded below.
+
+Shared home/hub/history/calendar/result labels distinguish opening vs word goal;
+old daily snapshots explain Another puzzle uses new scoring. No extra save schema,
+numeric-score overload or recording timestamp. Completion timestamp stays goal-only.
+Record order/state/errors remain frozen and invalid data is recovery-only.
+
+Manual phone, larger text, screen reader, comfort of goals and cross-board score
+fairness remain unverified. No frequency evidence or human-reviewed familiarity
+claim. Prior incomplete/failed-cancellation rollback process-death limitation is
+unchanged; see G1 below. No public app release.
+
+## B1 final APK and smoke
+
+artifacts/CLEAN-Words-bee-opening-debug.apk, 0.4.0-bee-opening/versionCode 4,
+12,690,947 bytes. SHA-256:
+`b7b955eb1bb0b7d41a22f2c8d22a5967c9becd7b570c1928560055c7bcc5978d`.
+Final compact-card UI smoke passes 1/1 in 30.218 seconds on emulator-5556,
+including best-ten 100%, invalid/duplicate handling, eight-word recreation,
+post-ten continuation, history and reopening. Report:
+artifacts/bee-opening-final-smoke.txt. Captured/inspected compact card screenshot
+artifacts/bee-opening-recorded.png. Final assembleDebug/assembleDebugAndroidTest/
+lintDebug pass; no errors/one existing target warning. Debug certificate remains
+`5d01ad4ef91eff366eab754f3853d8460b26007bce1a80a5416a0b5d7ed20916`.
+Install as update without clearing data. Old saved daily retains old rules; use
+Another puzzle for immediate v3 play. Artifacts are ignored; source/tests/reports
+are versioned. [B1 manual checklist](MANUAL-ACCEPTANCE.md) remains for the owner.
+
+## Prior G1 verification — 2026-10-25
 
 Current scope is **two generated games**, tWordle and Speling Bee, through real
 daily/additional UI. Connektions/Stranded/Crossita still use labeled ten-record

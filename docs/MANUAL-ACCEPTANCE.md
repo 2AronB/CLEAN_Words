@@ -1,5 +1,16 @@
 # S1 phone acceptance — not yet performed
 
+Bee B1 update (0.4.0-bee-opening/versionCode 4): install as update without clearing
+data. Old saved daily keeps its rules; choose Another puzzle to try scoring now.
+Before submitting, check first-ten instructions/provisional score. Invalid and
+duplicate words must not spend slots. Resume after a few words; tenth accepted
+word records the score, later words add points/goal credit without changing it.
+Review history/calendar and prior-daily resume when the word goal finishes before
+ten and when ten finishes before the goal. Check older v1/v2 history unchanged.
+Full dictionary accepted, no extra familiarity-ratio filter: judge real score
+fairness/word familiarity across several boards. Optional AI supplement is unused.
+Check honeycomb, keyboard, ordered actions, light/dark/larger text and quick input.
+
 G1 generated-play update: install artifacts/CLEAN-Words-generation-debug.apk
 (0.3.0-generation/versionCode 3) as an update, preserving data. Batch checks:
 old saved dailies retain content/progress; new tWordle/Bee daily and additional

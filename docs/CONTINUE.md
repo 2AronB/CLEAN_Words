@@ -1,5 +1,41 @@
 # Continue CLEAN Words
 
+## Active Bee opening integration — 2026-10-26
+
+Owner requests all approved Bee changes integrated. In this chat the owner now
+explicitly chose: "Activate scoring now without an additional ratio filter".
+This supersedes the previous scored-generation gate. Preserve full ENABLE
+acceptance and existing familiar inputs; do not silently apply the optional AI
+supplement or the rejected 60% floor. New daily/extra puzzles will use opening10
+v3 with ratio 0 and a pinned owner-approval version; legacy v1/v2 snapshots stay.
+Primary owns shared milestone/resume/history/validation/adapters/Android tests.
+Bee module delivery is available; no other agent is editing Bee paths. Wordish
+review staging and the untracked Gradle JVM file are unrelated: preserve them.
+Integration is implemented: new daily/extra v3, both shared milestones on
+home/hub/history/calendar, prior resume until both finish, ordered-state/revision
+guards and recovery-only invalid saves. No schema, numeric-score overload or
+extra timestamp. Old daily v1/v2 stays unchanged; Another puzzle starts v3 now.
+154 JVM tests pass; 1,000 active v3 seeds give 719 identities/266 sets, zero failures.
+Offline builds/lint pass (0 errors/1 prior warning); full 13-test Android run on
+explicit offline project-local emulator-5556 passes in 143.351 seconds. Exact APK
+smoke, screenshot and artifact details are recorded in VERIFICATION. Physical
+phone was not targeted. Wordish review staging/Gradle user file remain untouched.
+Earlier prompt preparation had no code authorized or verified; current B1 scope
+and activation are explicitly approved in D-025. Human score fairness, phone input,
+layout/accessibility and familiarity remain provisional/unverified. No new SDK,
+dependency/permission/service/global setting or public release.
+Exact next action: install the Bee-opening update as an update without clearing
+data; try Another puzzle for scoring immediately, and batch B1 manual acceptance.
+Optional familiarity supplement remains review-only; no extra ratio filter is
+pending before activation. Older checkpoints below are historical.
+
+B1 APK: artifacts/CLEAN-Words-bee-opening-debug.apk, 0.4.0-bee-opening/code 4.
+SHA256 b7b955eb1bb0b7d41a22f2c8d22a5967c9becd7b570c1928560055c7bcc5978d.
+Same signer verified; final compact-card UI smoke passes 1/1 in 30.218 seconds.
+Install as update; no uninstall/clear. Human phone/fairness is still pending.
+Project-local emulator-5556 was shut down after testing. Reports/screenshots and
+AVD files are retained under ignored artifacts/. Personal phone was untouched.
+
 Updated: 2026-10-25. Current checkpoint: G1 Wordish/Bee generation integrated and
 verified; five-game generation conversion remains partial. Older checkpoints below
 are historical; use this section and PRODUCT G1 for current scope.

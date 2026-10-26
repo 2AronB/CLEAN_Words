@@ -1,5 +1,20 @@
 # S1 game integration contract v1
 
+## Bee opening integration — 2026-10-26
+
+Owner approved activation without an additional familiarity-ratio filter. New
+Bee snapshots use bee-opening10-v3, full accepted vocabulary, existing familiar
+inputs and pinned ratio 0 / owner-no-ratio-filter-2026-10-26-v1. The optional AI
+supplement stays review-only. Prior saved daily content always wins.
+
+Shared AttemptPresentation derives opening progress and resume need from frozen
+BeeOpening APIs. GameResult.status/completedAt mean word-goal completion only;
+score/maxScore stay null for v3. No new timestamp/schema is required. Both opening
+recorded and word goal reached are needed to remove v3 from prior-puzzle resume.
+History/calendar/home/hub show the milestones separately. Invalid v3 content/state
+is visible for recovery and cannot replace saved state/results. Legacy semantics
+and snapshots are unchanged. Primary owns this adapter, shared UI and app tests.
+
 ## Generated-start extension G1 — 2026-10-25
 
 Wordish/Bee profiles/results remain module-local. Core OfflinePuzzleGeneration

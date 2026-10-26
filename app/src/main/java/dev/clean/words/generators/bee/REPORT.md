@@ -1,5 +1,20 @@
 # Bee source and quality report
 
+Current activation (2026-10-26): new scored daily/additional play is now integrated
+under the owner's explicit no-additional-ratio-filter choice, with original
+inputs/full ENABLE acceptance. The optional supplement is not loaded; score
+fairness remains provisional. Earlier gated-generation statements below record
+the original side-task delivery. Primary checks: docs/VERIFICATION.md.
+
+This report records the preserved v2 source and original generator. The
+2026-10-26 ten-word opening implementation and exhaustive benchmark are documented
+in [OPENING-EVALUATION.md](OPENING-EVALUATION.md) and
+[INTEGRATION.md](INTEGRATION.md). The owner chose full ENABLE acceptance with
+expanded/reviewed familiarity before selecting a filter; scored generation stays
+gated. [FAMILIARITY-REVIEW.md](FAMILIARITY-REVIEW.md) describes the separate optional
+346-word AI editorial supplement, its pins and limitations. It does not replace
+this original source, rewrite old attempts or establish human familiarity.
+
 Prepared 2026-10-25. Source pipeline command:
 
 ```powershell

@@ -43,7 +43,7 @@ object BeeGame : GameModule {
     @Composable
     override fun Play(puzzle: PuzzleRecord, state: Map<String, String>, enabled: Boolean, onChange: (Map<String, String>) -> Unit) {
         val board = remember(puzzle) { BeePuzzle.from(puzzle) }
-        val input = remember(puzzle.id) { BeeInputBuffer(BeeState.from(state)) }
+        val input = remember(puzzle.id) { BeeInputBuffer(BeeState.from(state), ordered = board.opening) }
         var progress by remember(puzzle.id) { mutableStateOf(input.current) }
         SideEffect { progress = input.acceptExternal(BeeState.from(state)) }
         fun edit(transform: (BeeState) -> BeeState) {
@@ -51,16 +51,30 @@ object BeeGame : GameModule {
             progress = input.edit(transform)
             onChange(progress.toMap())
         }
-        val errors = remember(board) { BeeRules.validate(board) }
+        val errors = BeeRules.validate(board) + if (board.opening) BeeOpening.stateErrors(board, progress)
+            else if (progress.decodeError != null || progress.statePolicy != null || progress.acceptedOrder != null) listOf("Unsupported or malformed saved state") else emptyList()
         if (errors.isNotEmpty()) {
             Text("This saved puzzle cannot be played: ${errors.joinToString()}. Your progress has not been erased.")
             return
         }
         val found = BeeRules.foundWords(board, progress)
         val outcome = BeeRules.result(board, progress)
+        val opening = if (board.opening) BeeOpening.progress(board, progress) else null
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text("Center letter: ${board.center}", style = MaterialTheme.typography.titleMedium)
             Text("Four letters or more. Always include the center. Letters may repeat.", style = MaterialTheme.typography.bodySmall)
+            if (opening != null) {
+                Surface(shape = MaterialTheme.shapes.large, color = MaterialTheme.colorScheme.primaryContainer) {
+                    Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text(if (opening.recorded) "Recorded opening: ${opening.percent.toPlainString()}%" else
+                            "Opening ${opening.words.size}/10 · provisional ${opening.percent.toPlainString()}%", style = MaterialTheme.typography.titleMedium)
+                        Text("${opening.points}/${opening.benchmark} opening points", style = MaterialTheme.typography.bodyMedium)
+                        Text(if (opening.recorded) "Score fixed. Keep playing for the word goal and more points." else
+                            "Choose carefully: each accepted word takes one opening slot. Rejected or duplicate words take none. You can leave and resume; after ten, your score is recorded and you may keep playing.", style = MaterialTheme.typography.bodySmall)
+                        Text("Score fairness is provisional. See Help for scoring details.", style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
             Honeycomb(board, enabled) { letter ->
                 edit { it.copy(entry = (it.entry + letter).take(32), message = "") }
             }
@@ -72,7 +86,8 @@ object BeeGame : GameModule {
                 modifier = Modifier.fillMaxWidth())
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(enabled = enabled && progress.entry.isNotEmpty(), onClick = { edit { it.copy(entry = "", message = "") } }, modifier = Modifier.weight(1f)) { Text("Clear") }
-                Button(enabled = enabled && progress.entry.isNotBlank(), onClick = { edit { BeeRules.submit(board, it) } }, modifier = Modifier.weight(1f)) { Text("Enter") }
+                Button(enabled = enabled && progress.entry.isNotBlank(), onClick = { edit { BeeRules.submit(board, it) } },
+                    modifier = Modifier.weight(1f).semantics { contentDescription = "Enter word" }) { Text("Enter") }
                 OutlinedButton(enabled = enabled && progress.entry.isNotEmpty(), onClick = { edit { it.copy(entry = it.entry.dropLast(1), message = "") } }, modifier = Modifier.weight(1f)) { Text("Delete") }
             }
             AnimatedContent(targetState = progress.message, label = "Bee word feedback") { message ->
@@ -83,18 +98,21 @@ object BeeGame : GameModule {
                     val fraction = if (board.legacy) BeeRules.goalScore(board, progress).toFloat() / board.target
                         else found.size.toFloat() / board.wordTarget
                     val animated by animateFloatAsState(fraction.coerceIn(0f, 1f), tween(450), label = "Bee daily progress")
-                    Text(if (board.legacy) "Saved puzzle · original completion rules" else "Daily goal: find ${board.wordTarget} words",
+                    Text(if (board.legacy) "Saved puzzle · original completion rules" else if (board.opening) "Completion goal: find ${board.wordTarget} words" else "Daily goal: find ${board.wordTarget} words",
                         style = MaterialTheme.typography.titleMedium)
                     LinearProgressIndicator(progress = { animated }, modifier = Modifier.fillMaxWidth(),
                         trackColor = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = .18f))
                     Text(if (board.legacy) "This older puzzle keeps its original score and completion. New puzzles count every accepted word equally."
                         else "${found.size}/${board.wordTarget} words · every accepted word counts", style = MaterialTheme.typography.bodyMedium)
-                    Text("${BeeRules.totalScore(board, progress)} points · ${found.size} words found", style = MaterialTheme.typography.labelLarge)
+                    Text("${BeeRules.totalScore(board, progress)} ${if (board.opening) "all-word points" else "points"} · ${found.size} words found", style = MaterialTheme.typography.labelLarge)
                 }
             }
-            if (outcome.status == PlayStatus.COMPLETED) Text("Daily goal reached ✓ Keep exploring if you like.", fontWeight = FontWeight.SemiBold)
+            if (outcome.status == PlayStatus.COMPLETED) Text(
+                if (opening != null && !opening.recorded) "Completion goal reached ✓ Opening still unfinished (${opening.words.size}/10). Resume any time to record it."
+                else if (opening != null) "Completion goal reached ✓ Opening recorded. Keep exploring if you like."
+                else "Daily goal reached ✓ Keep exploring if you like.", fontWeight = FontWeight.SemiBold)
             Text("Words by length", style = MaterialTheme.typography.titleMedium)
-            Text("Each bar shows all accepted words of that length. You do not need every word to finish the daily goal.", style = MaterialTheme.typography.bodySmall)
+            Text("Each bar shows all accepted words of that length. You do not need every word to reach the completion goal.", style = MaterialTheme.typography.bodySmall)
             BeeRules.lengthProgress(board, progress).forEach { bucket ->
                 val fraction by animateFloatAsState(bucket.found.toFloat() / bucket.total, tween(450), label = "${bucket.length}-letter progress")
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -106,7 +124,7 @@ object BeeGame : GameModule {
                 }
             }
             Text("Found words", style = MaterialTheme.typography.titleMedium)
-            AnimatedContent(targetState = found.sorted().joinToString(" · ").ifEmpty { "None yet" }, label = "Found Bee words") {
+            AnimatedContent(targetState = (if (board.opening) progress.acceptedOrder.orEmpty() else found.sorted()).joinToString(" · ").ifEmpty { "None yet" }, label = "Found Bee words") {
                 Text(it)
             }
             Text("Points: four letters = 1; longer words = their length. Using all seven letters adds 7.", style = MaterialTheme.typography.bodySmall)

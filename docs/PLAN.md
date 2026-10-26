@@ -1,5 +1,11 @@
 # Discovery and delivery plan
 
+B1 (2026-10-26): owner approved active Bee opening scoring without an additional
+ratio filter. Integrate ordered v3 scores and independent goal/resume milestones
+with full old-save compatibility, compile/test on disposable emulator offline,
+deliver versionCode 4 update. Keep original familiar source; optional supplement
+is review-only. Scope/decisions: PRODUCT B1 and D-025. No new dependencies.
+
 G1 update (2026-10-25): owner authorized Wordish, Bee and primary integration.
 Both generators and real daily/additional worker/save adapters are implemented.
 Other three games retain labeled starters because their generator modules have

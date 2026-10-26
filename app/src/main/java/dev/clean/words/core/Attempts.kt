@@ -4,6 +4,8 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.UUID
+import dev.clean.words.games.bee.BeeOpening
+import dev.clean.words.games.bee.BeeState
 
 enum class PuzzleMode { DAILY, EXTRA }
 
@@ -57,6 +59,20 @@ object AttemptRules {
     }
 
     fun update(attempt: Attempt, state: Map<String, String>, game: GameModule, now: Instant): Attempt {
+        require(AttemptPresentation.inspect(attempt).errors.isEmpty() &&
+            AttemptPresentation.inspect(attempt.copy(state = state)).errors.isEmpty()) {
+            "Saved Bee opening needs recovery; original state and result were preserved"
+        }
+        if (attempt.gameId == "bee" && attempt.puzzle.data["scoringVersion"] == BeeOpening.SCORING) {
+            val before = BeeState.from(attempt.state)
+            val after = BeeState.from(state)
+            val oldOrder = before.acceptedOrder.orEmpty()
+            require(after.acceptedOrder.orEmpty().take(oldOrder.size) == oldOrder &&
+                after.acceptedOrder.orEmpty().size >= oldOrder.size && after.editRevision >= before.editRevision &&
+                (before.editRevision == 0L || after.editRevision > before.editRevision || after == before)) {
+                "Stale or conflicting Bee edit; accepted words and recorded opening were preserved"
+            }
+        }
         val result = game.result(attempt.puzzle, state)
         val completed = attempt.completedAt ?: if (result.status != PlayStatus.IN_PROGRESS) now.toString() else null
         val sticky = if (attempt.result.status == PlayStatus.COMPLETED && result.status == PlayStatus.IN_PROGRESS)
@@ -69,4 +85,9 @@ object AttemptRules {
         return if (existing < 0) Library(library.attempts + attempt)
         else Library(library.attempts.toMutableList().also { it[existing] = attempt })
     }
+
+    fun previousUnfinished(library: Library, gameId: String, today: LocalDate): Attempt? =
+        library.attempts.filter { it.gameId == gameId && it.mode == PuzzleMode.DAILY &&
+            it.puzzleDate != null && it.puzzleDate < today.toString() && AttemptPresentation.inspect(it).needsResume }
+            .maxByOrNull { it.puzzleDate ?: "" }
 }
