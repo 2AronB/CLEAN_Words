@@ -1,3 +1,17 @@
+## Crossita X1 extension — 2026-10-26
+
+Primary owns live crossword rules/UI/core adapter. Generator/content agent owns
+only generators/crossword, associated assets/tools/tests; check agent owns new
+crossword dimension tests and existing input/session Android regressions.
+PuzzleRecord.data keeps grid and answer|clue lines. New width,height are explicit;
+absent dimensions decode25 cells as 5×5. Both must parse/match supported5/7 sizes.
+Cursor/cells/checked/assisted state and results keep their existing semantics.
+New7×7 starts use the existing generation worker/save-before-open, preserving
+legacy daily precedence and frozen saves. Never infer size by square root or
+reinterpret saved answers from the current bank. API/version pins and actual
+qualification live in generators/crossword. No concurrent live input owner exists
+in this task; primary is authorized to adapt it by the owner request D-028.
+
 # S1 game integration contract v1
 
 ## Connektions generation extension C2 — 2026-10-26

@@ -137,10 +137,10 @@ class OfflineIntegrationTest {
         }
     }
 
-    @Test fun allThreeGeneratedGamesStartThroughUiAndResumeTheirFrozenContent() {
+    @Test fun allFourGeneratedGamesStartThroughUiAndResumeTheirFrozenContent() {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             eventually("home") { has("A little word time.") }
-            listOf(WordishGame, BeeGame, ConnectionsGame).forEach { game ->
+            listOf(WordishGame, BeeGame, ConnectionsGame, CrosswordGame).forEach { game ->
                 click(game.title)
                 eventually("hub") { has("Stay a little longer") }
                 val dailyLabel = when {
@@ -149,11 +149,14 @@ class OfflineIntegrationTest {
                     else -> "View today's result"
                 }
                 click(dailyLabel)
-                eventually("daily board") { has(when(game.id) {"wordish" -> "correct place"; "bee" -> "Center letter:"; else -> "Mistakes remaining"}) }
+                eventually("daily board") { has(when(game.id) {"wordish" -> "correct place"; "bee" -> "Center letter:"; "crossword" -> "Tap a square or clue"; else -> "Mistakes remaining"}) }
                 instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
                 eventually("daily hub") { has("Another puzzle") }
                 click("Another puzzle")
-                eventually("generated board") { has("Generated locally · provisional content quality") }
+                eventually("${game.id} generated board") {
+                    if (has("Generated locally · provisional content quality")) true
+                    else { scroll(backward = true); false }
+                }
                 val disk = AtomicLibraryStore(File(context.filesDir, "play-library"))
                 val attempt = disk.load().library!!.attempts.last { it.gameId == game.id && it.mode == PuzzleMode.EXTRA }
                 assertNotNull(attempt.puzzle.data["generator"])
@@ -168,6 +171,17 @@ class OfflineIntegrationTest {
                     click("Enter word", exact = true)
                     eventually("generated Bee word accepted and saved") {
                         word in BeeState.from(disk.load().library!!.attempts.first { it.id == attempt.id }.state).found
+                    }
+                } else if (game.id == "crossword") {
+                    val board = requireNotNull(CrosswordRules.board(attempt.puzzle))
+                    assertEquals(7, board.width); assertEquals(7, board.height)
+                    assertTrue(board.entries().size >= 10)
+                    click("Q", exact = true)
+                    val expected = CrosswordInput.type(board, attempt.state, "Q")
+                    eventually("generated crossword letter and cursor saved") {
+                        val state = disk.load().library!!.attempts.first { it.id == attempt.id }.state
+                        CrosswordRules.cells(board, state) == CrosswordRules.cells(board, expected) &&
+                            CrosswordInput.selected(board, state) == CrosswordInput.selected(board, expected)
                     }
                 } else {
                     val groups = ConnectionsRules.groups(attempt.puzzle)

@@ -8,6 +8,9 @@ import androidx.test.platform.app.InstrumentationRegistry
 import dev.clean.words.core.*
 import dev.clean.words.games.bee.BeeGame
 import dev.clean.words.games.wordish.WordishGame
+import dev.clean.words.games.crossword.CrosswordGame
+import dev.clean.words.games.crossword.CrosswordRules
+import dev.clean.words.games.crossword.CrosswordInput
 import dev.clean.words.games.connections.ConnectionsGame
 import dev.clean.words.games.connections.ConnectionsRules
 import org.junit.Assert.*
@@ -53,7 +56,7 @@ class GenerationSessionAndroidTest {
         val (s, owner) = session(directory)
         var expected = Library()
         try {
-            listOf(WordishGame, BeeGame, ConnectionsGame).forEach { game ->
+            listOf(WordishGame, BeeGame, ConnectionsGame, CrosswordGame).forEach { game ->
                 ui { s.open(game, PuzzleMode.DAILY); s.open(game, PuzzleMode.DAILY) }
                 val dailyId = waitStarted(s)
                 val dailyOnDisk = AtomicLibraryStore(directory).load().library!!.attempts.single { it.id == dailyId }
@@ -77,14 +80,14 @@ class GenerationSessionAndroidTest {
                 }
             }
             ui { expected = s.library }
-            assertEquals(12, expected.attempts.size)
+            assertEquals(16, expected.attempts.size)
             assertEquals(expected, AtomicLibraryStore(directory).load().library)
         } finally { ui { owner.clear() } }
         val (restored, nextOwner) = session(directory) { throw AssertionError("Resume must not prepare source or regenerate") }
         try {
             ui {
                 assertEquals(expected, restored.library)
-                listOf(WordishGame, BeeGame, ConnectionsGame).forEach { game ->
+                listOf(WordishGame, BeeGame, ConnectionsGame, CrosswordGame).forEach { game ->
                     restored.open(game, PuzzleMode.DAILY)
                     assertEquals(expected.attempts.single { it.gameId == game.id && it.mode == PuzzleMode.DAILY }.id, restored.openedAttemptId)
                     restored.consumeOpenedAttempt()
@@ -188,6 +191,105 @@ class GenerationSessionAndroidTest {
                 assertEquals(setOf(0), ConnectionsRules.solved(restored.library.attempts.last().state))
                 restored.open(ConnectionsGame, PuzzleMode.DAILY, now, zone)
                 assertEquals(old.id, restored.openedAttemptId)
+            }
+        } finally { ui { nextOwner.clear() } }
+    }
+
+    @Test fun legacyCrosswordDailyAndCompletedHistorySurviveLargerGeneratedPlayAndRestart() {
+        val directory = freshDirectory(); val disk = AtomicLibraryStore(directory)
+        val now = Instant.now(); val zone = ZoneId.systemDefault()
+        val starter = AttemptRules.create(Library(), CrosswordGame, PuzzleMode.DAILY, now, zone)
+        val starterBoard = requireNotNull(CrosswordRules.board(starter.puzzle))
+        val old = AttemptRules.update(starter, CrosswordInput.type(starterBoard, emptyMap(), "AX"), CrosswordGame, now)
+        val historyPuzzle = CrosswordGame.puzzles[1]
+        val history = AttemptRules.createSnapshot(Library(listOf(old)), CrosswordGame, PuzzleMode.EXTRA,
+            historyPuzzle, now.minusSeconds(3600), zone).let { attempt ->
+            AttemptRules.update(attempt, mapOf("cells" to requireNotNull(CrosswordRules.board(historyPuzzle)).grid),
+                CrosswordGame, now.minusSeconds(3500))
+        }
+        assertEquals(PlayStatus.COMPLETED, history.result.status)
+        val before = Library(listOf(old, history)); disk.save(before)
+        val (s, owner) = session(directory)
+        var expected = before
+        var generatedId = ""
+        try {
+            ui {
+                s.open(CrosswordGame, PuzzleMode.DAILY, now, zone)
+                assertEquals(old.id, s.openedAttemptId)
+                assertEquals(before, s.library)
+                assertNull(s.launching)
+                s.consumeOpenedAttempt()
+                s.open(CrosswordGame, PuzzleMode.EXTRA)
+            }
+            generatedId = waitStarted(s)
+            val generated = disk.load().library!!.attempts.single { it.id == generatedId }
+            assertNotNull(generated.puzzle.data["generator"])
+            val board = requireNotNull(CrosswordRules.board(generated.puzzle))
+            assertEquals(7, board.width); assertEquals(7, board.height)
+            assertEquals(emptyList<String>(), CrosswordRules.validate(generated.puzzle))
+            val highIndex = board.grid.indices.last { it > 24 && board.grid[it] != '#' }
+            val wrong = if (board.grid[highIndex] == 'Z') "X" else "Z"
+            val containing = board.entries().filter { highIndex in it.cells }
+            assertTrue(containing.isNotEmpty())
+            var state = CrosswordInput.select(board, emptyMap(), highIndex, containing.first().direction)
+            state = CrosswordRules.enter(board, state, highIndex, wrong)
+            state = CrosswordRules.check(board, state)
+            assertEquals(setOf(highIndex), CrosswordRules.checked(state))
+            // Crossing edits share one saved cell, regardless of the generated template's layout.
+            val crossing = board.entries().flatMap { it.cells }.groupingBy { it }.eachCount()
+                .entries.first { it.value == 2 && it.key != highIndex }.key
+            state = CrosswordRules.enter(board, state, crossing, board.grid[crossing].toString())
+            assertEquals(setOf(highIndex), CrosswordRules.checked(state))
+            val finalState = state
+            ui { s.change(generatedId, finalState, CrosswordGame) }
+            eventually("larger crossword edits and checked cells durable") {
+                disk.load().library!!.attempts.single { it.id == generatedId }.state == finalState
+            }
+            ui { expected = s.library }
+            assertEquals(old, expected.attempts[0])
+            assertEquals(history, expected.attempts[1])
+            assertEquals(generated.puzzle, expected.attempts.last().puzzle)
+            assertTrue(expected.attempts.last().result.assisted)
+            assertEquals(expected, disk.load().library)
+        } finally { ui { owner.clear() } }
+        val (restored, nextOwner) = session(directory) { error("Saved crossword must reopen without source loading") }
+        try {
+            ui {
+                assertEquals(expected, restored.library)
+                val reopened = restored.library.attempts.single { it.id == generatedId }
+                val board = requireNotNull(CrosswordRules.board(reopened.puzzle))
+                assertEquals(49, CrosswordRules.cells(board, reopened.state).length)
+                assertTrue(CrosswordRules.checked(reopened.state).single() > 24)
+                assertEquals(CrosswordRules.result(board, reopened.state), reopened.result)
+                restored.open(CrosswordGame, PuzzleMode.DAILY, now, zone)
+                assertEquals(old.id, restored.openedAttemptId)
+                assertEquals(old, restored.library.attempts.first())
+                assertEquals(history, restored.library.attempts[1])
+            }
+            val reopened = expected.attempts.single { it.id == generatedId }
+            val board = requireNotNull(CrosswordRules.board(reopened.puzzle))
+            var completedState = reopened.state
+            board.grid.indices.filter { board.grid[it] != '#' }.forEach { index ->
+                completedState = CrosswordRules.enter(board, completedState, index, board.grid[index].toString())
+            }
+            assertEquals(PlayStatus.COMPLETED, CrosswordRules.result(board, completedState).status)
+            assertTrue(CrosswordRules.checked(completedState).isEmpty())
+            ui { restored.change(generatedId, completedState, CrosswordGame) }
+            eventually("completed larger crossword result durable") {
+                disk.load().library!!.attempts.single { it.id == generatedId }.result.status == PlayStatus.COMPLETED
+            }
+            val completed = disk.load().library!!.attempts.single { it.id == generatedId }
+            assertEquals(reopened.puzzle, completed.puzzle)
+            assertEquals(completedState, completed.state)
+            assertNotNull(completed.completedAt)
+            assertEquals(board.grid.count { it != '#' }, completed.result.score)
+            assertTrue(completed.result.assisted)
+            ui {
+                restored.open(CrosswordGame, PuzzleMode.DAILY, now, zone)
+                assertEquals(old.id, restored.openedAttemptId)
+                assertEquals(old, restored.library.attempts.first())
+                assertEquals(history, restored.library.attempts[1])
+                assertEquals(completed, restored.library.attempts.last())
             }
         } finally { ui { nextOwner.clear() } }
     }

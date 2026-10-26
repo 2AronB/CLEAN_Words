@@ -191,7 +191,7 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                             OutlinedButton(onClick = { navigate("calendar") }, modifier = Modifier.fillMaxWidth()
                                 .semantics { contentDescription = "Calendar & history" }) { Text("Calendar & history") }
                             TextButton(onClick = { navigate("credits") }) { Text("Credits & sources") }
-                            Text("Development edition · tWordle, Speling Bee and Connektions generate locally from finite banks. Stranded and Crossita use 10 starters each. Difficulty is provisional.",
+                            Text("Development edition · tWordle, Speling Bee, Connektions and Crossita generate locally from finite banks. Stranded uses 10 starters. Difficulty is provisional.",
                                 style = MaterialTheme.typography.bodySmall)
                         }
                         "hub" -> {
@@ -201,6 +201,7 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                                 "Generated offline from a finite word bank. Familiarity and daily challenge still need player review. Saved dailies keep their original puzzle."
                                 else "Starter collection · 10 puzzles. Repeats are possible; daily challenge has not been calibrated.")
                             if (gameId == "bee") Text("New puzzles: your first ten distinct accepted words set an opening score against this board’s best ten. Keep playing afterward for the word goal and more points. Score fairness is provisional.")
+                            if (gameId == "crossword") Text("New puzzles use varied 7×7 layouts. Today’s saved 5×5 stays unchanged; choose Another puzzle to try the larger grids now. Clue quality and challenge still need your feedback.")
                             if (gameId == "connections") Text("Boards include tempting partial connections across the four solution groups. Categories and ambiguity still need player review; this is a small provisional relationship bank.")
                             val currentProgress = current?.let { AttemptPresentation.inspect(it) }
                             currentProgress?.let { OpeningSummary(it) }
@@ -224,7 +225,9 @@ private fun CleanWords(session: AppSession, readAsset: (String) -> String) {
                             }
                             Spacer(Modifier.height(6.dp))
                             Text("Stay a little longer", style = MaterialTheme.typography.titleLarge)
-                            Text(if (OfflinePuzzleGeneration.isGenerated(gameId))
+                            Text(if (gameId == "crossword")
+                                "Generate another 7×7 fill. Recent fills are excluded, the previous puzzle’s exact clues are avoided, and older answers and clues are deprioritized. Common answers may recur; the pilot is finite."
+                                else if (OfflinePuzzleGeneration.isGenerated(gameId))
                                 "Generate another independent puzzle, excluding content from your latest 100 starts for this game. The bank is finite; exhaustion is reported."
                                 else "Start another independent starter puzzle. The ten-puzzle collection cycles; repeats keep separate progress.")
                             Button(onClick = { session.open(game, PuzzleMode.EXTRA) },
@@ -400,6 +403,7 @@ private fun CreditsScreen(readAsset: (String) -> String) {
     Text("tWordle uses an original 1,387-answer AI editorial shortlist with the unchanged ENABLE guess policy. Speling Bee derives seven-letter sets from original AI editorial pangram candidates, then enumerates every accepted word from its bundled ENABLE index. Familiarity lists set an attainable word-count goal; all accepted words count equally. Both banks have zero human or frequency review and provisional difficulty. Sources and license notice are bundled; no first-run download.")
     Text("New Speling Bee puzzles record the first ten accepted words against the board’s best-ten points. The full ENABLE accepted set and existing familiarity input are retained, with no extra familiarity-ratio filter. Score fairness remains provisional. Older saved puzzles keep their original rules.")
     Text("Connektions composes boards offline from 20 original AI-authored categories and five decoy relationships, with two deliberate three-word near-matches and checks against competing solutions in the recorded relationship model. These are provisional drafts with zero human reviews; this model cannot capture every possible interpretation. Category variety is limited. No published puzzle archive or external relationship dataset was used; no first-run download. Existing saved boards keep their exact content.")
+    Text("Crossita fills varied 7×7 layouts offline from an original AI-authored clue and answer pilot. Clues, dimensions and answers are saved with each puzzle; older 5×5 games keep their exact content. The finite pilot has no human fairness or difficulty review, and some answers recur. No published puzzle archive, external clue dataset or first-run download is used.")
     Text("Built with Kotlin, AndroidX, Jetpack Compose and Material 3. No ads, accounts, analytics or required internet.")
 }
 
@@ -408,5 +412,5 @@ private fun helpFor(id: String): String = when (id) {
     "connections" -> "Select four words with a shared connection. Find all four groups. Four distinct incorrect guesses end the puzzle. Repeating the same incorrect group does not cost another mistake."
     "bee" -> "Make words of four or more letters using the seven letters, always including the center. Letters may repeat. In new scored puzzles, your first ten distinct accepted words set an opening score: their points divided by this board’s best-ten points, times 100. Rejected and duplicate words do not use a slot. Before ten, the score is provisional; after ten, it stays fixed. Every accepted word also advances a separate word-count goal. You can reach that goal before recording the opening, or record the opening before reaching the goal. Keep playing after both. Bars show all available words by length. Older saved puzzles keep their original rules and have no retrofitted opening. Four letters earns 1 point; longer words their length; using all letters adds 7. Cross-board fairness is provisional; no extra familiarity-ratio filter is applied."
     "strands" -> "Find themed words along neighboring letters, including diagonals. A cell can be used once and found words cannot overlap. One spanning answer joins opposite edges. Tap letters, then Enter. Clear cancels the current path; Delete steps back. A route that blocks the remaining words is rejected without erasing prior play. Undo remains available for older routes."
-    else -> "Fill Across and Down answers. Crossing answers share a cell. Finishing a word advances to the next clue without checking it. Delete clears and moves backward. Use the built-in keyboard, or choose the phone keyboard. Check is optional and records assistance without deleting letters. A full but incorrect grid stays unfinished."
+    else -> "New puzzles use varied 7×7 grids; saved 5×5 puzzles keep their original size. Fill Across and Down answers. Crossing answers share a cell. Finishing a word advances to the next clue without checking it. Delete clears and moves backward. Use the built-in keyboard, or choose the phone keyboard. Check is optional and records assistance without deleting letters. A full but incorrect grid stays unfinished."
 }

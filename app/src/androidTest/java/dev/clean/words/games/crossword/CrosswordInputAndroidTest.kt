@@ -23,7 +23,7 @@ class CrosswordInputAndroidTest {
     private val context get() = instrumentation.targetContext
 
     @Test fun rapidPhoneInputAndPasteKeepCharactersAndBackspaceDoesNotCheck() {
-        ActivityScenario.launch(MainActivity::class.java).use {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             eventually { findText("A little word time.") != null }
             click("Crossita")
             eventually { findText("Stay a little longer") != null }
@@ -31,36 +31,53 @@ class CrosswordInputAndroidTest {
             eventually { findText("Tap a square or clue") != null }
             val attempt = latestCrossword()!!
             val board = requireNotNull(CrosswordRules.board(attempt.puzzle))
+            assertNotNull(attempt.puzzle.data["generator"])
+            assertEquals(7, board.width)
+            assertEquals(7, board.height)
             click("Use phone keyboard")
             eventually { editableNode() != null }
             // Real key events arrive without waiting for parent persistence/recomposition.
             instrumentation.sendStringSync("ABCDE")
-            eventually {
-                val state = current(attempt.id)?.state ?: return@eventually false
-                val cells = CrosswordRules.cells(board,state)
-                cells.substring(0,3) == "ABC" && cells.substring(10,12) == "DE"
-            }
+            var expected = CrosswordInput.type(board, attempt.state, "ABCDE")
+            eventually { matchesState(board, current(attempt.id)?.state, expected) }
             // One commit contains several additional characters, as a paste/IME burst does.
             val paste = Bundle().apply {
                 putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, "ABCDEFGH")
             }
             assertTrue(editableNode()!!.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, paste))
-            eventually {
-                val cells = current(attempt.id)?.let { CrosswordRules.cells(board,it.state) } ?: return@eventually false
-                cells.substring(10,15) == "DEFGH"
+            expected = CrosswordInput.type(board, expected, "FGH")
+            eventually { matchesState(board, current(attempt.id)?.state, expected) }
+            instrumentation.uiAutomation.takeScreenshot()?.let { screenshot ->
+                java.io.FileOutputStream(File(context.cacheDir, "crossword-phone.png")).use {
+                    assertTrue(screenshot.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, it))
+                }
+                screenshot.recycle()
             }
             instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_DEL)
-            eventually {
-                val saved = current(attempt.id) ?: return@eventually false
-                val cells = CrosswordRules.cells(board,saved.state)
-                cells[14] == '.' && saved.state["selected"] == "14"
-            }
+            expected = CrosswordInput.delete(board, expected)
+            eventually { matchesState(board, current(attempt.id)?.state, expected) }
             val saved = current(attempt.id)!!
             assertTrue(CrosswordRules.checked(saved.state).isEmpty())
             assertFalse(saved.result.assisted)
             assertNull(saved.state["checkedOnce"])
+
+            // Recreation must reopen this exact frozen grid and retained cursor/letters.
+            scenario.recreate()
+            eventually { findText("Tap a square or clue") != null }
+            assertEquals(saved.puzzle, current(attempt.id)!!.puzzle)
+            assertEquals(saved.state, current(attempt.id)!!.state)
+            eventually { findText("Use phone keyboard") != null }
+            click("Q", exact = true)
+            expected = CrosswordInput.type(board, expected, "Q")
+            eventually { matchesState(board, current(attempt.id)?.state, expected) }
+            assertNull(current(attempt.id)!!.state["checkedOnce"])
         }
     }
+
+    private fun matchesState(board: CrosswordBoard, actual: Map<String, String>?, expected: Map<String, String>): Boolean =
+        actual != null && CrosswordRules.cells(board, actual) == CrosswordRules.cells(board, expected) &&
+            CrosswordInput.selected(board, actual) == CrosswordInput.selected(board, expected) &&
+            CrosswordInput.direction(actual) == CrosswordInput.direction(expected)
 
     private fun latestCrossword(): Attempt? = AtomicLibraryStore(File(context.filesDir,"play-library"))
         .load().library?.attempts?.lastOrNull { it.gameId == "crossword" && it.mode == PuzzleMode.EXTRA }
@@ -77,10 +94,10 @@ class CrosswordInputAndroidTest {
     }
     private fun findText(text: String) = visit { it.text?.toString()?.contains(text) == true }
     private fun editableNode() = visit { it.isEditable }
-    private fun click(text: String) {
+    private fun click(text: String, exact: Boolean = false) {
         repeat(15) {
             val candidate = visit { node ->
-                if (node.text?.toString()?.contains(text) != true) false
+                if (if (exact) node.text?.toString() != text else node.text?.toString()?.contains(text) != true) false
                 else {
                     var at: AccessibilityNodeInfo? = node
                     while (at != null && !at.isClickable) at = at.parent

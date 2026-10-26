@@ -1,0 +1,523 @@
+{
+  "note": "Independent JS fill smoke, no runtime board catalog. Kotlin qualification is authoritative for seeded behavior.",
+  "rows": [
+    {
+      "id": "5x5-1",
+      "solved": true,
+      "steps": 123,
+      "entries": 6,
+      "words": [
+        "BAND",
+        "NET",
+        "CITY",
+        "CABIN",
+        "DAY",
+        "BEAD"
+      ]
+    },
+    {
+      "id": "5x5-2",
+      "solved": true,
+      "steps": 586,
+      "entries": 6,
+      "words": [
+        "BEACH",
+        "ERA",
+        "ARM",
+        "AMBER",
+        "TABLE",
+        "BAT"
+      ]
+    },
+    {
+      "id": "5x5-3",
+      "solved": true,
+      "steps": 46,
+      "entries": 6,
+      "words": [
+        "AREA",
+        "EAR",
+        "OCEAN",
+        "AGE",
+        "RAG",
+        "CRANE"
+      ]
+    },
+    {
+      "id": "5x5-4",
+      "solved": true,
+      "steps": 33,
+      "entries": 6,
+      "words": [
+        "AREA",
+        "TEA",
+        "AIR",
+        "ICE",
+        "DANCE",
+        "GIANT"
+      ]
+    },
+    {
+      "id": "5x5-5",
+      "solved": true,
+      "steps": 50,
+      "entries": 6,
+      "words": [
+        "BABY",
+        "AGE",
+        "AGO",
+        "BOARD",
+        "BAT",
+        "STEAM"
+      ]
+    },
+    {
+      "id": "5x5-6",
+      "solved": true,
+      "steps": 31,
+      "entries": 6,
+      "words": [
+        "APPLE",
+        "MAPLE",
+        "GEL",
+        "AGO",
+        "ONE",
+        "PEN"
+      ]
+    },
+    {
+      "id": "5x5-7",
+      "solved": true,
+      "steps": 88,
+      "entries": 6,
+      "words": [
+        "BAKE",
+        "BAKER",
+        "EAR",
+        "BERRY",
+        "PEA",
+        "APE"
+      ]
+    },
+    {
+      "id": "5x5-8",
+      "solved": true,
+      "steps": 37,
+      "entries": 6,
+      "words": [
+        "AREA",
+        "ERA",
+        "ARC",
+        "CORAL",
+        "ACT",
+        "PLATE"
+      ]
+    },
+    {
+      "id": "5x5-9",
+      "solved": true,
+      "steps": 20,
+      "entries": 6,
+      "words": [
+        "AREA",
+        "EAR",
+        "BEACH",
+        "AGE",
+        "AGO",
+        "COACH"
+      ]
+    },
+    {
+      "id": "5x5-10",
+      "solved": true,
+      "steps": 20,
+      "entries": 6,
+      "words": [
+        "ACORN",
+        "ANT",
+        "PEA",
+        "PORCH",
+        "RAT",
+        "ERA"
+      ]
+    },
+    {
+      "id": "5x5-11",
+      "solved": true,
+      "steps": 76,
+      "entries": 7,
+      "words": [
+        "AREA",
+        "END",
+        "BEAT",
+        "AGENT",
+        "RED",
+        "AGO",
+        "ODD"
+      ]
+    },
+    {
+      "id": "5x5-12",
+      "solved": true,
+      "steps": 42,
+      "entries": 6,
+      "words": [
+        "ACORN",
+        "ANT",
+        "SPA",
+        "APRON",
+        "SOD",
+        "DOT"
+      ]
+    },
+    {
+      "id": "5x5-13",
+      "solved": true,
+      "steps": 142,
+      "entries": 6,
+      "words": [
+        "ALARM",
+        "OWL",
+        "EWE",
+        "PEA",
+        "POT",
+        "STEAM"
+      ]
+    },
+    {
+      "id": "5x5-14",
+      "solved": true,
+      "steps": 614,
+      "entries": 6,
+      "words": [
+        "CHESS",
+        "ERA",
+        "RAT",
+        "SAP",
+        "GRAPE",
+        "STEAM"
+      ]
+    },
+    {
+      "id": "5x5-15",
+      "solved": true,
+      "steps": 17,
+      "entries": 6,
+      "words": [
+        "AREA",
+        "PEA",
+        "EAT",
+        "PLATE",
+        "PEACH",
+        "EAR"
+      ]
+    },
+    {
+      "id": "5x5-16",
+      "solved": true,
+      "steps": 58,
+      "entries": 6,
+      "words": [
+        "ACORN",
+        "CAR",
+        "STONE",
+        "CREAM",
+        "ARC",
+        "RAN"
+      ]
+    },
+    {
+      "id": "7x7-1",
+      "solved": true,
+      "steps": 318,
+      "entries": 10,
+      "words": [
+        "BAND",
+        "ERA",
+        "EVE",
+        "VAN",
+        "END",
+        "RAN",
+        "BACON",
+        "BENCH",
+        "CAMEL",
+        "BLOW"
+      ]
+    },
+    {
+      "id": "7x7-2",
+      "solved": true,
+      "steps": 85,
+      "entries": 10,
+      "words": [
+        "AREA",
+        "BEAR",
+        "BACON",
+        "BAND",
+        "BEAD",
+        "SEA",
+        "BASE",
+        "END",
+        "APE",
+        "PEN"
+      ]
+    },
+    {
+      "id": "7x7-3",
+      "solved": true,
+      "steps": 57,
+      "entries": 10,
+      "words": [
+        "AREA",
+        "SEA",
+        "HER",
+        "GREEN",
+        "BADGE",
+        "ONE",
+        "SHORE",
+        "BAD",
+        "CANOE",
+        "ATTIC"
+      ]
+    },
+    {
+      "id": "7x7-4",
+      "solved": true,
+      "steps": 118,
+      "entries": 10,
+      "words": [
+        "AREA",
+        "BEAR",
+        "HEART",
+        "PEA",
+        "BEARD",
+        "ART",
+        "PEARL",
+        "EAR",
+        "CARD",
+        "ATTIC"
+      ]
+    },
+    {
+      "id": "7x7-5",
+      "solved": true,
+      "steps": 460,
+      "entries": 11,
+      "words": [
+        "BASE",
+        "SEA",
+        "AREA",
+        "BIRD",
+        "TIGER",
+        "AGE",
+        "TAR",
+        "CARD",
+        "ATTIC",
+        "PAPER",
+        "SHEEP"
+      ]
+    },
+    {
+      "id": "7x7-6",
+      "solved": true,
+      "steps": 26,
+      "entries": 10,
+      "words": [
+        "BABY",
+        "BAKE",
+        "SKI",
+        "INK",
+        "HEN",
+        "SHEEP",
+        "CAMP",
+        "GYM",
+        "BADGE",
+        "YES"
+      ]
+    },
+    {
+      "id": "7x7-7",
+      "solved": true,
+      "steps": 8644,
+      "entries": 10,
+      "words": [
+        "BAND",
+        "DREAM",
+        "STEAM",
+        "TEA",
+        "WHITE",
+        "ICE",
+        "OCEAN",
+        "HOT",
+        "RAG",
+        "BADGE"
+      ]
+    },
+    {
+      "id": "7x7-8",
+      "solved": true,
+      "steps": 358,
+      "entries": 10,
+      "words": [
+        "BEAM",
+        "TEA",
+        "ATE",
+        "APE",
+        "PEARL",
+        "CREAM",
+        "OCEAN",
+        "AREA",
+        "ANKLE",
+        "RAN"
+      ]
+    },
+    {
+      "id": "7x7-9",
+      "solved": true,
+      "steps": 346,
+      "entries": 11,
+      "words": [
+        "CAMP",
+        "ERA",
+        "ACORN",
+        "ARROW",
+        "ARM",
+        "EAT",
+        "TOP",
+        "RADIO",
+        "ANT",
+        "ATE",
+        "EAGLE"
+      ]
+    },
+    {
+      "id": "7x7-10",
+      "solved": true,
+      "steps": 229,
+      "entries": 10,
+      "words": [
+        "AREA",
+        "SALAD",
+        "DELAY",
+        "DYE",
+        "CLAY",
+        "CEDAR",
+        "EAT",
+        "WATER",
+        "EWE",
+        "KEY"
+      ]
+    },
+    {
+      "id": "7x7-11",
+      "solved": true,
+      "steps": 68,
+      "entries": 10,
+      "words": [
+        "BABY",
+        "ANT",
+        "ATTIC",
+        "BET",
+        "STONE",
+        "BOAT",
+        "SEA",
+        "ACT",
+        "CAKE",
+        "EAGLE"
+      ]
+    },
+    {
+      "id": "7x7-12",
+      "solved": true,
+      "steps": 200,
+      "entries": 10,
+      "words": [
+        "BABY",
+        "ARMY",
+        "BEAD",
+        "BADGE",
+        "WEB",
+        "WHALE",
+        "ADD",
+        "LEG",
+        "DEW",
+        "EWE"
+      ]
+    },
+    {
+      "id": "7x7-13",
+      "solved": true,
+      "steps": 29,
+      "entries": 10,
+      "words": [
+        "AREA",
+        "CHAIR",
+        "HAM",
+        "AMBER",
+        "RIB",
+        "DAM",
+        "DRAIN",
+        "RIVER",
+        "BEAR",
+        "AID"
+      ]
+    },
+    {
+      "id": "7x7-14",
+      "solved": true,
+      "steps": 220,
+      "entries": 10,
+      "words": [
+        "BASE",
+        "BEAR",
+        "AREA",
+        "EAR",
+        "BACON",
+        "AGO",
+        "SEA",
+        "ARC",
+        "NAP",
+        "CAN"
+      ]
+    },
+    {
+      "id": "7x7-15",
+      "solved": true,
+      "steps": 131,
+      "entries": 11,
+      "words": [
+        "BABY",
+        "CABIN",
+        "ERA",
+        "NET",
+        "BET",
+        "ATE",
+        "WHITE",
+        "CAN",
+        "DEN",
+        "EAR",
+        "BEARD"
+      ]
+    },
+    {
+      "id": "7x7-16",
+      "solved": true,
+      "steps": 43,
+      "entries": 12,
+      "words": [
+        "ARMY",
+        "BABY",
+        "CORAL",
+        "ICE",
+        "CEDAR",
+        "ERA",
+        "COD",
+        "JUICE",
+        "APE",
+        "CLAP",
+        "BAD",
+        "DELAY"
+      ]
+    }
+  ]
+}

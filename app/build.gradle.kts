@@ -9,8 +9,8 @@ android {
         applicationId = "dev.clean.words"
         minSdk = 26
         targetSdk = 36
-        versionCode = 5
-        versionName = "0.5.0-connections"
+        versionCode = 6
+        versionName = "0.6.0-crossword"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures { compose = true }

@@ -5,6 +5,9 @@ import dev.clean.words.games.bee.BeePuzzle
 import dev.clean.words.games.bee.BeeRules
 import dev.clean.words.games.bee.BeeState
 import dev.clean.words.games.wordish.WordishGame
+import dev.clean.words.games.crossword.CrosswordGame
+import dev.clean.words.games.crossword.CrosswordRules
+import dev.clean.words.generators.crossword.BundledCrosswordBank
 import dev.clean.words.games.connections.ConnectionsGame
 import dev.clean.words.generators.connections.BundledConnectionsBank
 import dev.clean.words.generators.bee.BeeBundledSource
@@ -32,6 +35,25 @@ class OfflinePuzzleGenerationTest {
         return GenerationRequest(game, mode, day,
             if (mode == PuzzleMode.DAILY) GenerationSeeds.daily(game, policy, day) else GenerationSeeds.extra(game, policy, id),
             id, policy, recent)
+    }
+
+    @Test fun crosswordRuntimePinsAndLegacyDailyArePreserved() {
+        assertEquals(BundledCrosswordBank.contentSha256, BundledCrosswordBank.bank.contentSha256)
+        val engine = OfflinePuzzleGeneration { error("Crossword must use its bundled original bank offline") }
+        assertTrue(OfflinePuzzleGeneration.isGenerated("crossword"))
+        assertTrue(engine.policy("crossword").contains(BundledCrosswordBank.sourceSha256))
+        val generated = (engine.generate(request(engine, "crossword")) { false } as GenerationOutcome.Ready).puzzle
+        val board = requireNotNull(CrosswordRules.board(generated))
+        assertEquals(7, board.width); assertEquals(7, board.height)
+        assertTrue(board.entries().size >= 10)
+        assertEquals(emptyList<String>(), CrosswordRules.validate(generated))
+        assertEquals(BundledCrosswordBank.contentSha256, generated.data["bankSha256"])
+        val now = Instant.parse("2026-10-25T12:00:00Z"); val zone = ZoneId.of("UTC")
+        val old = AttemptRules.create(Library(), CrosswordGame, PuzzleMode.DAILY, now, zone)
+        assertEquals(old, AttemptRules.createSnapshot(Library(listOf(old)), CrosswordGame, PuzzleMode.DAILY, generated, now, zone))
+        assertNotNull(engine.signature("crossword", old.puzzle))
+        assertEquals(GenerationOutcome.Cancelled, engine.generate(request(engine, "crossword")) { true })
+        assertTrue(engine.generate(request(engine, "crossword").copy(policy = "future-source")) { false } is GenerationOutcome.Unavailable)
     }
 
     @Test fun connectionsRuntimePinsMatchTypedInputsAndLegacyDailyStillWins() {
@@ -71,7 +93,7 @@ class OfflinePuzzleGenerationTest {
 
     @Test fun realAdaptersPinDailyIndependentOfExtrasAndExcludeMeaningfulContent() {
         val e = OfflinePuzzleGeneration(::readAsset)
-        listOf("wordish", "bee", "connections").forEach { game ->
+        listOf("wordish", "bee", "connections", "crossword").forEach { game ->
             val req = request(e, game)
             val daily = (e.generate(req) { false } as GenerationOutcome.Ready).puzzle
             val signatures = mutableSetOf(e.signature(game, daily)!!)
@@ -123,7 +145,7 @@ class OfflinePuzzleGenerationTest {
         assertEquals(BeeGenerator.signature("CENTRAL", 'A'), BeeGenerator.signature("LARTNEC", 'A'))
         assertNotEquals(BeeGenerator.signature("CENTRAL", 'A'), BeeGenerator.signature("LARTNEC", 'E'))
         assertTrue(e.policy("bee").contains(BeeBundledSource.indexSha256))
-        listOf("strands", "crossword").forEach { id ->
+        listOf("strands").forEach { id ->
             assertFalse(OfflinePuzzleGeneration.isGenerated(id))
             val game = GameRegistry.get(id)
             repeat(12) { ordinal ->

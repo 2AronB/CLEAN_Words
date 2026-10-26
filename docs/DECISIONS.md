@@ -1,3 +1,17 @@
+## D-028 — Larger generated Crossita and integration authorized
+
+2026-10-26 — Owner requests coding and integration of generation/CROSSWORD.md,
+explicitly more complicated than the current fixed5x5, with reasonable assumptions
+and feedback afterwards. Authorizes crossword-only generator/content/live model/UI/
+worker integration and coordinated qualification/build/emulator/update artifact.
+Default: varied7x7 for new starts, standalone5x5 support, original familiar answer/
+clue pilot, no difficulty selector or numerical calibration claim. Existing daily
+snapshots and all legacy saves win. Preserve F1 input/IME and Check assistance.
+Bounded separate generator/content and tests agents; primary owns live/shared
+integration. No new dependencies, permissions, services or global settings.
+Wordish staging/tools and user Gradle file remain outside this task. Content and
+actual device fairness review follow implementation; do not ask scope again.
+
 ## D-027 — Connections remaining slices and integration authorized
 
 2026-10-26 — Owner first requested the next standalone slice, then explicitly

@@ -1,3 +1,54 @@
+# Crossita X1 integrated and verified — 2026-10-26
+
+Owner requested CROSSWORD.md coding AND integration, larger than fixed 5×5,
+with assumptions resolved autonomously and feedback afterwards (D-028). Complete.
+New Crossita daily/additional starts use varied 7×7 crossing search: 16 layouts,
+10–12 clues instead of six, and an original 394-answer/788-clue finite AI pilot.
+Internal 5×5 generation also qualified; no size/difficulty selector or calibrated
+rating is claimed. No new dependencies, permissions, network/service, storage
+schema or global settings. Four games now generate; Stranded still uses starters.
+
+Primary adapted live dimensions, numbering, check indices and rendering, explicit
+worker/policy/signature adapter, Help/credits/hub and versionCode 6 /
+0.6.0-crossword. Bounded generator/content and independent-check agents closed.
+Old dimensionless 25-cell snapshots remain 5×5; existing daily snapshots always
+win. Rapid/paste input, backward Delete, auto-clue advance without Check and both
+keyboards retain F1 semantics. Exact dimensions/clues/fill/source/profile pins
+are frozen before durable opening. Latest 100 fills are excluded regardless of
+changed clues; previous exact clues are forbidden; older answer/clue reuse is
+softly reduced. Existing daily seeds ignore additional-play history.
+
+Final 182 JVM tests pass; source --check and independent 32-mask fill smoke pass.
+Three 100-seed qualification runs: 5×5 gives 81 distinct fills, 7×7 gives 90,
+and rolling-history 7×7 gives 100, with no failures. Fifteen layouts per size
+were sampled. Counts/rejections/timings: [generator report](../app/src/main/java/dev/clean/words/generators/crossword/REPORT.md)
+and [raw qualification](../tools/generation/crossword/qualification.txt). Independent AI editorial reading
+covered all 394 clue pairs; zero human reviews. Four-letter/long-answer coverage
+and paraphrased variants remain corpus limits, not infinite novelty.
+Offline builds and final lint pass (0 errors/1 prior SDK warning). Offline
+emulator-5556 update from code 5 via install -r, no data clear: final Android
+15/15 pass in 157.662 seconds. Covers four generated UI flows, actual typing/
+paste/DEL/built-in Q, recreation, high-index checks/crossing edits, completed
+generated save/restart and legacy daily/history. Initial suite 14/15 had an
+offscreen generation-label test assertion; test now scrolls it into view.
+Focused flow 1/1 and final full 15/15 pass. Both keyboard screenshots inspected:
+artifacts/crossword-generated-board.png and artifacts/crossword-phone.png.
+
+APK: artifacts/CLEAN-Words-crossword-debug.apk (12,772,546 bytes).
+SHA256: 1dafbcaf847ed56fa8372f80c539b7bf15581bfb2bc877e2b1924669b7849130.
+Same signing cert as prior updates; packaged JSON matches pinned source hash.
+Delivered APK equals tested built bytes. No physical phone targeted or player
+storage reset. Preserve unrelated content-staging/, tools/wordish-review/ and
+untracked user gradle/gradle-daemon-jvm.properties. Source checkpoint is saved
+with this handoff; project emulator is shut down after verification.
+
+Exact next action: install APK as an update without clearing data, choose Crossita
+→ Another puzzle for 7×7 immediately (existing daily can remain 5×5), then batch
+MANUAL-ACCEPTANCE X1. Human clue fairness/desired challenge/familiarity, actual
+phone/large-text/touch/input/motion and long-lived overnight use remain unverified.
+No power-loss/incomplete-start-rollback/device-loss guarantee; separate clean-device
+first installation was not rerun. Older checkpoints below are historical.
+
 # Continue CLEAN Words
 
 ## Connektions C2 integrated and verified — 2026-10-26

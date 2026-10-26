@@ -1,3 +1,18 @@
+# Crossita X1 generated content — 2026-10-26
+
+New daily/additional starts integrate the original bundled crossword clue pilot
+and seeded crossing search in generators/crossword. Runtime selects varied 7×7
+layouts, with exact dimensions/grid/clue text/answer and clue IDs frozen in each
+record. Module README/REPORT and bundled provenance identify actual bank size,
+source pins, qualification and limits. No external clue corpus or runtime service.
+All pilot clues are AI-authored drafts pending human accuracy/fairness review.
+
+The live decoder now handles explicit 5/7 dimensions; absent dimensions remain
+legacy 5×5 only. Old starters and saved content/results are unchanged. Check marks
+cover all 49 possible cells. F1 immediate buffering, paste, auto-clue advance,
+backward Delete and built-in/phone keyboards keep their existing behavior.
+Older sections below describe historical starter/feedback/proposal scope.
+
 # Minuscule Crossword S1 content
 
 Ten distinct original 5×5 grids, assembled from an independently authored small

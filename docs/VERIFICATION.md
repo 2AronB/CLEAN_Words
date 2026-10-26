@@ -1,3 +1,64 @@
+## Crossita X1 verification — 2026-10-26
+
+D-028 authorizes larger crossword coding/integration with autonomous assumptions.
+New daily/extra 7×7, 16 layouts, 10–12 clues; original 394 answers/788 clues. Source/hash/
+limits/actual reuse and qualification: generators/crossword/REPORT.md. No new
+SDK/dependency/permission/network/service/global setting or save schema.
+
+- Final full JVM suite: 182 tests, 0 failures/errors. Includes dimension numbering,
+  row/down boundaries, high-index (48) checks/corrections, paste/deletion, mixed legacy/new
+  codec/daily/result retention; generator reproduction/source/sense/cancellation/
+  impossible-bank/cooldown/search-budget checks; source-pin equality and adapters.
+- Source preparation --check and independent JS fill smoke pass on 32 masks. Three
+  100-seed runs: 5×5 81 fills, 7×7 90 fills, rolling-history 7×7 100 distinct fills, 0 failures.
+  Fifteen layouts sampled per size. Report includes partial-fill rejection counts,
+  answer/clue reuse and host timing. Exact source JSON SHA256:
+  5d0771002642a4fcd841da1e1c6ef415b6e2469fb9e8cc9e3e5f31d2a568d690.
+  Typed hash 1a93c3ac57d2db83686e7f79f35577edeb09b36007cb237335dd55ec3ae95aad.
+- Independent AI reviewer read all 394 pairs, corrected AGO/ACORN/ALBUM wording;
+  zero human editorial reviews. Some alternate clues paraphrase the same fact,
+  four-letter coverage is narrow, and no 6/7-letter answer bank is included.
+- Offline assembleDebug/assembleDebugAndroidTest and final lint pass, 0 errors,
+  1 existing SDK warning. Final full JVM/lint rerun also passes after test refinements.
+- Explicit project-local emulator-5556 booted with existing code 5 app, Wi-Fi/data
+  disabled, update installed with install -r. No uninstall/storage clear/phone use.
+- Initial full Android run: 14/15 passed; larger crossword focus scrolled generation
+  status label out of view in allFourGeneratedGames... assertion. Test now scrolls
+  to the label just as its recreation assertion already did. No game rule/input
+  or quality restriction changed. Initial log retained: artifacts/crossword-device-test.txt. Focused four-game UI flow passes 1/1 (54.420 seconds); phone input screenshot
+  smoke 1/1 (14.913 seconds). Final complete Android suite **15/15 passes in 157.662 seconds**:
+  artifacts/crossword-final-device-test.txt. No failing test was skipped.
+- Android covers all four generated daily/extra UI starts and frozen recreation;
+  larger crossword actual rapid phone events/paste/DEL then built-in Q; legacy 5×5 daily
+  and completed history coexistence; high-index crossing/Check edits durable across
+  restart; full generated completion saved with unchanged snapshot; existing save-
+  failure/cancel/rollover/credits/permission/all 50 starter regressions.
+- artifacts/crossword-generated-board.png and crossword-phone.png inspected. Full
+  7×7 board, clue and ordered controls fit with puzzle keyboard; smaller board,
+  active clue and edit controls remain above IME. Actual phone/large text remains.
+- APK asset bytes independently match pinned source JSON. apksigner verification
+  succeeds; certificate SHA256 5d01ad4ef91eff366eab754f3853d8460b26007bce1a80a5416a0b5d7ed20916
+  equals prior update signer. Delivered and tested-built APK hashes match.
+
+Commands used process-local JAVA_HOME=C:\Program Files\Android\Android Studio\jbr:
+
+```powershell
+.\gradlew.bat --offline :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
+node tools/generation/crossword/prepare-bank.mjs --check
+node tools/generation/crossword/check-fill.mjs
+# Explicit offline emulator only; install -r both app/test APKs, then:
+adb -s emulator-5556 shell am instrument -w dev.clean.words.test/androidx.test.runner.AndroidJUnitRunner
+```
+
+APK: artifacts/CLEAN-Words-crossword-debug.apk, 0.6.0-crossword/versionCode 6,
+12,772,546 bytes; SHA256: 1dafbcaf847ed56fa8372f80c539b7bf15581bfb2bc877e2b1924669b7849130.
+Install as update, preserve all player data. Four games generated; Stranded still
+uses starters. No public release. Human accuracy/fairness/familiarity/desired
+challenge, physical-phone/layout/large-text/motion/keyboard and actual overnight/
+clock-zone acceptance remain open. Separate clean-device first install was not
+rerun; fresh isolated test libraries and code 5 update passed. Existing incomplete-
+rollback/process-death and device-loss limitations remain. Manual batch: X1.
+
 ## Connektions C2 verification — 2026-10-26
 
 Owner authorized remaining slices and Connections-only integration (D-027).

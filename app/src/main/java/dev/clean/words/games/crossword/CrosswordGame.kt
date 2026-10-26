@@ -32,7 +32,7 @@ import dev.clean.words.core.PuzzleRecord
 object CrosswordGame : GameModule {
     override val id = "crossword"
     override val title = "Crossita"
-    override val description = "Six crossing answers in a pocket-size 5×5 grid."
+    override val description = "Offline crosswords with varied 7×7 layouts and crossing clues."
     override val puzzles = CrosswordContent.puzzles
     override fun validate(puzzle: PuzzleRecord) = CrosswordRules.validate(puzzle)
     override fun result(puzzle: PuzzleRecord, state: Map<String, String>): GameResult =
@@ -89,7 +89,7 @@ object CrosswordGame : GameModule {
         val windowHeight = with(density) { LocalWindowInfo.current.containerSize.height.toDp() }
         val keyboardHeight = with(density) { WindowInsets.ime.getBottom(this).toDp() }
         // Reserve space for the app header, clue and focused text field above the IME.
-        val boardWidth = if (phoneKeyboard) (windowHeight - keyboardHeight - 290.dp).coerceIn(140.dp, 230.dp) else 300.dp
+        val boardWidth = if (phoneKeyboard) (windowHeight - keyboardHeight - 290.dp).coerceIn(140.dp, 230.dp) else 336.dp
         Column(Modifier.focusRequester(gridFocus).onPreviewKeyEvent { event ->
             if (!editable || phoneKeyboard || event.type != KeyEventType.KeyDown) false
             else when {
@@ -108,10 +108,10 @@ object CrosswordGame : GameModule {
                     style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             }
             Column(Modifier.widthIn(max = boardWidth).fillMaxWidth().align(Alignment.CenterHorizontally), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                repeat(5) { row ->
+                repeat(board.height) { row ->
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-                        repeat(5) { col ->
-                            val index = row * 5 + col
+                        repeat(board.width) { col ->
+                            val index = row * board.width + col
                             val blocked = board.grid[index] == '#'
                             val active = index == selected
                             val inWord = current?.cells?.contains(index) == true
@@ -133,8 +133,8 @@ object CrosswordGame : GameModule {
                                     contentDescription = if (blocked) "Blocked square" else "Row ${row + 1}, column ${col + 1}, ${if (cells[index] == '.') "blank" else cells[index]}, ${if (wrong) "checked incorrect" else if (active) "selected" else ""}"
                                 }, contentAlignment = Alignment.Center) {
                                 if (!blocked) {
-                                    numbers[index]?.let { Text(it.toString(), fontSize = 10.sp, lineHeight = 11.sp, modifier = Modifier.align(Alignment.TopStart).padding(2.dp)) }
-                                    Text(if (cells[index] == '.') "" else cells[index].toString(), fontSize = if (phoneKeyboard) 20.sp else 24.sp,
+                                    numbers[index]?.let { Text(it.toString(), fontSize = if (phoneKeyboard && board.width > 5) 8.sp else 10.sp, lineHeight = 10.sp, modifier = Modifier.align(Alignment.TopStart).padding(2.dp)) }
+                                    Text(if (cells[index] == '.') "" else cells[index].toString(), fontSize = if (phoneKeyboard && board.width > 5) 16.sp else if (phoneKeyboard) 20.sp else 24.sp,
                                         fontWeight = FontWeight.SemiBold, color = if (wrong) MaterialTheme.colorScheme.onErrorContainer else MaterialTheme.colorScheme.onSurface)
                                     if (wrong) Text("×", fontSize = 12.sp, modifier = Modifier.align(Alignment.BottomEnd).padding(1.dp))
                                 }

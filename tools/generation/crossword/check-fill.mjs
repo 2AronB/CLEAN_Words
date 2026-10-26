@@ -1,0 +1,8 @@
+import fs from 'node:fs';
+const bank=JSON.parse(fs.readFileSync('app/src/main/assets/generation/crossword/pilot.json','utf8'));
+const byLength=Object.groupBy(bank.entries,e=>e.answer.length);
+function slots(t){let s=[];for(let r=0;r<t.height;r++)for(let c=0;c<t.width;c++){let i=r*t.width+c;if(t.mask[i]==='#')continue;for(const [dr,dc]of [[0,1],[1,0]]){if(r-dr>=0&&c-dc>=0&&t.mask[(r-dr)*t.width+c-dc]!=='#')continue;let a=[];for(let rr=r,cc=c;rr<t.height&&cc<t.width&&t.mask[rr*t.width+cc]!=='#';rr+=dr,cc+=dc)a.push(rr*t.width+cc);if(a.length>1)s.push(a)}}return s}
+const rows=bank.templates.map(t=>{let grid=[...t.mask],ss=slots(t),picked=new Map,used=new Set,steps=0;function solve(){if(++steps>250000)return false;if(picked.size===ss.length)return true;let best=-1,opts=[];for(let i=0;i<ss.length;i++)if(!picked.has(i)){let found=(byLength[ss[i].length]||[]).filter(e=>!used.has(e.answer)&&ss[i].every((cell,k)=>grid[cell]==='.'||grid[cell]===e.answer[k]));if(!found.length)return false;if(best<0||found.length<opts.length){best=i;opts=found}}for(let e of opts){let before=ss[best].map(i=>grid[i]);ss[best].forEach((i,k)=>grid[i]=e.answer[k]);picked.set(best,e);used.add(e.answer);if(solve())return true;ss[best].forEach((i,k)=>grid[i]=before[k]);picked.delete(best);used.delete(e.answer);if(steps>250000)return false}return false}let solved=solve();return {id:t.id,solved,steps,entries:ss.length,words:solved?[...picked.values()].map(e=>e.answer):[]}});
+fs.writeFileSync('tools/generation/crossword/fill-smoke-report.json',JSON.stringify({note:'Independent JS fill smoke, no runtime board catalog. Kotlin qualification is authoritative for seeded behavior.',rows},null,2)+'\n');
+console.log(rows);
+if(rows.some(r=>!r.solved))process.exitCode=1;

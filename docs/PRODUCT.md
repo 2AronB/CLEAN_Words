@@ -1,3 +1,29 @@
+## Crossita generation X1 — implemented 2026-10-26
+
+Owner requests a larger, more involved crossword and authorizes implementation
+and integration with assumptions resolved locally. New daily/additional puzzles
+use varied 7×7 layouts filled offline by crossing search from an original
+clue/answer pilot. This increases solve scope; it does not establish calibrated
+difficulty. No new dependency/service/network/permission is approved or needed.
+
+Preserve exact legacy 5×5 snapshots, results, letters/cursor/Check assistance and
+existing daily identity. Missing dimensions mean legacy 5×5 only; new snapshots
+freeze dimensions/grid/clues plus source/generator/profile pins and answer/clue
+IDs. Built-in keyboard remains default; phone keyboard/paste/delete/auto-clue
+advance remain supported. Only explicit Check marks errors/assistance.
+
+New starts use existing generation worker, deterministic history-independent
+daily seed, save-before-open and cancel/error/retry behavior. Additional play
+avoids recent fills and immediate exact clue repetition, with older answer/clue
+reuse reduced where the finite pilot permits. Exhaustion stays explicit; do not
+silently relax constraints or open a starter as successful generation.
+
+Human clue accuracy/fairness/familiarity, final desired difficulty, phone comfort
+and large-text acceptance remain unverified until feedback. Four games will be
+generated after X1 integration; Stranded remains a disclosed starter cycle.
+Actual pilot:394 answers/788 clues, 16 layouts per size; production7×7 has 10–12 clues.
+Qualification and delivery facts are recorded in VERIFICATION/CONTINUE.
+
 # CLEAN Words product discovery
 
 ## Generated Connektions C2 — authorized 2026-10-26

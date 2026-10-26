@@ -1,3 +1,21 @@
+# Crossita X1 phone review batch — pending
+
+Install artifacts/CLEAN-Words-crossword-debug.apk as an update, without clearing
+data. Choose Crossita → Another puzzle: today's existing daily may still be5×5.
+Review several new7×7 boards in airplane mode. Check clue accuracy, familiar
+answers, crossing support, layout variety and whether the larger solve feels
+involved enough; size is not a calibrated difficulty level. Some short answers
+recur in the finite original pilot; report incorrect or repetitive exact clues.
+
+Type rapidly using the puzzle keyboard, switch to phone keyboard and paste a
+whole word; fill a wrong word and confirm automatic clue advance without Check.
+Delete backward across a clue boundary, tap across/down crossings, Clear one
+clue and explicitly Check mistakes near the bottom/right edges. Check alone
+marks errors/assistance. Finish a board, reopen history/calendar, restart midway
+through another and confirm the exact clues/letters/cursor remain. Confirm older
+5×5 saved puzzles/results are intact. Review light/dark, larger text, keyboard
+fit and touch comfort on the actual phone. No human acceptance claimed yet.
+
 # S1 phone acceptance — not yet performed
 
 Bee B1 update (0.4.0-bee-opening/versionCode 4): install as update without clearing

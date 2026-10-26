@@ -14,20 +14,20 @@ data class CrosswordEntry(
     val clue: String,
 )
 
-data class CrosswordBoard(val grid: String, val clues: Map<String, String>) {
+data class CrosswordBoard(val grid: String, val clues: Map<String, String>, val width: Int = 5, val height: Int = 5) {
     fun entries(): List<CrosswordEntry> {
-        if (grid.length != 25) return emptyList()
+        if (width !in setOf(5, 7) || height !in setOf(5, 7) || grid.length != width * height) return emptyList()
         val starts = mutableListOf<Triple<Int, CrosswordDirection, List<Int>>>()
         for (index in grid.indices) {
             if (grid[index] == '#') continue
-            val row = index / 5
-            val col = index % 5
+            val row = index / width
+            val col = index % width
             if (col == 0 || grid[index - 1] == '#') {
-                val cells = (col until 5).map { row * 5 + it }.takeWhile { grid[it] != '#' }
+                val cells = (col until width).map { row * width + it }.takeWhile { grid[it] != '#' }
                 if (cells.size > 1) starts += Triple(index, CrosswordDirection.ACROSS, cells)
             }
-            if (row == 0 || grid[index - 5] == '#') {
-                val cells = (row until 5).map { it * 5 + col }.takeWhile { grid[it] != '#' }
+            if (row == 0 || grid[index - width] == '#') {
+                val cells = (row until height).map { it * width + col }.takeWhile { grid[it] != '#' }
                 if (cells.size > 1) starts += Triple(index, CrosswordDirection.DOWN, cells)
             }
         }
@@ -44,16 +44,20 @@ data class CrosswordBoard(val grid: String, val clues: Map<String, String>) {
 object CrosswordRules {
     fun board(puzzle: PuzzleRecord): CrosswordBoard? {
         val grid = puzzle.data["grid"].orEmpty().replace("\n", "").replace("\r", "")
-        if (grid.length != 25 || grid.any { it != '#' && it !in 'A'..'Z' }) return null
+        val hasDimensions = "width" in puzzle.data || "height" in puzzle.data
+        val width = if (hasDimensions) puzzle.data["width"]?.toIntOrNull() ?: return null else 5
+        val height = if (hasDimensions) puzzle.data["height"]?.toIntOrNull() ?: return null else 5
+        if (width !in setOf(5, 7) || height !in setOf(5, 7)) return null
+        if (grid.length != width * height || grid.any { it != '#' && it !in 'A'..'Z' }) return null
         val clues = puzzle.data["clues"].orEmpty().lineSequence().mapNotNull { line ->
             val split = line.indexOf('|')
             if (split < 1) null else line.substring(0, split) to line.substring(split + 1)
         }.toMap()
-        return CrosswordBoard(grid, clues)
+        return CrosswordBoard(grid, clues, width, height)
     }
 
     fun validate(puzzle: PuzzleRecord): List<String> {
-        val board = board(puzzle) ?: return listOf("Grid must have 25 uppercase letters or blocks")
+        val board = board(puzzle) ?: return listOf("Grid must match supported dimensions with uppercase letters or blocks")
         val errors = mutableListOf<String>()
         val entries = board.entries()
         if (entries.isEmpty()) errors += "Grid has no entries"
@@ -71,11 +75,13 @@ object CrosswordRules {
             val queue = ArrayDeque<Int>().apply { add(open.first()) }
             while (queue.isNotEmpty()) {
                 val index = queue.removeFirst()
+                val width = board.width
+                val height = board.height
                 val neighbors = listOfNotNull(
-                    (index - 5).takeIf { index / 5 > 0 },
-                    (index + 5).takeIf { index / 5 < 4 },
-                    (index - 1).takeIf { index % 5 > 0 },
-                    (index + 1).takeIf { index % 5 < 4 },
+                    (index - width).takeIf { index / width > 0 },
+                    (index + width).takeIf { index / width < height - 1 },
+                    (index - 1).takeIf { index % width > 0 },
+                    (index + 1).takeIf { index % width < width - 1 },
                 )
                 neighbors.filter { it in open && reached.add(it) }.forEach(queue::addLast)
             }
@@ -102,7 +108,7 @@ object CrosswordRules {
     }
 
     fun checked(state: Map<String, String>): Set<Int> = state["checked"].orEmpty().split(',')
-        .mapNotNull { it.toIntOrNull() }.filter { it in 0..24 }.toSet()
+        .mapNotNull { it.toIntOrNull() }.filter { it in 0..48 }.toSet()
 
     fun check(board: CrosswordBoard, state: Map<String, String>): Map<String, String> {
         if (result(board, state).status == PlayStatus.COMPLETED) return state
