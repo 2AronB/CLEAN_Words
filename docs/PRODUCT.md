@@ -1,5 +1,18 @@
 # CLEAN Words product discovery
 
+## Connections decoy-first pilot C1 — 2026-10-26
+
+Owner reports insufficient overlap in current Connektions. Prefer choosing two
+or three words from tempting relationships first, then completing four intended
+solution groups around them. Initial engineering target remains two distinct
+three-member decoys spanning intended groups, with exactly three visible members
+under each recorded relationship. Do not silently lower that target for a small
+bank. Check all recorded candidate quartets for competing full partitions;
+mechanical uniqueness does not establish human fairness. Difficulty should come
+from recognizable competing meanings/phrases rather than obscure vocabulary.
+Only slice 1 pilot/contract/validation is authorized here (D-026); runtime remains
+the existing starter flow. Pilot facts and unverified items: CONTINUE/VERIFICATION.
+
 ## Bee opening score B1 — activated 2026-10-26
 
 Owner requested all approved Bee changes integrated, then explicitly selected

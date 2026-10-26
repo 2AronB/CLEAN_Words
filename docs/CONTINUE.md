@@ -1,5 +1,36 @@
 # Continue CLEAN Words
 
+## Connections slice 1 complete — 2026-10-26
+
+Owner authorized slice 1 only: inspect staging, prepare 20-category pilot inputs,
+known board examples, validation and module contract. No Kotlin generator or app
+integration code is authorized or verified by this slice. Development-only input
+validation is within scope. Owner prefers decoy-first composition: choose two
+tempting partial relationships, then complete four intended groups around them.
+Target two distinct plausible three-of-four decoys; preserve four-mistake rules,
+frozen snapshots and all saves. No Connections staging delivery was present.
+Original AI-authored pilot is in tools/generation/connections/pilot.json, outside
+runtime assets. 20 intended categories (121 member records), five decoy relations
+(30 members), two complete board examples. Both have two three-member decoys and
+one full partition under the recorded model; compound fixture enumerates eight
+candidate quartets including FIREWORK overlap. Twelve categories are not yet used
+in fixtures. The wider content prompt's five-board/120-category targets are NOT
+met or claimed. No human reviews or calibrated difficulty; all content AI draft.
+Bounded read-only agent reviewed snapshot mapping and examples; primary applied
+safer KNEE/SAUCEPAN substitutions. Preserve unrelated Wordish staging/tools and
+Gradle JVM file. No app code, runtime assets, saves or dependencies changed.
+
+Checks: node tools/generation/connections/author-pilot.mjs and
+node tools/generation/connections/validate.mjs --self-test pass. Eight validator
+checks include competing partition rejection; report has zero errors. API/input/
+novelty/snapshot contract: app/src/main/java/dev/clean/words/generators/connections/
+README.md and INTEGRATION.md. Exact next action when slice 2 is authorized: read
+those files, implement the pure bounded decoy-first Kotlin composer against the
+pilot, focused reproduction/cancellation/rejection/exclusion tests, then stop at
+the standalone module checkpoint. Slice 3 real-bank 200-seed qualification and
+slices 4–5 Connections-only integration/delivery remain later scope. No Kotlin
+generator, multi-seed evaluation, Android build or device checks in slice 1.
+
 ## Active Bee opening integration — 2026-10-26
 
 Owner requests all approved Bee changes integrated. In this chat the owner now

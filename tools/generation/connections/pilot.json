@@ -1,0 +1,1092 @@
+{
+  "schemaVersion": 1,
+  "version": "connections-pilot-2026-10-26-v1",
+  "provenance": {
+    "source": "Original AI-authored CLEAN Words pilot, 2026-10-26",
+    "rights": "Original project-authored selections and explanations; ordinary words and factual relationships. No external dataset or published puzzle source used.",
+    "humanReviews": 0,
+    "frequencyReviews": 0
+  },
+  "reviewStatus": "ai-draft-needs-human-review",
+  "categories": [
+    {
+      "id": "body",
+      "revision": 1,
+      "label": "Human limbs or limb sections",
+      "relationType": "semantic",
+      "explanation": "Parts of human arms or legs.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "FOOT",
+          "sense": "lower limb extremity"
+        },
+        {
+          "tile": "HAND",
+          "sense": "upper limb extremity"
+        },
+        {
+          "tile": "ARM",
+          "sense": "upper limb"
+        },
+        {
+          "tile": "LEG",
+          "sense": "lower limb"
+        },
+        {
+          "tile": "KNEE",
+          "sense": "leg joint"
+        },
+        {
+          "tile": "ELBOW",
+          "sense": "arm joint"
+        }
+      ],
+      "knownOverlaps": [
+        "ball"
+      ]
+    },
+    {
+      "id": "containers",
+      "revision": 1,
+      "label": "Containers",
+      "relationType": "semantic",
+      "explanation": "Objects used to hold things.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "BASKET",
+          "sense": "woven container"
+        },
+        {
+          "tile": "CUP",
+          "sense": "small drinking vessel"
+        },
+        {
+          "tile": "BIN",
+          "sense": "storage receptacle"
+        },
+        {
+          "tile": "CRATE",
+          "sense": "packing container"
+        },
+        {
+          "tile": "JAR",
+          "sense": "wide mouthed vessel"
+        },
+        {
+          "tile": "TUB",
+          "sense": "large open vessel"
+        }
+      ],
+      "knownOverlaps": [
+        "ball",
+        "cake"
+      ]
+    },
+    {
+      "id": "cookware",
+      "revision": 1,
+      "label": "Stovetop cooking vessels",
+      "relationType": "semantic",
+      "explanation": "Vessels used to cook food on a stove.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "PAN",
+          "sense": "shallow cooking vessel"
+        },
+        {
+          "tile": "POT",
+          "sense": "deep cooking vessel"
+        },
+        {
+          "tile": "WOK",
+          "sense": "rounded stir fry vessel"
+        },
+        {
+          "tile": "SKILLET",
+          "sense": "frying pan"
+        },
+        {
+          "tile": "SAUCEPAN",
+          "sense": "handled cooking vessel"
+        },
+        {
+          "tile": "KETTLE",
+          "sense": "water heating vessel"
+        }
+      ],
+      "knownOverlaps": [
+        "cake"
+      ]
+    },
+    {
+      "id": "cleaning",
+      "revision": 1,
+      "label": "Manual cleaning tools",
+      "relationType": "semantic",
+      "explanation": "Hand operated tools for cleaning household surfaces.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "SPONGE",
+          "sense": "absorbent cleaning tool"
+        },
+        {
+          "tile": "MOP",
+          "sense": "floor cleaning tool"
+        },
+        {
+          "tile": "BROOM",
+          "sense": "sweeping tool"
+        },
+        {
+          "tile": "DUSTER",
+          "sense": "dust removing tool"
+        },
+        {
+          "tile": "BRUSH",
+          "sense": "scrubbing tool"
+        },
+        {
+          "tile": "SQUEEGEE",
+          "sense": "tool wiping water from glass"
+        }
+      ],
+      "knownOverlaps": [
+        "tooth",
+        "cake"
+      ]
+    },
+    {
+      "id": "fire",
+      "revision": 1,
+      "label": "FIRE ___",
+      "relationType": "compound",
+      "explanation": "Add FIRE before each tile.",
+      "prerequisites": "Everyday American English",
+      "wordplay": true,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "FLY",
+          "sense": "firefly"
+        },
+        {
+          "tile": "PLACE",
+          "sense": "fireplace"
+        },
+        {
+          "tile": "WOOD",
+          "sense": "firewood"
+        },
+        {
+          "tile": "BOAT",
+          "sense": "fireboat"
+        },
+        {
+          "tile": "WALL",
+          "sense": "firewall"
+        },
+        {
+          "tile": "ENGINE",
+          "sense": "fire engine"
+        },
+        {
+          "tile": "WORK",
+          "sense": "firework"
+        }
+      ],
+      "knownOverlaps": [
+        "paper",
+        "house"
+      ]
+    },
+    {
+      "id": "book",
+      "revision": 1,
+      "label": "BOOK ___",
+      "relationType": "compound",
+      "explanation": "Add BOOK before each tile.",
+      "prerequisites": "Everyday American English",
+      "wordplay": true,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "SHELF",
+          "sense": "bookshelf"
+        },
+        {
+          "tile": "WORM",
+          "sense": "bookworm"
+        },
+        {
+          "tile": "MARK",
+          "sense": "bookmark"
+        },
+        {
+          "tile": "CLUB",
+          "sense": "book club"
+        },
+        {
+          "tile": "END",
+          "sense": "bookend"
+        },
+        {
+          "tile": "CASE",
+          "sense": "bookcase"
+        }
+      ],
+      "knownOverlaps": [
+        "ear"
+      ]
+    },
+    {
+      "id": "tooth",
+      "revision": 1,
+      "label": "TOOTH ___",
+      "relationType": "compound",
+      "explanation": "Add TOOTH before each tile.",
+      "prerequisites": "Everyday American English",
+      "wordplay": true,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "BRUSH",
+          "sense": "toothbrush"
+        },
+        {
+          "tile": "PASTE",
+          "sense": "toothpaste"
+        },
+        {
+          "tile": "ACHE",
+          "sense": "toothache"
+        },
+        {
+          "tile": "PICK",
+          "sense": "toothpick"
+        },
+        {
+          "tile": "DECAY",
+          "sense": "tooth decay"
+        },
+        {
+          "tile": "FAIRY",
+          "sense": "tooth fairy"
+        }
+      ],
+      "knownOverlaps": [
+        "cleaning",
+        "ear"
+      ]
+    },
+    {
+      "id": "paper",
+      "revision": 1,
+      "label": "PAPER ___",
+      "relationType": "compound",
+      "explanation": "Add PAPER before each tile.",
+      "prerequisites": "Everyday American English",
+      "wordplay": true,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "WORK",
+          "sense": "paperwork"
+        },
+        {
+          "tile": "PLANE",
+          "sense": "paper plane"
+        },
+        {
+          "tile": "BACK",
+          "sense": "paperback"
+        },
+        {
+          "tile": "WEIGHT",
+          "sense": "paperweight"
+        },
+        {
+          "tile": "BAG",
+          "sense": "paper bag"
+        },
+        {
+          "tile": "CUT",
+          "sense": "paper cut"
+        }
+      ],
+      "knownOverlaps": [
+        "fire",
+        "house"
+      ]
+    },
+    {
+      "id": "instruments",
+      "revision": 1,
+      "label": "Musical instruments",
+      "relationType": "semantic",
+      "explanation": "Instruments played to make music.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "BASS",
+          "sense": "bass guitar or double bass"
+        },
+        {
+          "tile": "HORN",
+          "sense": "brass musical instrument"
+        },
+        {
+          "tile": "HARP",
+          "sense": "plucked string instrument"
+        },
+        {
+          "tile": "FLUTE",
+          "sense": "woodwind instrument"
+        },
+        {
+          "tile": "DRUM",
+          "sense": "percussion instrument"
+        },
+        {
+          "tile": "VIOLIN",
+          "sense": "bowed string instrument"
+        }
+      ],
+      "knownOverlaps": [
+        "ear"
+      ]
+    },
+    {
+      "id": "birds",
+      "revision": 1,
+      "label": "Birds",
+      "relationType": "semantic",
+      "explanation": "Common English bird names.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "CRANE",
+          "sense": "long legged bird"
+        },
+        {
+          "tile": "SWALLOW",
+          "sense": "aerial insect eating bird"
+        },
+        {
+          "tile": "SWIFT",
+          "sense": "fast flying bird"
+        },
+        {
+          "tile": "ROBIN",
+          "sense": "red breasted bird"
+        },
+        {
+          "tile": "FINCH",
+          "sense": "small seed eating bird"
+        },
+        {
+          "tile": "WREN",
+          "sense": "small songbird"
+        }
+      ],
+      "knownOverlaps": [
+        "eat"
+      ]
+    },
+    {
+      "id": "fasteners",
+      "revision": 1,
+      "label": "Fasteners",
+      "relationType": "semantic",
+      "explanation": "Items used to join or secure materials.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "BOLT",
+          "sense": "threaded fastener"
+        },
+        {
+          "tile": "NAIL",
+          "sense": "driven metal fastener"
+        },
+        {
+          "tile": "SCREW",
+          "sense": "helical threaded fastener"
+        },
+        {
+          "tile": "TACK",
+          "sense": "small sharp nail"
+        },
+        {
+          "tile": "RIVET",
+          "sense": "permanent metal fastener"
+        },
+        {
+          "tile": "STAPLE",
+          "sense": "U shaped fastener"
+        }
+      ],
+      "knownOverlaps": [
+        "eat"
+      ]
+    },
+    {
+      "id": "mammals",
+      "revision": 1,
+      "label": "Mammals",
+      "relationType": "semantic",
+      "explanation": "Animal names in their mammal senses.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "WOLF",
+          "sense": "wild canine"
+        },
+        {
+          "tile": "BEAR",
+          "sense": "large omnivorous mammal"
+        },
+        {
+          "tile": "SEAL",
+          "sense": "marine mammal"
+        },
+        {
+          "tile": "OTTER",
+          "sense": "semi aquatic mammal"
+        },
+        {
+          "tile": "FOX",
+          "sense": "small wild canine"
+        },
+        {
+          "tile": "MOLE",
+          "sense": "burrowing mammal"
+        }
+      ],
+      "knownOverlaps": [
+        "mail",
+        "eat"
+      ]
+    },
+    {
+      "id": "mail",
+      "revision": 1,
+      "label": "Verbs for preparing or sending a letter",
+      "relationType": "semantic",
+      "explanation": "Actions used when mailing a physical letter.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "POST",
+          "sense": "send through the postal system"
+        },
+        {
+          "tile": "STAMP",
+          "sense": "apply postage"
+        },
+        {
+          "tile": "ADDRESS",
+          "sense": "write destination information"
+        },
+        {
+          "tile": "SEND",
+          "sense": "dispatch"
+        },
+        {
+          "tile": "SEAL",
+          "sense": "close envelope securely"
+        },
+        {
+          "tile": "MAIL",
+          "sense": "send through the postal system"
+        }
+      ],
+      "knownOverlaps": [
+        "mammals"
+      ]
+    },
+    {
+      "id": "trees",
+      "revision": 1,
+      "label": "Trees",
+      "relationType": "semantic",
+      "explanation": "Names of trees.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "PALM",
+          "sense": "tropical tree"
+        },
+        {
+          "tile": "PINE",
+          "sense": "needle leaved evergreen"
+        },
+        {
+          "tile": "ASH",
+          "sense": "deciduous tree"
+        },
+        {
+          "tile": "FIR",
+          "sense": "conifer"
+        },
+        {
+          "tile": "ELM",
+          "sense": "deciduous shade tree"
+        },
+        {
+          "tile": "BIRCH",
+          "sense": "tree often with pale bark"
+        }
+      ],
+      "knownOverlaps": []
+    },
+    {
+      "id": "banking",
+      "revision": 1,
+      "label": "Banking terms",
+      "relationType": "semantic",
+      "explanation": "Words in ordinary personal banking.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "BANK",
+          "sense": "financial institution"
+        },
+        {
+          "tile": "INTEREST",
+          "sense": "charge or return on money"
+        },
+        {
+          "tile": "LOAN",
+          "sense": "borrowed sum"
+        },
+        {
+          "tile": "DEPOSIT",
+          "sense": "money placed in an account"
+        },
+        {
+          "tile": "CREDIT",
+          "sense": "addition to an account"
+        },
+        {
+          "tile": "BALANCE",
+          "sense": "amount in an account"
+        }
+      ],
+      "knownOverlaps": []
+    },
+    {
+      "id": "sports",
+      "revision": 1,
+      "label": "Actions in ball sports",
+      "relationType": "semantic",
+      "explanation": "Verbs for playing a ball in sports; American and British terms.",
+      "prerequisites": "Baseball, cricket, tennis and team ball sports; BOWL uses the cricket sense",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "PITCH",
+          "sense": "throw a baseball to a batter"
+        },
+        {
+          "tile": "BAT",
+          "sense": "hit with a bat"
+        },
+        {
+          "tile": "BOWL",
+          "sense": "deliver a cricket ball"
+        },
+        {
+          "tile": "SERVE",
+          "sense": "put a tennis ball into play"
+        },
+        {
+          "tile": "PASS",
+          "sense": "send ball to teammate"
+        },
+        {
+          "tile": "SHOOT",
+          "sense": "attempt to score a goal or basket"
+        }
+      ],
+      "knownOverlaps": []
+    },
+    {
+      "id": "subjects",
+      "revision": 1,
+      "label": "School subjects",
+      "relationType": "semantic",
+      "explanation": "Common school fields of study.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "ART",
+          "sense": "visual arts study"
+        },
+        {
+          "tile": "HISTORY",
+          "sense": "study of the past"
+        },
+        {
+          "tile": "MATH",
+          "sense": "mathematics"
+        },
+        {
+          "tile": "SCIENCE",
+          "sense": "study of natural phenomena"
+        },
+        {
+          "tile": "MUSIC",
+          "sense": "musical study"
+        },
+        {
+          "tile": "GEOGRAPHY",
+          "sense": "study of places"
+        }
+      ],
+      "knownOverlaps": []
+    },
+    {
+      "id": "punctuation",
+      "revision": 1,
+      "label": "Punctuation marks",
+      "relationType": "semantic",
+      "explanation": "Names of written punctuation marks.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "COMMA",
+          "sense": "comma punctuation"
+        },
+        {
+          "tile": "COLON",
+          "sense": "colon punctuation"
+        },
+        {
+          "tile": "PERIOD",
+          "sense": "full stop"
+        },
+        {
+          "tile": "DASH",
+          "sense": "dash punctuation"
+        },
+        {
+          "tile": "SEMICOLON",
+          "sense": "semicolon punctuation"
+        },
+        {
+          "tile": "APOSTROPHE",
+          "sense": "apostrophe punctuation"
+        }
+      ],
+      "knownOverlaps": []
+    },
+    {
+      "id": "dog",
+      "revision": 1,
+      "label": "Dog training cues",
+      "relationType": "semantic",
+      "explanation": "Common spoken cues to a trained dog.",
+      "prerequisites": "Everyday American English",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "SIT",
+          "sense": "lower hindquarters"
+        },
+        {
+          "tile": "STAY",
+          "sense": "remain in place"
+        },
+        {
+          "tile": "HEEL",
+          "sense": "walk beside handler"
+        },
+        {
+          "tile": "FETCH",
+          "sense": "retrieve an object"
+        },
+        {
+          "tile": "COME",
+          "sense": "approach handler"
+        },
+        {
+          "tile": "DOWN",
+          "sense": "lie down"
+        }
+      ],
+      "knownOverlaps": []
+    },
+    {
+      "id": "chess",
+      "revision": 1,
+      "label": "Chess piece types",
+      "relationType": "semantic",
+      "explanation": "The six standard types of chess piece.",
+      "prerequisites": "Basic chess vocabulary",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "KING",
+          "sense": "royal chess piece"
+        },
+        {
+          "tile": "QUEEN",
+          "sense": "combined rook and bishop movement"
+        },
+        {
+          "tile": "ROOK",
+          "sense": "orthogonal moving piece"
+        },
+        {
+          "tile": "BISHOP",
+          "sense": "diagonal moving piece"
+        },
+        {
+          "tile": "KNIGHT",
+          "sense": "L moving piece"
+        },
+        {
+          "tile": "PAWN",
+          "sense": "basic forward moving piece"
+        }
+      ],
+      "knownOverlaps": []
+    }
+  ],
+  "decoyRelations": [
+    {
+      "id": "ball",
+      "revision": 1,
+      "label": "___ BALL",
+      "relationType": "compound",
+      "explanation": "Append BALL; closed compounds.",
+      "prerequisites": "Everyday American English",
+      "wordplay": true,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "FOOT",
+          "sense": "football"
+        },
+        {
+          "tile": "HAND",
+          "sense": "handball"
+        },
+        {
+          "tile": "BASKET",
+          "sense": "basketball"
+        },
+        {
+          "tile": "BASE",
+          "sense": "baseball"
+        },
+        {
+          "tile": "VOLLEY",
+          "sense": "volleyball"
+        },
+        {
+          "tile": "SOFT",
+          "sense": "softball"
+        }
+      ],
+      "knownOverlaps": [
+        "body",
+        "containers"
+      ]
+    },
+    {
+      "id": "cake",
+      "revision": 1,
+      "label": "___ CAKE",
+      "relationType": "compound",
+      "explanation": "Append CAKE; open or closed compounds.",
+      "prerequisites": "Everyday American English",
+      "wordplay": true,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "CUP",
+          "sense": "cupcake"
+        },
+        {
+          "tile": "PAN",
+          "sense": "pancake"
+        },
+        {
+          "tile": "SPONGE",
+          "sense": "sponge cake"
+        },
+        {
+          "tile": "CHEESE",
+          "sense": "cheesecake"
+        },
+        {
+          "tile": "POUND",
+          "sense": "pound cake"
+        },
+        {
+          "tile": "FRUIT",
+          "sense": "fruitcake"
+        }
+      ],
+      "knownOverlaps": [
+        "containers",
+        "cookware",
+        "cleaning"
+      ]
+    },
+    {
+      "id": "ear",
+      "revision": 1,
+      "label": "EAR ___",
+      "relationType": "compound",
+      "explanation": "Prepend EAR; closed compounds.",
+      "prerequisites": "Everyday American English",
+      "wordplay": true,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "WORM",
+          "sense": "earworm"
+        },
+        {
+          "tile": "MARK",
+          "sense": "earmark"
+        },
+        {
+          "tile": "ACHE",
+          "sense": "earache"
+        },
+        {
+          "tile": "DRUM",
+          "sense": "eardrum"
+        },
+        {
+          "tile": "RING",
+          "sense": "earring"
+        },
+        {
+          "tile": "PLUG",
+          "sense": "earplug"
+        }
+      ],
+      "knownOverlaps": [
+        "book",
+        "tooth",
+        "instruments"
+      ]
+    },
+    {
+      "id": "house",
+      "revision": 1,
+      "label": "HOUSE ___",
+      "relationType": "compound",
+      "explanation": "Prepend HOUSE; closed compounds.",
+      "prerequisites": "Everyday American English",
+      "wordplay": true,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "FLY",
+          "sense": "housefly"
+        },
+        {
+          "tile": "BOAT",
+          "sense": "houseboat"
+        },
+        {
+          "tile": "WORK",
+          "sense": "housework"
+        },
+        {
+          "tile": "HOLD",
+          "sense": "household"
+        },
+        {
+          "tile": "WIFE",
+          "sense": "housewife"
+        },
+        {
+          "tile": "COAT",
+          "sense": "housecoat"
+        }
+      ],
+      "knownOverlaps": [
+        "fire",
+        "paper"
+      ]
+    },
+    {
+      "id": "eat",
+      "revision": 1,
+      "label": "Eat quickly",
+      "relationType": "sense",
+      "explanation": "Verbs meaning to eat quickly or greedily.",
+      "prerequisites": "Informal English; SCOFF in its eating sense",
+      "wordplay": false,
+      "reviewStatus": "ai-draft-needs-human-review",
+      "members": [
+        {
+          "tile": "SWALLOW",
+          "sense": "gulp down"
+        },
+        {
+          "tile": "BOLT",
+          "sense": "eat hastily"
+        },
+        {
+          "tile": "WOLF",
+          "sense": "eat greedily"
+        },
+        {
+          "tile": "DEVOUR",
+          "sense": "eat ravenously"
+        },
+        {
+          "tile": "SCOFF",
+          "sense": "eat greedily"
+        },
+        {
+          "tile": "GOBBLE",
+          "sense": "eat quickly"
+        }
+      ],
+      "knownOverlaps": [
+        "birds",
+        "fasteners",
+        "mammals"
+      ]
+    }
+  ],
+  "boards": [
+    {
+      "id": "pilot-household",
+      "revision": 1,
+      "groups": [
+        {
+          "categoryId": "body",
+          "words": [
+            "FOOT",
+            "HAND",
+            "KNEE",
+            "LEG"
+          ]
+        },
+        {
+          "categoryId": "containers",
+          "words": [
+            "BASKET",
+            "CUP",
+            "BIN",
+            "CRATE"
+          ]
+        },
+        {
+          "categoryId": "cookware",
+          "words": [
+            "PAN",
+            "WOK",
+            "SKILLET",
+            "SAUCEPAN"
+          ]
+        },
+        {
+          "categoryId": "cleaning",
+          "words": [
+            "SPONGE",
+            "MOP",
+            "BROOM",
+            "DUSTER"
+          ]
+        }
+      ],
+      "decoyIds": [
+        "ball",
+        "cake"
+      ],
+      "notes": "Football/handball/basketball and cupcake/pancake/sponge cake cross intended categories. KNEE and SAUCEPAN avoid additional possible compound readings of ARM and POT. Broad household-object interpretations still need human review.",
+      "reviewStatus": "ai-draft-needs-human-review"
+    },
+    {
+      "id": "pilot-compounds",
+      "revision": 1,
+      "groups": [
+        {
+          "categoryId": "fire",
+          "words": [
+            "FLY",
+            "PLACE",
+            "WOOD",
+            "BOAT"
+          ]
+        },
+        {
+          "categoryId": "book",
+          "words": [
+            "SHELF",
+            "WORM",
+            "MARK",
+            "CLUB"
+          ]
+        },
+        {
+          "categoryId": "tooth",
+          "words": [
+            "BRUSH",
+            "PASTE",
+            "ACHE",
+            "PICK"
+          ]
+        },
+        {
+          "categoryId": "paper",
+          "words": [
+            "WORK",
+            "PLANE",
+            "BACK",
+            "WEIGHT"
+          ]
+        }
+      ],
+      "decoyIds": [
+        "ear",
+        "house"
+      ],
+      "notes": "Earworm/earmark/earache and housefly/houseboat/housework. FIREWORK is a modeled extra quartet option; test all five FIRE matches rather than ignoring it.",
+      "reviewStatus": "ai-draft-needs-human-review"
+    }
+  ]
+}

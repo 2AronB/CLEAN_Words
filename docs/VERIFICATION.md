@@ -1,3 +1,24 @@
+## Connections slice 1 verification — 2026-10-26
+
+Development-only tooling: `node tools/generation/connections/author-pilot.mjs`
+and `node tools/generation/connections/validate.mjs --self-test` pass. Eight checks:
+valid pilot, duplicate tile rejection, missing sense rejection, duplicate decoy
+rejection, insufficient decoy rejection, missing overlap rejection, semantic
+signature invariance to group/member ordering, competing-full-partition rejection.
+Report: tools/generation/connections/validation-report.json. 20 intended categories
+(121 member records), five decoy relations (30 members), two board examples,
+zero validation errors. Household fixture: four candidate quartets/one partition;
+compound fixture: eight candidate quartets/one partition. Both have two distinct
+three-member cross-group decoys. Source hash is pinned in the report.
+
+Bounded read-only agent independently inspected source/staging/snapshot mapping
+and reviewed examples. Original AI draft content only; zero human/frequency
+reviews. This proves uniqueness only under recorded relationships, not all human
+interpretations. Twelve categories have no complete fixture yet. Wider five-board
+pilot/120-category targets are unmet. No generator, 200-seed report, runtime
+integration, app build, APK, emulator or phone verification belongs to slice 1.
+Prior Bee and other checks below describe their own earlier implementation.
+
 # Bee opening B1 verification — 2026-10-26
 
 Owner approved activation with **no additional familiarity-ratio filter** (D-025).

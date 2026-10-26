@@ -1,5 +1,14 @@
 # Discovery and delivery plan
 
+Connections C1 (2026-10-26, D-026): slice 1 complete; 20-category original pilot,
+two modeled-decoy fixtures and proposed module contract validated locally.
+Checkpoint sequence: (2) standalone bounded decoy-first composer and focused
+tests; (3) real-bank 200-seed qualification and explicit bank deficits; (4)
+Connections-only existing-worker/save integration and local regressions; (5)
+offline build/emulator/update verification and APK handoff. Each later slice needs
+its own scope authorization; do not start it from this planning entry. Bank
+expansion is separately batchable. Runtime currently remains unchanged.
+
 B1 (2026-10-26): owner approved active Bee opening scoring without an additional
 ratio filter. Integrate ordered v3 scores and independent goal/resume milestones
 with full old-save compatibility, compile/test on disposable emulator offline,

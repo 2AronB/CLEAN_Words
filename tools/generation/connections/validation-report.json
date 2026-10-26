@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "bankVersion": "connections-pilot-2026-10-26-v1",
+  "sha256": "6278aa8d8c77eb9612276fa8d0c621d8cb3674fce40d9d0d46490aa678c7a2bb",
+  "categoryCount": 20,
+  "decoyRelationCount": 5,
+  "exampleBoardCount": 2,
+  "humanReviewedCategories": 0,
+  "humanReviewedBoards": 0,
+  "errors": [],
+  "boards": [
+    {
+      "id": "pilot-household",
+      "signature": "BASKET|BIN|CRATE|CUP::BROOM|DUSTER|MOP|SPONGE::FOOT|HAND|KNEE|LEG::PAN|SAUCEPAN|SKILLET|WOK",
+      "candidateQuartets": 4,
+      "testedQuartets": [
+        "BASKET|BIN|CRATE|CUP",
+        "BROOM|DUSTER|MOP|SPONGE",
+        "FOOT|HAND|KNEE|LEG",
+        "PAN|SAUCEPAN|SKILLET|WOK"
+      ],
+      "partitionCountCappedAtTwo": 1,
+      "decoys": [
+        {
+          "relationId": "ball",
+          "members": [
+            {
+              "tile": "FOOT",
+              "sense": "football"
+            },
+            {
+              "tile": "HAND",
+              "sense": "handball"
+            },
+            {
+              "tile": "BASKET",
+              "sense": "basketball"
+            }
+          ],
+          "intendedGroupsSpanned": 2
+        },
+        {
+          "relationId": "cake",
+          "members": [
+            {
+              "tile": "CUP",
+              "sense": "cupcake"
+            },
+            {
+              "tile": "PAN",
+              "sense": "pancake"
+            },
+            {
+              "tile": "SPONGE",
+              "sense": "sponge cake"
+            }
+          ],
+          "intendedGroupsSpanned": 3
+        }
+      ],
+      "intersections": [
+        {
+          "relationId": "body",
+          "visibleMembers": [
+            "FOOT",
+            "HAND",
+            "KNEE",
+            "LEG"
+          ]
+        },
+        {
+          "relationId": "containers",
+          "visibleMembers": [
+            "BASKET",
+            "BIN",
+            "CRATE",
+            "CUP"
+          ]
+        },
+        {
+          "relationId": "cookware",
+          "visibleMembers": [
+            "PAN",
+            "SAUCEPAN",
+            "SKILLET",
+            "WOK"
+          ]
+        },
+        {
+          "relationId": "cleaning",
+          "visibleMembers": [
+            "BROOM",
+            "DUSTER",
+            "MOP",
+            "SPONGE"
+          ]
+        },
+        {
+          "relationId": "fire",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "book",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "tooth",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "paper",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "instruments",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "birds",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "fasteners",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "mammals",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "mail",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "trees",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "banking",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "sports",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "subjects",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "punctuation",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "dog",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "chess",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "ball",
+          "visibleMembers": [
+            "BASKET",
+            "FOOT",
+            "HAND"
+          ]
+        },
+        {
+          "relationId": "cake",
+          "visibleMembers": [
+            "CUP",
+            "PAN",
+            "SPONGE"
+          ]
+        },
+        {
+          "relationId": "ear",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "house",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "eat",
+          "visibleMembers": []
+        }
+      ]
+    },
+    {
+      "id": "pilot-compounds",
+      "signature": "ACHE|BRUSH|PASTE|PICK::BACK|PLANE|WEIGHT|WORK::BOAT|FLY|PLACE|WOOD::CLUB|MARK|SHELF|WORM",
+      "candidateQuartets": 8,
+      "testedQuartets": [
+        "ACHE|BRUSH|PASTE|PICK",
+        "BACK|PLANE|WEIGHT|WORK",
+        "BOAT|FLY|PLACE|WOOD",
+        "BOAT|FLY|PLACE|WORK",
+        "BOAT|FLY|WOOD|WORK",
+        "BOAT|PLACE|WOOD|WORK",
+        "CLUB|MARK|SHELF|WORM",
+        "FLY|PLACE|WOOD|WORK"
+      ],
+      "partitionCountCappedAtTwo": 1,
+      "decoys": [
+        {
+          "relationId": "ear",
+          "members": [
+            {
+              "tile": "WORM",
+              "sense": "earworm"
+            },
+            {
+              "tile": "MARK",
+              "sense": "earmark"
+            },
+            {
+              "tile": "ACHE",
+              "sense": "earache"
+            }
+          ],
+          "intendedGroupsSpanned": 2
+        },
+        {
+          "relationId": "house",
+          "members": [
+            {
+              "tile": "FLY",
+              "sense": "housefly"
+            },
+            {
+              "tile": "BOAT",
+              "sense": "houseboat"
+            },
+            {
+              "tile": "WORK",
+              "sense": "housework"
+            }
+          ],
+          "intendedGroupsSpanned": 2
+        }
+      ],
+      "intersections": [
+        {
+          "relationId": "body",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "containers",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "cookware",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "cleaning",
+          "visibleMembers": [
+            "BRUSH"
+          ]
+        },
+        {
+          "relationId": "fire",
+          "visibleMembers": [
+            "BOAT",
+            "FLY",
+            "PLACE",
+            "WOOD",
+            "WORK"
+          ]
+        },
+        {
+          "relationId": "book",
+          "visibleMembers": [
+            "CLUB",
+            "MARK",
+            "SHELF",
+            "WORM"
+          ]
+        },
+        {
+          "relationId": "tooth",
+          "visibleMembers": [
+            "ACHE",
+            "BRUSH",
+            "PASTE",
+            "PICK"
+          ]
+        },
+        {
+          "relationId": "paper",
+          "visibleMembers": [
+            "BACK",
+            "PLANE",
+            "WEIGHT",
+            "WORK"
+          ]
+        },
+        {
+          "relationId": "instruments",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "birds",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "fasteners",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "mammals",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "mail",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "trees",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "banking",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "sports",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "subjects",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "punctuation",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "dog",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "chess",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "ball",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "cake",
+          "visibleMembers": []
+        },
+        {
+          "relationId": "ear",
+          "visibleMembers": [
+            "ACHE",
+            "MARK",
+            "WORM"
+          ]
+        },
+        {
+          "relationId": "house",
+          "visibleMembers": [
+            "BOAT",
+            "FLY",
+            "WORK"
+          ]
+        },
+        {
+          "relationId": "eat",
+          "visibleMembers": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,3 +1,16 @@
+## D-026 — Connections bounded slice 1 and deliberate decoys
+
+2026-10-26 — Owner requested decoy-first composition (two or three tempting
+members, then fill the four real groups) and authorized "Start on slice 1" with
+frequent saves due to limited remaining context. Slice 1 means inspect staging,
+prepare 20-category pilot inputs/known examples, validate and document the module
+contract. Development-only validation tooling is included; Kotlin composer,
+200-seed qualification and Connections-only app integration/delivery are later
+checkpoints, not authorized by this slice. Existing saves/rules remain unchanged.
+No Connections staging handoff existed; original AI draft inputs were prepared.
+Two defensible fixtures supplied; broader five-fixture/120-category targets remain
+unmet. All content needs human review. Resume details are in CONTINUE.
+
 # Decisions
 
 ## D-025 — Activate Bee ten-word score without extra ratio filter

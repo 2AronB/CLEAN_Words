@@ -1,5 +1,19 @@
 # Agent work queue
 
+## Connections slice checkpoints — 2026-10-26
+
+- [x] Slice 1: inspect staging/live snapshot shape; 20 original category inputs,
+  five decoy relations, two complete examples; validator/negative fixtures and
+  documented API/snapshot/novelty contract. All provisional, zero human reviews.
+- [ ] Slice 2, later authorization: standalone Kotlin composer and focused tests.
+- [ ] Slice 3: actual-bank 200-seed qualification; quantify variety/search limits.
+- [ ] Separate content batches: more compatible categories/fixtures; wider prompt
+  targets (120 categories/five pilot boards) remain unmet. Human ambiguity review.
+- [ ] Slice 4: Connections-only shared integration, preserving all prior saves.
+- [ ] Slice 5: offline build/emulator/update checks, docs and APK delivery.
+
+Exact next action and paths: CONTINUE. Do not use pilot fixtures as runtime pool.
+
 ## Bee B1 — 2026-10-26
 
 Owner explicitly approved activation without an additional familiarity-ratio
