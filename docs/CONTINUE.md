@@ -1,5 +1,22 @@
 # Continue CLEAN Words
 
+## Connections remaining slices authorized — 2026-10-26
+
+Owner first authorized "Next slice", then "Work through the remaining slices
+then integrate." This now authorizes qualification and Connections-only app
+integration/delivery; do not repeat the scope approval question. Primary owns
+module implementation, input conversion, shared integration and coordinated builds.
+Slice 2 code is implemented: pure bounded decoy-first composer, canonical typed
+bank/profile pins, all-recorded partition checks, complete snapshots and explicit
+failure/cancel results. Actual pilot is converted to TEST-ONLY Kotlin without
+board fixtures. 169 JVM tests pass (15 new focused composer tests), zero failures.
+Independent test author supplied positive/negative tests; final independent code
+review was unavailable when that agent reached its usage limit. Primary reviews.
+Keep existing rules, runtime flows, saves, Wordish staging and user Gradle file.
+Next: run 200-seed actual-bank qualification plus latest-100 exclusion sequence;
+then bundle pinned inputs and adapt existing worker/signatures/credits. Test real
+daily/extra/resume/update offline before APK delivery. Human fairness stays open.
+
 ## Connections slice 1 complete — 2026-10-26
 
 Owner authorized slice 1 only: inspect staging, prepare 20-category pilot inputs,
